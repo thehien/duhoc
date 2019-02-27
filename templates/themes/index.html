@@ -1,0 +1,231 @@
+{include file="$themes/header.html"}
+<!-- Header Section Start -->
+<div class="header">    
+  <!-- Start intro section -->
+  <section id="intro" class="section-intro">
+    <div class="logo-menu">
+      {if $isLogin}
+      {include file="$themes/top-account.html"}
+      {elseif $isLogin_cv}
+      {include file="$themes/top-cv-account.html"}
+      {else}
+      {include file="$themes/top.html"}
+      {/if}
+    </div>
+    <!-- Header Section End -->    
+
+    <section id="slider">
+     {include file="$themes/banner.html"}
+   </section>
+
+
+ </section>
+ <!-- end intro section -->
+</div>
+
+<!-- Find Job Section Start -->
+<section class="find-job section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12" style="text-align: center">
+        <h2>What is Linkrica?</h2>
+      </div>
+
+      <div class="col-md-12" style="margin: 30px; font-size: 17px;">
+       LINKRICA is an online translation application that helps you meet our great translators anywhere in the world. You will pay lowest translation cost and will gain higher value added.
+      </div>
+      <div class="col-md-12">
+        <center>
+         <a class="btn btn-translate-home" href="{$smarty.const.URL_HOMEPAGE}">
+          ENTERPRISE SOLUTIONS
+        </a>
+      </center>
+    </div>
+  </section>
+  <!-- Find Job Section End -->
+  <!-- Featured Jobs Section Start -->
+  <section class="section">
+   <div class="col-md-12" style="text-align: center; margin-bottom: 10px;">
+    <h2>Meet Our Great Translators</h2>
+  </div>
+
+</section>
+
+
+<section class="featured-jobs section" id="map" style="height: 500px; width: 100%">
+  <div class="container">
+   <div class="row">
+     
+    <div class="col-md-12">
+     <div></div>
+     {literal}
+     <script>
+       function initMap() {
+         {/literal}{foreach from=$translater item="locations" key="key" name="locations"}{literal}
+         var location_{/literal}{$key}{literal} = {
+          info: '<strong style="border-bottom:2px solid #ff0000;">{/literal}{$locations.name}{literal}</strong><br/><br/>Translate from : <strong>{/literal}{$locations.fromlanguage}{literal}</strong><br/><br/>Translate to :<strong>{/literal}{$locations.tolanguage}{literal}</strong>',
+          lat: {/literal}{$locations.latitude}{literal},
+          long: {/literal}{$locations.longitude}{literal},
+          news_img: '{/literal}{$locations.news_img}{literal}'
+        };
+        {/literal}{/foreach}{literal}
+
+        var locations = [
+        {/literal}{foreach from=$translater item="locations" key="key" name="locations"}{literal}
+        [location_{/literal}{$key}{literal}.info, location_{/literal}{$key}{literal}.lat, location_{/literal}{$key}{literal}.long, {/literal}{$key}{literal}, location_{/literal}{$key}{literal}.news_img],
+        {/literal}{/foreach}{literal}
+        ];
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: new google.maps.LatLng(14.058432, 108.274866),
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        });
+
+        var infowindow = new google.maps.InfoWindow({});
+
+        var marker, i;
+
+        for (i = 0; i < locations.length; i++) {
+          marker = new google.maps.Marker({
+            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+            map: map,
+            icon: locations[i][4]
+          });
+
+          google.maps.event.addListener(marker, 'click', (function (marker, i) {
+            return function () {
+              infowindow.setContent(locations[i][0]);
+              infowindow.open(map, marker);
+            }
+          })(marker, i));
+        }
+      }
+    </script>
+    {/literal}
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_LGIe88h6yUi-vDAUh0r_s6D0c1Mq_cU&callback=initMap" async defer></script>
+  </div>
+</div>
+</div>
+
+</section>
+<!-- Featured Jobs Section End -->
+
+<!-- Find Job Section Start -->
+<section class="home_background section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12" style="text-align: center; padding-top: 50px;">
+        <h2 style="font-size: 40px;">Professional Translation Services</h2>
+        <br> <br>
+        <h4>
+          LINKRICA offers the world's most flexible  translation solutions, so it can satisfy what you need. We're able to provide a wide range of translation services from general materials to documents requiring specialized knowledge. We commit to deliver real time translation services.
+
+        </h4>
+      </div>
+
+       <div class="col-md-12" style="margin-top: 40px;">
+        <div class="col-md-4">
+          <center>
+             <h3 style="font-size: 40px;"> 95 +<br/>
+          Languages
+          </h3>
+          </center>
+          
+        </div>
+        <div class="col-md-4">
+           <center>
+           <h3 style="font-size: 40px;">100,000
+          <br/>
+         Translators
+          </h3>
+        </center>
+        </div>
+        <div class="col-md-4">
+           <center>
+        <h3 style="font-size: 40px;">   35 +<br>
+      Subject Fields
+          </h3>
+          </center>
+        </div>
+       </div>
+
+      <div class="col-md-12" style="margin-top: 60px;">
+        <h4>
+          LINKRICA is assisted by more than 100,000 accredited translators who are willing to be the wonders of language for you. Each translator has specific skills regarding different fields of expertise to ensure any of your documents will be translated by a professional translator.
+
+        </h4>
+      </div>
+  </div>
+</div>
+    
+  </section>
+
+  <!-- Find Job Section Start -->
+<section class="find-job section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12" style="text-align: center">
+        <h2>Over 95 Languages</h2><br/>
+    <span style="font-size: 17px;">
+     We supply professional translation services in European, Asian and Latin American languages and more.
+   </span>
+      </div>
+
+       <div class="col-md-12" align="center" style="margin-top:40px;">
+        {include file="$themes/web/all_language.html"}
+       </div>
+
+       <div class="col-md-12 fw-mgt10">
+         
+       </div>
+    </div>
+  </div>
+  </section>
+
+  <!-- Find Job Section Start -->
+<section class="industry_bg section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12" style="text-align: center">
+        <h2>Major Industries</h2><br/>
+        <h4 style="font-size: 17px;">
+          Sometimes finding a translator for a language pair is not the only challenge - the issue is that your project may require specific skills or professional experience. That is the reason why Linkrica always brings together experienced experts in a variety of fields and they are always willing to help you in translating.
+        </h4>
+      </div>
+
+      <div class="col-md-12" align="center" style="margin-top:40px;">
+        {include file="$themes/web/all_category.html"}
+       </div>
+    </div>
+  </div>
+    
+  </section>
+
+    <!-- Find Job Section Start -->
+<section class="find-job section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12" style="text-align: left">
+        <h2>Need support for your project?</h2>
+      </div>
+
+       <div class="col-md-12" style="text-align: left; margin-top:20px;">
+         <a class="btn btn-translate-home" href="{$smarty.const.URL_HOMEPAGE}">
+         GET QUOTE NOW!
+        </a>
+
+        <a class="btn btn-support" href="{$smarty.const.URL_HOMEPAGE}">
+          CONTACT SUPPORT
+        </a>
+
+      </div>
+
+</div>
+</div>
+    
+  </section>
+
+  
+  <!-- footer -->
+  {include file="$themes/footer.html"}

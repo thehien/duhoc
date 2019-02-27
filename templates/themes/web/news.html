@@ -1,0 +1,47 @@
+{include file="$themes/header.html"}
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<div id="wrapper">
+ {include file="$themes/top.html"} 
+
+
+<!-- Titlebar
+================================================== -->
+<div id="titlebar" class="single">
+  <div class="container">
+
+    <div class="sixteen columns">
+      <h2>News</h2>
+      <nav id="breadcrumbs">
+        <ul>
+          <li>You are here:</li>
+          <li><a href="#">Home</a></li>
+          <li>News</li>
+        </ul>
+      </nav>
+    </div>
+
+  </div>
+</div>
+
+<!-- Content
+================================================== -->
+
+<!-- Container -->
+<div class="container">
+
+<div class="eleven columns">
+
+{* News in home *}
+{include file="$themes/public/content/foreach_news.html"}  
+
+</div>
+<!-- Container / End -->
+
+
+</div>
+{include file="$themes/footer.html"}
+
+
+

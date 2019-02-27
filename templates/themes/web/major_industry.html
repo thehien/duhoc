@@ -1,0 +1,118 @@
+{include file="$themes/header.html"}
+<!-- Header Section Start -->
+<div class="header">
+  <!-- Start intro section -->
+  <section id="intro" class="section-intro">
+    <div class="logo-menu" style="background: #fff;">
+      {if $isLogin}
+      {include file="$themes/top-account.html"}
+      {else}
+      {include file="$themes/top.html"}
+      {/if}
+    </div>
+  </section>
+</div>
+<!-- Find Job Section Start -->
+<section class="find-job section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12" style="text-align: center">
+        <h2 class="fw-fs-32">Online Translation App</h2>
+      </div>
+
+      <div class="col-md-12 fw-border-content-top fw-border-content-bottom" style="margin: 10px; text-align: center">
+       <h4 class="fw-fs-26 fw-mgt20 fw-mgb20">Major Industries</h4>
+     </div>
+
+     <div class="col-md-12" style="margin: 10px;">
+      <div class="col-md-8">
+       <div class="fw-fs-24 fw-mgb20">Travel & Tourism</div> 
+       <div class="col-md-12 no-padding">
+         <div class="col-md-4 fw-mgb10">
+          <div class="box_marjor" style="background:url({$smarty.const.URL_WEB}{$themes}/assets/img/industry/hd.jpg) no-repeat 50% 50%;background-size: cover; min-height: 300px;">
+            <div class="fw-mgb10" align="left">
+             <div class="fw-fs-18 fw-mgb10 fw-mgt65"> <a href="{$smarty.const.URL_HOMEPAGE}industry-detail.html" class="fw-color-white fw-mgl10">Online Translation App</a></div>
+           </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 fw-mgb10">
+            <div class="box_marjor" style="background:url({$smarty.const.URL_WEB}{$themes}/assets/img/industry/1633965.jpg) no-repeat 50% 50%;background-size: cover; min-height: 300px;">
+            <div class="fw-mgb10" align="left">
+             <div class="fw-fs-18 fw-mgb10 fw-mgt65"> <a href="{$smarty.const.URL_HOMEPAGE}industry-detail.html" class="fw-color-white fw-mgl10">Online Translation App</a></div>
+           </div>
+          </div>
+        </div>
+
+ <div class="col-md-4 fw-mgb10">
+          <div class="box_marjor" style="background:url({$smarty.const.URL_WEB}{$themes}/assets/img/industry/hd.jpg) no-repeat 50% 50%;background-size: cover; min-height: 300px;">
+            <div class="fw-mgb10" align="left">
+             <div class="fw-fs-18 fw-mgb10 fw-mgt65"> <a href="{$smarty.const.URL_HOMEPAGE}industry-detail.html" class="fw-color-white fw-mgl10">Online Translation App</a></div>
+           </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 fw-mgb10">
+            <div class="box_marjor" style="background:url({$smarty.const.URL_WEB}{$themes}/assets/img/industry/1633965.jpg) no-repeat 50% 50%;background-size: cover; min-height: 300px;">
+            <div class="fw-mgb10" align="left">
+             <div class="fw-fs-18 fw-mgb10 fw-mgt65"> <a href="{$smarty.const.URL_HOMEPAGE}industry-detail.html" class="fw-color-white fw-mgl10">Online Translation App</a></div>
+           </div>
+          </div>
+        </div>
+
+
+ <div class="col-md-4 fw-mgb10">
+          <div class="box_marjor" style="background:url({$smarty.const.URL_WEB}{$themes}/assets/img/industry/hd.jpg) no-repeat 50% 50%;background-size: cover; min-height: 300px;">
+            <div class="fw-mgb10" align="left">
+             <div class="fw-fs-18 fw-mgb10 fw-mgt65"> <a href="{$smarty.const.URL_HOMEPAGE}industry-detail.html" class="fw-color-white fw-mgl10">Online Translation App</a></div>
+           </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 fw-mgb10">
+            <div class="box_marjor" style="background:url({$smarty.const.URL_WEB}{$themes}/assets/img/industry/1633965.jpg) no-repeat 50% 50%;background-size: cover; min-height: 300px;">
+            <div class="fw-mgb10" align="left">
+             <div class="fw-fs-18 fw-mgb10 fw-mgt65"> <a href="{$smarty.const.URL_HOMEPAGE}industry-detail.html" class="fw-color-white fw-mgl10">Online Translation App</a></div>
+           </div>
+          </div>
+        </div>
+
+      </div>              
+    </div>
+
+    <div class="col-md-4">
+      <div class="fw-mgb20">
+        <div class="fw-fs-24">Categories</div>
+        <div align="left" class="btn-bg-under-center fw-mgt10"></div>
+      </div>                  
+      <div>
+        {foreach from=$list_special_cate item="val" name="val"}
+        <div class="fw-mgb10">
+          <a href="{$smarty.const.URL_HOMEPAGE}major-industry.html" class="industry">
+            <h3 style="font-size: 16px;">{$val.category_name}</h3>
+          </a>
+        </div>
+        {/foreach}
+      </div>  
+    </div>
+  </div>
+</section>
+
+
+<section class="featured-jobs section-about">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-12 no-padding">
+       <div class="fw-mgb20 fw-mgt10">
+        <div class="fw-fs-18">LATEST POST</div>
+        <div align="left" class="btn-bg-under-center fw-mgt10"></div>
+      </div>    
+
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- footer -->
+{include file="$themes/footer.html"}

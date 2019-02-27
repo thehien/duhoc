@@ -1,0 +1,26 @@
+<div class="col-md-12">
+{foreach from=$list_language item="val" name="val"}
+{assign var="counter" value=$smarty.foreach.val.iteration}
+{if $counter > 24}<div class="showhide" style="display: none;">{/if}
+<div class="col-md-3" style="text-align: left;">
+	<div style="font-size: 17px; margin: 3px;">
+		{if $val.img_flag}
+		<img src="{$smarty.const.URL_HOME}/upload/list_language/{$val.img_flag}" width="25">
+		{else}
+		<img src="{$smarty.const.URL_WEB}{$themes}/assets/img/flag/vn.png" width="25">
+		{/if}
+	{$val.name}</div>
+</div>
+{if $counter > 24}</div>{/if}
+{/foreach}
+</div>
+<div class="col-md-12 fw-mgt10 clickShowHide" style="padding-top: 20px; cursor: pointer; font-weight: bold; color: #4f99f9;">Read More <i class="fa fa-angle-up" aria-hidden="true"></i></div>
+{literal}
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".clickShowHide").click(function() {
+			$(".showhide").slideToggle("slow");
+		});
+	});
+</script>
+{/literal}
