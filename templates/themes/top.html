@@ -1,89 +1,240 @@
 <nav class="navbar navbar-default" role="navigation" data-spy="affix" data-offset-top="50">
-              <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                  </button>
-                  <a class="navbar-brand logo" href="{$smarty.const.URL_HOMEPAGE}index.html"><img src="{$smarty.const.URL_WEB}{$themes}/assets/img/logo.png" alt=""></a>
-                </div>
+    <div class="container no-padding" style="margin-bottom: 5px;">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand logo" href="{$smarty.const.URL_HOMEPAGE}index.html">
+                <img width="90%" src="{$smarty.const.URL_WEB}{$themes}/assets/img/logo.png" alt="">
+            </a>
+        </div>
 
-                <div class="collapse navbar-collapse navbar-right float-right" id="navbar">              
-                <!-- Start Navigation List -->
-                <ul class="nav navbar-nav">
-                  <li>
-                    <a href="{$smarty.const.URL_HOMEPAGE}translate.html" {if $url_views == 'translate'} class="btn-translate"{else} class="btn-translate"{/if}>
-                    {$smarty.const.lang_common_translate_now}
+        <div class="collapse navbar-collapse navbar-right float-right no-padding" id="navbar">
+            <!-- Start Navigation List -->
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="{$smarty.const.URL_HOMEPAGE}how-it-works.html" {if $url_views==
+                    'how-it-works'}class="active"{else}class="btn btn-common-link"{/if}>
+                    {$smarty.const.lang_common_pthd}
+                    <i class="fa fa-angle-down"></i>
                     </a>
-                  </li>
-                  <li>
-                    <a href="{$smarty.const.URL_HOMEPAGE}how-it-works.html" {if $url_views == 'how-it-works'}class="active"{else}class="btn btn-common-link"{/if}>
+                    <div class="col-md-12 dropdownmenu">
+                        <div class="col-md-3">
+                        <ul>
+                            <li style="white-space: nowrap;">
+                                <a href="index.html">
+                                    Home 1
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index-02.html">
+                                    Home 2
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index-03.html">
+                                    Home 3
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index-04.html">
+                                    Home 4
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                        <div class="col-md-3">
+                            <ul>
+                                <li style="white-space: nowrap;">
+                                    <a href="index.html">
+                                        Home 1
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="index-02.html">
+                                        Home 2
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="index-03.html">
+                                        Home 3
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="index-04.html">
+                                        Home 4
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3">
+                            <ul>
+                                <li style="white-space: nowrap;">
+                                    <a href="index.html">
+                                        Home 1
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="index-02.html">
+                                        Home 2
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="index-03.html">
+                                        Home 3
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="index-04.html">
+                                        Home 4
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3">
+                            <ul>
+                                <li>
+                                    <a href="index.html">
+                                        Home 1
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="index-02.html">
+                                        Home 2
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="index-03.html">
+                                        Home 3
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="index-04.html">
+                                        Home 4
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                </li>
+                <li>
+                    <a href="{$smarty.const.URL_HOMEPAGE}how-it-works.html" {if $url_views==
+                    'how-it-works'}class="active"{else}class="btn btn-common-link"{/if}>
+                    {$smarty.const.lang_common_pthd}
+                    <i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="dropdown">
+                        <li>
+                            <a href="index.html">
+                                Home 1
+                            </a>
+                        </li>
+                        <li>
+                            <a href="index-02.html">
+                                Home 2
+                            </a>
+                        </li>
+                        <li>
+                            <a href="index-03.html">
+                                Home 3
+                            </a>
+                        </li>
+                        <li>
+                            <a href="index-04.html">
+                                Home 4
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="{$smarty.const.URL_HOMEPAGE}how-it-works.html" {if $url_views==
+                    'how-it-works'}class="active"{else}class="btn btn-common-link"{/if}>
                     {$smarty.const.lang_common_pthd}
                     </a>
-                  </li>
-                  <li>
-                    <a href="{$smarty.const.URL_HOMEPAGE}about-us.html" {if $url_views == 'about-us'}class="active"{else}class="btn btn-common-link"{/if}>
+                </li>
+                <li>
+                    <a href="{$smarty.const.URL_HOMEPAGE}about-us.html" {if $url_views==
+                    'about-us'}class="active"{else}class="btn btn-common-link"{/if}>
                     {$smarty.const.lang_common_about}
                     </a>
-                  </li>
-                  <li>
-                    <a href="{$smarty.const.URL_HOMEPAGE}service.html" {if $url_views == 'service'}class="active"{else}class="btnbtn-common-link"{/if}>
+                </li>
+                <li>
+                    <a href="{$smarty.const.URL_HOMEPAGE}service.html" {if $url_views==
+                    'service'}class="active"{else}class="btnbtn-common-link"{/if}>
                     {$smarty.const.lang_common_service}
                     </a>
-                  </li>
-                 
-                </ul>
-                <ul id="menuheader" class="nav navbar-nav navbar-right float-right">
-                  <li class="left"><a {if $active}class="active"{else}class="btn btn-common-link"{/if} href="{$smarty.const.URL_HOMEPAGE}register.html"><i class="ti-pencil-alt"></i> {$smarty.const.lang_common_register}</a></li>
-                  <li class="right"><a {if $url_views == 'login'}class="active"{else}class="btn btn-common-link"{/if} href="{$smarty.const.URL_HOMEPAGE}login.html"><i class="ti-lock"></i>  {$smarty.const.lang_common_login}</a></li>
+                </li>
 
-                   <li class="right"><a href="#"><img src="{$smarty.const.URL_WEB}{$themes}/assets/img/gb.png"></a></li>
+                <li>
+                    <a href="{$smarty.const.URL_HOMEPAGE}service.html" {if $url_views==
+                    'service'}class="active"{else}class="btnbtn-common-link"{/if}>
+                    {$smarty.const.lang_common_service}
+                    </a>
+                </li>
 
-                     <li class="right"><a href="{$smarty.const.URL_HOMEPAGE}help-center.html" {if $url_views == 'help-center'}class="active"{else}class="btnbtn-common-link"{/if}>{$smarty.const.lang_common_support}</a></li>
-                </ul>
-              </div>                           
-            </div>
-            <!-- Mobile Menu Start -->
-            <ul class="wpb-mobile-menu">
-               <li>
-                 <a href="{$smarty.const.URL_HOMEPAGE}translate.html" {if $url_views == 'translate'} class="active"{/if}>
-                    <strong>{$smarty.const.lang_common_translate_now}</strong>
+                <li>
+                    <a href="{$smarty.const.URL_HOMEPAGE}service.html" {if $url_views==
+                    'service'}class="active"{else}class="btnbtn-common-link"{/if}>
+                    {$smarty.const.lang_common_service}
                     </a>
-              </li>
-              <li>
-                <a class="active" href="{$smarty.const.URL_HOMEPAGE}index.html"><strong>Home</strong></a>
-              </li>
-              <li>
-                <a href="{$smarty.const.URL_HOMEPAGE}how-it-works.html" {if $url_views == 'how-it-works'}class="active"{/if}>
-                    <strong>How it works</strong>
+                </li>
+
+                <li>
+                    <a href="{$smarty.const.URL_HOMEPAGE}service.html" {if $url_views==
+                    'service'}class="active"{else}class="btnbtn-common-link"{/if}>
+                    {$smarty.const.lang_common_service}
                     </a>
-              </li>
-              <li>
-                  <a href="{$smarty.const.URL_HOMEPAGE}about-us.html" {if $url_views == 'about-us'}class="active"{/if}>
-                    <strong>{$smarty.const.lang_common_about}</strong>
-                    </a>
-              </li>
-             
-              <li>
-                 <a href="{$smarty.const.URL_HOMEPAGE}service.html" {if $url_views == 'service'}class="active"{/if}>
-                    <strong>{$smarty.const.lang_common_service}</strong>
-                    </a>
-              </li>  
-              <li class="btn-m">
-                <a {if $active}class="active"{/if} href="{$smarty.const.URL_HOMEPAGE}register.html"><i class="ti-pencil-alt"></i> 
-                  <strong>{$smarty.const.lang_common_register}</strong>
-                </a>
-              </li>
-              <li class="btn-m"><a {if $url_views == 'login'}class="active"{/if} href="{$smarty.const.URL_HOMEPAGE}login.html">
-                <i class="ti-lock"></i> 
-                 <strong>{$smarty.const.lang_common_login}</strong>
-              </a></li>   
-               <li class="btn-m"><a href="{$smarty.const.URL_HOMEPAGE}help-center.html" {if $url_views == 'help-center'}class="active"{/if}>
-               <strong>{$smarty.const.lang_common_support}</strong>
-             </a></li>          
+                </li>
+
             </ul>
-            <!-- Mobile Menu End --> 
-          </nav>
+        </div>
+    </div>
+    <!-- Mobile Menu Start -->
+    <ul class="wpb-mobile-menu">
+        <li>
+            <a href="{$smarty.const.URL_HOMEPAGE}translate.html" {if $url_views== 'translate'} class="active"{/if}>
+            <strong>{$smarty.const.lang_common_translate_now}</strong>
+            </a>
+        </li>
+        <li>
+            <a class="active" href="{$smarty.const.URL_HOMEPAGE}index.html"><strong>Home</strong></a>
+        </li>
+        <li>
+            <a href="{$smarty.const.URL_HOMEPAGE}how-it-works.html" {if $url_views== 'how-it-works'}class="active"{/if}>
+            <strong>How it works</strong>
+            </a>
+        </li>
+        <li>
+            <a href="{$smarty.const.URL_HOMEPAGE}about-us.html" {if $url_views== 'about-us'}class="active"{/if}>
+            <strong>{$smarty.const.lang_common_about}</strong>
+            </a>
+        </li>
+
+        <li>
+            <a href="{$smarty.const.URL_HOMEPAGE}service.html" {if $url_views== 'service'}class="active"{/if}>
+            <strong>{$smarty.const.lang_common_service}</strong>
+            </a>
+        </li>
+        <li class="btn-m">
+            <a {if $active}class="active" {/if} href="{$smarty.const.URL_HOMEPAGE}register.html"><i
+                class="ti-pencil-alt"></i>
+            <strong>{$smarty.const.lang_common_register}</strong>
+            </a>
+        </li>
+        <li class="btn-m"><a {if $url_views== 'login'}class="active"{/if} href="{$smarty.const.URL_HOMEPAGE}login.html">
+            <i class="ti-lock"></i>
+            <strong>{$smarty.const.lang_common_login}</strong>
+            </a></li>
+        <li class="btn-m"><a href="{$smarty.const.URL_HOMEPAGE}help-center.html" {if $url_views==
+            'help-center'}class="active"{/if}>
+            <strong>{$smarty.const.lang_common_support}</strong>
+            </a></li>
+    </ul>
+    <!-- Mobile Menu End -->
+</nav>

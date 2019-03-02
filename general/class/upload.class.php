@@ -18,32 +18,32 @@
 /**
  * File Size: Bytes
  */
-define('UPLOAD_SIZE_BYTES',1);
+define('UPLOAD_SIZE_BYTES', 1);
 
 /**
  * File Size: Megabytes
  */
-define('UPLOAD_SIZE_MBYTES',2);
+define('UPLOAD_SIZE_MBYTES', 2);
 
 /**
  * Error Code: No file selected
  */
-define('UPLOAD_ERROR_NOFILE',1);
+define('UPLOAD_ERROR_NOFILE', 1);
 
 /**
  * Error Code: File exceeds the file size limit
  */
-define('UPLOAD_ERROR_SIZE',2);
+define('UPLOAD_ERROR_SIZE', 2);
 
 /**
  * Error Code: File Type is invalid
  */
-define('UPLOAD_ERROR_TYPE',3);
+define('UPLOAD_ERROR_TYPE', 3);
 
 /**
  * Error Code: Error moving file
  */
-define('UPLOAD_ERROR_MOVING',4);
+define('UPLOAD_ERROR_MOVING', 4);
 
 
 class Upload
@@ -54,43 +54,43 @@ class Upload
 	 * @var string
 	 */
 	var $uploadDir;
-	
+
 	/**
 	 * Uploaded file's name
 	 * @var string
 	 */
 	var $fileName;
-	
+
 	/**
 	 * Uploaded file's size
 	 * @var int
 	 */
 	var $fileSize;
-	
+
 	/**
 	 * The file's temporary location
 	 * @var string
 	 */
 	var $tempLocation;
-	
+
 	/**
 	 * The maximum file size alloted for this file (in bytes)
 	 * @var int
 	 */
 	var $maxFileSize;
-	
+
 	/**
 	 * The allowed file extensions
 	 * @var array
 	 */
-	var $allowedTypes = array();
-	
+	var $allowedTypes = [];
+
 	/**
 	 * Container of the error message
 	 * @var string
 	 */
 	var $errorMsg;
-    var $mode=0644;
+	var $mode = 0644;
 
 	/**
 	 * Class constructor.
@@ -98,14 +98,21 @@ class Upload
 	 * @param string $fieldName the name of the file input field
 	 * @param string $uploadDir Directory to store uploaded files
 	 */
-	function Upload($fieldName=null,$uploadDir=null,$mode=0644){
-        $this->mode=$mode;
-        if($fieldName)$this->setFieldName($fieldName);
-        if($uploadDir)$this->setUploadDir($uploadDir);
+	function Upload($fieldName = null, $uploadDir = null, $mode = 0644)
+	{
+		$this->mode = $mode;
+		if ($fieldName) {
+			$this->setFieldName($fieldName);
+		}
+		if ($uploadDir) {
+			$this->setUploadDir($uploadDir);
+		}
 	}
-    function setFieldName($fieldName=null){
-        if ($this->getVersion() == 4) {
-			if (! isset($_FILES[$fieldName])) {
+
+	function setFieldName($fieldName = null)
+	{
+		if ($this->getVersion() == 4) {
+			if (!isset($_FILES[$fieldName])) {
 				$this->setErrorMessage(UPLOAD_ERROR_NOFILE);
 				return false;
 			}
@@ -117,13 +124,15 @@ class Upload
 			}
 			$file = $HTTP_POST_FILES[$fieldName];
 		}
-        $this->fileName = strtolower(str_replace(" ",'',$file['name']));
+		$this->fileName = strtolower(str_replace(" ", '', $file['name']));
 		$this->fileSize = $file['size'];
 		$this->tempLocation = $file['tmp_name'];
-    }
-    function setUploadDir($uploadDir=null){
-        $this->uploadDir = $uploadDir;
-    }
+	}
+
+	function setUploadDir($uploadDir = null)
+	{
+		$this->uploadDir = $uploadDir;
+	}
 
 	/**
 	 * Sets the acceptable maximum file size : Bytes of Megabytes<br />
@@ -133,7 +142,7 @@ class Upload
 	 * @param int $sizeType
 	 * @return void
 	 */
-	function setMaxFileSize($size,$sizeType=UPLOAD_SIZE_MBYTES)
+	function setMaxFileSize($size, $sizeType = UPLOAD_SIZE_MBYTES)
 	{
 		if ($sizeType == UPLOAD_SIZE_MBYTES) {
 			$bytes = $this->toBytes($size);
@@ -142,7 +151,7 @@ class Upload
 			$this->maxFileSize = intval($size);
 		}
 	}
-	
+
 	/**
 	 * Sets an array of acceptable file extensions
 	 * @access public
@@ -150,12 +159,12 @@ class Upload
 	 */
 	function setTypes($types)
 	{
-		if (! is_array($types)) {
-			trigger_error('Invalid parameter type. Expecting array ',E_USER_WARNING);
+		if (!is_array($types)) {
+			trigger_error('Invalid parameter type. Expecting array ', E_USER_WARNING);
 		}
 		$this->allowedTypes = $types;
 	}
-	
+
 	/**
 	 * Checks if a file has been uploaded
 	 * @access private
@@ -171,7 +180,7 @@ class Upload
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Attempts to move the file to the defined location
 	 * @access private
@@ -182,15 +191,15 @@ class Upload
 		$destination = $this->uploadDir;
 		$filename = $this->fileName;
 		$temp = $this->tempLocation;
-		if (@move_uploaded_file($temp,$destination.$filename)) {
-            @chmod($destination.$filename,$this->mode);
+		if (@move_uploaded_file($temp, $destination . $filename)) {
+			@chmod($destination . $filename, $this->mode);
 			return true;
-		}else{
+		} else {
 			$this->setErrorMessage(UPLOAD_ERROR_MOVING);
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Method to check for a valid file size
 	 * @access private
@@ -207,7 +216,7 @@ class Upload
 			return true;
 		}
 	}
-	
+
 	/**
 	 * Checks for a valid file extension
 	 * @access private
@@ -217,21 +226,21 @@ class Upload
 	{
 		$types = $this->allowedTypes;
 		$file = $this->fileName;
-		
+
 		if ($types[0] == '*') {
 			// All types are permitted
 			return true;
 		}
-		
+
 		foreach ($types as $type) {
-			if (eregi($type.'$',$file)) {
+			if (eregi($type . '$', $file)) {
 				return true;
 			}
 		}
 		$this->setErrorMessage(UPLOAD_ERROR_TYPE);
 		return false;
 	}
-	
+
 	/**
 	 * Method to get the file's name
 	 * @access public
@@ -241,14 +250,14 @@ class Upload
 	{
 		return $this->fileName;
 	}
-	
+
 	/**
 	 * Method to get the file's size : Use constants UPLOAD_SIZE_BYTES || UPLOAD_SIZE_MBYTES(default)
 	 * @access public
 	 * @param int $sizeType
 	 * @return int / float
 	 */
-	function getFileSize($sizeType=UPLOAD_SIZE_MBYTES)
+	function getFileSize($sizeType = UPLOAD_SIZE_MBYTES)
 	{
 		$bytes = $this->fileSize;
 		if ($sizeType == UPLOAD_SIZE_MBYTES) {
@@ -257,7 +266,7 @@ class Upload
 			return $bytes;
 		}
 	}
-	
+
 	/**
 	 * Method to convert byte to MegaBytes
 	 * @access private
@@ -265,14 +274,14 @@ class Upload
 	 * @param int [optional] $decimal Decimal places to show
 	 * @return float
 	 */
-	function toMBytes($bytes,$decimal=2)
+	function toMBytes($bytes, $decimal = 2)
 	{
 		// KB
 		$kb = ($bytes * 8) / 1024;
 		// MB
-		$mb = ($kb /1024) / 8;
-	
-		return round($mb,$decimal);
+		$mb = ($kb / 1024) / 8;
+
+		return round($mb, $decimal);
 	}
 
 	/**
@@ -286,24 +295,28 @@ class Upload
 		$bytes = ((($mb * 8) * 1024) * 1024) / 8;
 		return $bytes;
 	}
-	
+
 	/**
 	 * Process the file
 	 * @return boolean
 	 */
 	function process()
 	{
-		if (! $this->isUploaded())
+		if (!$this->isUploaded()) {
 			return false;
-		if (! $this->checkSize())
+		}
+		if (!$this->checkSize()) {
 			return false;
-		if (! $this->checkType())
+		}
+		if (!$this->checkType()) {
 			return false;
-		if (! $this->moveFile())
+		}
+		if (!$this->moveFile()) {
 			return false;
+		}
 		return true;
 	}
-	
+
 	/**
 	 * Method to set the error message
 	 * @access private
@@ -311,30 +324,29 @@ class Upload
 	 */
 	function setErrorMessage($code)
 	{
-		switch ($code)
-		{
+		switch ($code) {
 			case UPLOAD_ERROR_SIZE:
-			$msg = 'File exceeded the maximum file size.';
-			break;
-			
+				$msg = 'File exceeded the maximum file size.';
+				break;
+
 			case UPLOAD_ERROR_TYPE:
-			$msg = 'Invalid file type.';
-			break;
-			
+				$msg = 'Invalid file type.';
+				break;
+
 			case UPLOAD_ERROR_NOFILE:
-			$msg = 'No file selected or file is too big.';
-			break;
-			
+				$msg = 'No file selected or file is too big.';
+				break;
+
 			case UPLOAD_ERROR_MOVING:
-			$msg = 'Error moving file.';
-			break;
-			
+				$msg = 'Error moving file.';
+				break;
+
 			default:
-			$msg = 'Unknown Error.';
+				$msg = 'Unknown Error.';
 		}
 		$this->errorMsg = $msg;
 	}
-	
+
 	/**
 	 * Method to get the error message
 	 * @access public
@@ -344,7 +356,7 @@ class Upload
 	{
 		return $this->errorMsg;
 	}
-	
+
 	/**
 	 * Method to get PHP's Version<br />
 	 * If version is 4.1.0 and above, use $_FILES<br />
@@ -355,8 +367,8 @@ class Upload
 	function getVersion()
 	{
 		$version = phpversion();
-		$version = explode('.',$version);
-		
+		$version = explode('.', $version);
+
 		if (($version[0] >= 4) && ($version[1] >= 1)) {
 			return 4;
 		} else {
