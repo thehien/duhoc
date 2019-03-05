@@ -1477,6 +1477,9 @@ function process_client()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
         case "how-it-works":
             $smarty->assign("how_it_works", 1);
+            // Get all translater
+            $all_cv_online = $oMember->get_all_translator_online();
+            $smarty->assign("all_cv_online", $all_cv_online);
             return $smarty->fetch($themes . "/web/how_it_works.html");
             break;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////

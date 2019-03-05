@@ -616,6 +616,9 @@ a:focus {
     padding: 0 0;
 }
 
+.navbar-header {
+    width: 220px;
+}
 
 .section {
     padding: 20px 0;
@@ -2192,7 +2195,7 @@ label {
 
 .featured-jobs .featured-item {
     position: relative;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
     border: 1px solid #f1f1f1;
     border-radius: 0px;
     -webkit-transition: all 0.15s ease;
@@ -2203,8 +2206,6 @@ label {
     -webkit-transition: transform 0.2s linear, -webkit-box-shadow 0.2s linear;
     -moz-transition: transform 0.2s linear, -moz-box-shadow 0.2s linear;
     transition: transform 0.2s linear, box-shadow 0.2s linear;
-    \
-
 }
 
 .featured-jobs .featured-item:hover {
@@ -6410,19 +6411,17 @@ for font-size and font-family*/
     margin-bottom: 10px;
     margin-left: 0;
     margin-right: -0.625rem;
-/ / for us 0.625 rem = = 10 px padding-left: 0.625 rem;
     padding-right: 0.625rem;
 }
 
 @media (max-width: 33.9em) {
-// this is for our mobile layout where columns stack
-.raised-block {
-    margin-left: -0.625rem;
-}
+
+    .raised-block {
+        margin-left: -0.625rem;
+    }
 }
 
 .row [class^="col-"]:first-child > .raised-block {
-/ / this is so the first column has no margin so it will not be "indented" margin-left: - 0.625 rem;
 }
 
 .link_active {
