@@ -69,7 +69,6 @@
         transform: scale(0.8);
         background: #fff;
     }
-
     .popup_visible #fadeandscale_1 {
         transform: scale(1);
     }
@@ -167,7 +166,7 @@
                 </div>
                 <div class="col-md-2"></div>
             </div>
-            <div class="col-md-12 no-padding">
+            <div class="col-md-12">
 
                 <div class="col-md-6 col-sm-6 col-xs-12 no-padding" style="background: #fff;">
                     {include file="$themes/content_banner.html"}
@@ -177,7 +176,7 @@
                         <div class="featured-wrap">
                             <div class="featured-inner">
                                 <figure class="item-thumb">
-                                    <a class="hover-effect" href="job-page.html">
+                                    <a class="hover-effect" href="{$smarty.const.URL_HOMEPAGE}study-detail.html">
                                         <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/about/img_1.jpg" alt="">
                                     </a>
                                 </figure>
@@ -201,7 +200,7 @@
                         <div class="featured-wrap">
                             <div class="featured-inner">
                                 <figure class="item-thumb">
-                                    <a class="hover-effect" href="job-page.html">
+                                    <a class="hover-effect" href="{$smarty.const.URL_HOMEPAGE}study-detail.html">
                                         <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/about/img_1.jpg" alt="">
                                     </a>
                                 </figure>
@@ -221,13 +220,13 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-12 no-padding">
+            <div class="col-md-12">
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="featured-item">
                         <div class="featured-wrap">
                             <div class="featured-inner">
                                 <figure class="item-thumb">
-                                    <a class="hover-effect" href="job-page.html">
+                                    <a class="hover-effect" href="{$smarty.const.URL_HOMEPAGE}study-detail.html">
                                         <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/about/img_1.jpg" alt="">
                                     </a>
                                 </figure>
@@ -365,23 +364,73 @@
                 <div class="fw-mgb15">
                     <section class="regular slider">
                         {foreach from=$all_cv_online item="val" name="val"}
-                        <div>
-                            <div align="center">{if $val.avatar}
-                                <img height="100" src="{$smarty.const.URL_HOME}/upload/avatar/{$val.avatar}"
-                                     class="img-circle"/>
-                                {else}
-                                <img height="100" src="{$smarty.const.URL_WEB}{$themes}/assets/img/info/man-user.png"
-                                     class="img-circle"/>
-                                {/if}
+                            <div style="border: 1px solid #ccc; padding-top:10px; padding-bottom: 10px;">
+                                <div align="center">
+                                    <a href="#fadeandscale_student_{$val.userid}" class="fadeandscale_student_{$val.userid}_open">
+                                        {if $val.avatar}
+                                        <img height="100" src="{$smarty.const.URL_HOME}/upload/avatar/{$val.avatar}"
+                                             class="img-circle"/>
+                                        {else}
+                                        <img height="100"
+                                             src="{$smarty.const.URL_WEB}{$themes}/assets/img/info/man-user.png"
+                                             class="img-circle"/>
+                                        {/if}
+                                    </a>
+                                </div>
+                                <div style="clear: both;"></div>
+                                <div align="center" style="font-size: 14px;">
+                                    <strong title="{$val.full_name}">{$val.full_name}</strong>
+                                </div>
                             </div>
-                            <div style="clear: both;"></div>
-                            <div align="center" style="font-size: 14px;">
-                                <strong title="{$val.full_name}">{$val.full_name}</strong>
-                            </div>
-                        </div>
-
                         {/foreach}
                     </section>
+                    {foreach from=$all_cv_online item="val" name="val"}
+                    {literal}
+                    <script>
+                        $(document).ready(function () {
+                            $('#fadeandscale_student_{/literal}{$val.userid}{literal}').popup({
+                                pagecontainer: '.container',
+                                transition: 'all 0.3s ease-out',
+                                horizontal: 'center',
+                                escape: true,
+                                scrolllock: false
+                            });
+                        });
+                    </script>
+
+                    <style type="text/css">
+                        #fadeandscale_student_{/literal}{$val.userid}{literal} {
+                            transform: scale(0.8);
+                        }
+                        .popup_visible #fadeandscale_student_{/literal}{$val.userid}{literal} {
+                            transform: scale(1);
+                        }
+                    </style>
+                    {/literal}
+
+                    <div id="fadeandscale_student_{$val.userid}" class="well" style="width: 600px; display: none;">
+                        <div align="center" class="col-md-12 no-padding fw-mgb10">
+                            {if $val.avatar}
+                            <img width="120" height="120" src="{$smarty.const.URL_HOME}/upload/avatar/{$val.avatar}"
+                                 class="img-circle"/>
+                            {else}
+                            <img width="120" height="120"
+                                 src="{$smarty.const.URL_WEB}{$themes}/assets/img/info/man-user.png" class="img-circle"/>
+                            {/if}
+                        </div>
+                        <div align="center" class="col-md-12 no-padding">
+                           <strong>{$val.full_name}</strong>
+                        </div>
+                        <div class="col-md-12 fw-mgt10" style="text-align: justify">
+                            Donald Trump’s Presidency has been mired for months in controversy over reports that
+                            the Trump Campaign may have colluded with the Russian Government in an effort to influence
+                            the outcome of the 2016 presidential election. Last week the White House was rocked again
+                            by information revealing that President Trump had two additional, undisclosed meetings
+                            with Russian President Vladimir Putin at the G-20 Summit in Germany. In an interview
+                            with New York Times
+                        </div>
+                    </div>
+                    {/foreach}
                 </div>
             </div>
         </div>

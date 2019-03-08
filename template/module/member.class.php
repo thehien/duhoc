@@ -115,7 +115,7 @@ class Member
   function get_all_translator_online()
   {
     global $db, $function;
-    $sql = "SELECT t1.name, t1.avatar,(select t3.name from list_languages t3 where t2.nativeLanguage = t3.id) as native_language_name, (select t4.name from list_country t4 where t4.id = t1.country) as country_name, t1.userid as translate_id";
+    $sql = "SELECT t1.userid, t1.name, t1.avatar,(select t3.name from list_languages t3 where t2.nativeLanguage = t3.id) as native_language_name, (select t4.name from list_country t4 where t4.id = t1.country) as country_name, t1.userid as translate_id";
     $sql .= " FROM coupons_users_cv t1";
     $sql .= " inner join coupons_users_cv_info t2 on t2.user_id = t1.userid";
     $sql .= " WHERE t1.status = 1";

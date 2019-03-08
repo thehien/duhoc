@@ -1483,6 +1483,19 @@ function process_client()
             return $smarty->fetch($themes . "/web/how_it_works.html");
             break;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+        case "study-detail":
+            $smarty->assign("study_detail", 1);
+            // Get all translater
+            $all_cv_online = $oMember->get_all_translator_online();
+            $smarty->assign("all_cv_online", $all_cv_online);
+
+            // Get all special category
+            $list_special_cate = $oNews->get_all_special_category();
+            $smarty->assign("list_special_cate", $list_special_cate);
+
+            return $smarty->fetch($themes . "/web/study_detail.html");
+            break;
+////////////////////////////////////////////////////////////////////////////////////////////////////////
         case "service":
             $smarty->assign("service", 1);
             return $smarty->fetch($themes . "/web/service.html");
