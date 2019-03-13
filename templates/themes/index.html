@@ -4,13 +4,7 @@
     <!-- Start intro section -->
     <section id="intro" class="section-intro">
         <div class="logo-menu">
-            {if $isLogin}
-            {include file="$themes/top-account.html"}
-            {elseif $isLogin_cv}
-            {include file="$themes/top-cv-account.html"}
-            {else}
             {include file="$themes/top.html"}
-            {/if}
         </div>
         <!-- Header Section End -->
 
@@ -38,12 +32,21 @@
                 </div>
                 <div class="col-md-2"></div>
             </div>
-            <div class="col-md-12">
 
-                <div class="col-md-6 col-sm-6 col-xs-12 no-padding" style="background: #fff;">
-                    {include file="$themes/content_banner.html"}
+
+            <div class="col-md-12 no-padding">
+
+                <div class="col-md-12 fw-mgb10">
+                    <h3>Tin tức</h3>
                 </div>
-                <div class="col-md-3 col-sm-6 col-xs-12">
+
+                <div class="col-md-6 col-sm-6 col-xs-12 fw-mgb10">
+                    <div style="background: #fff;">
+                        {include file="$themes/content_banner.html"}
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-xs-12 fw-mgb10">
                     <div class="featured-item">
                         <div class="featured-wrap">
                             <div class="featured-inner">
@@ -53,20 +56,131 @@
                                     </a>
                                 </figure>
                                 <div class="item-body">
-                                    <h3 class="job-title"><a href="job-page.html">Graphic Designer</a></h3>
-                                    <div class="adderess"><i class="ti-location-pin"></i> Dallas, United States</div>
+                                    <span class="job-title">
+                                        <a href="job-page.html">
+                                            Chủ đề bài viết: Ex: Du học Canada có phải là lựa chọn hoàn
+                                            hảo cho bạn...
+                                    </a></span>
                                 </div>
                             </div>
                         </div>
                         <div class="item-foot">
-                            <span><i class="ti-calendar"></i> 4 months ago</span>
-                            <span><i class="ti-time"></i> Full Time</span>
+                            <span><i class="ti-calendar"></i> 22/02/2019 10:30</span>
                             <div class="view-iocn">
                                 <a href="job-page.html"><i class="ti-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="col-md-3 col-sm-6 col-xs-12 fw-mgb10">
+                    <div class="featured-item">
+                        <div class="featured-wrap">
+                            <div class="featured-inner">
+                                <figure class="item-thumb">
+                                    <a class="hover-effect" href="job-page.html">
+                                        <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/about/img_1.jpg" alt="">
+                                    </a>
+                                </figure>
+                                <div class="item-body">
+                                    <span class="job-title">
+                                        <a href="job-page.html">
+                                            Chủ đề bài viết: Ex: Du học Canada có phải là lựa chọn hoàn
+                                            hảo cho bạn...
+                                    </a></span>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-foot">
+                            <span><i class="ti-calendar"></i> 22/02/2019 10:30</span>
+                            <div class="view-iocn">
+                                <a href="job-page.html"><i class="ti-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-xs-12 fw-mgb10">
+                    <div class="featured-item">
+                        <div class="featured-wrap">
+                            <div class="featured-inner">
+                                <figure class="item-thumb">
+                                    <a class="hover-effect" href="job-page.html">
+                                        <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/about/img_1.jpg" alt="">
+                                    </a>
+                                </figure>
+                                <div class="item-body">
+                                   <span class="job-title">
+                                        <a href="job-page.html">
+                                            Chủ đề bài viết: Ex: Du học Canada có phải là lựa chọn hoàn
+                                            hảo cho bạn...
+                                    </a></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-foot">
+                            <span><i class="ti-calendar"></i> 22/02/2019 10:30</span>
+                            <div class="view-iocn">
+                                <a href="job-page.html"><i class="ti-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-xs-12 fw-mgb10">
+                    <div class="featured-item">
+                        <div class="featured-wrap">
+                            <div class="featured-inner">
+                                <figure class="item-thumb">
+                                    <a class="hover-effect" href="job-page.html">
+                                        <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/about/img_1.jpg" alt="">
+                                    </a>
+                                </figure>
+                                <div class="item-body">
+                                    <span class="job-title">
+                                        <a href="job-page.html">
+                                            Chủ đề bài viết: Ex: Du học Canada có phải là lựa chọn hoàn
+                                            hảo cho bạn...
+                                    </a></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-foot">
+                            <span><i class="ti-calendar"></i> 22/02/2019 10:30</span>
+                            <div class="view-iocn">
+                                <a href="job-page.html"><i class="ti-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-xs-12 fw-mgb10">
+                    <div class="featured-item">
+                        <div class="featured-wrap">
+                            <div class="featured-inner">
+                                <figure class="item-thumb">
+                                    <a class="hover-effect" href="job-page.html">
+                                        <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/about/img_1.jpg" alt="">
+                                    </a>
+                                </figure>
+                                <div class="item-body">
+                                    <span class="job-title">
+                                        <a href="job-page.html">
+                                            Chủ đề bài viết: Ex: Du học Canada có phải là lựa chọn hoàn
+                                            hảo cho bạn...
+                                    </a></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-foot">
+                            <span><i class="ti-calendar"></i> 22/02/2019 10:30</span>
+                            <div class="view-iocn">
+                                <a href="job-page.html"><i class="ti-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="featured-item">
                         <div class="featured-wrap">
@@ -77,122 +191,34 @@
                                     </a>
                                 </figure>
                                 <div class="item-body">
-                                    <h3 class="job-title"><a href="job-page.html">Graphic Designer</a></h3>
-                                    <div class="adderess"><i class="ti-location-pin"></i> Dallas, United States</div>
+                                    <span class="job-title">
+                                        <a href="job-page.html">
+                                            Chủ đề bài viết: Ex: Du học Canada có phải là lựa chọn hoàn
+                                            hảo cho bạn...
+                                    </a></span>
                                 </div>
                             </div>
                         </div>
                         <div class="item-foot">
-                            <span><i class="ti-calendar"></i> 4 months ago</span>
-                            <span><i class="ti-time"></i> Full Time</span>
-                            <div class="view-iocn">
+                            <span><i class="ti-calendar"></i> 22/02/2019 10:30</span>
+                             <div class="view-iocn">
                                 <a href="job-page.html"><i class="ti-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
             <div class="col-md-12">
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="featured-item">
-                        <div class="featured-wrap">
-                            <div class="featured-inner">
-                                <figure class="item-thumb">
-                                    <a class="hover-effect" href="job-page.html">
-                                        <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/about/img_1.jpg" alt="">
-                                    </a>
-                                </figure>
-                                <div class="item-body">
-                                    <h3 class="job-title"><a href="job-page.html">Graphic Designer</a></h3>
-                                    <div class="adderess"><i class="ti-location-pin"></i> Dallas, United States</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item-foot">
-                            <span><i class="ti-calendar"></i> 4 months ago</span>
-                            <span><i class="ti-time"></i> Full Time</span>
-                            <div class="view-iocn">
-                                <a href="job-page.html"><i class="ti-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="featured-item">
-                        <div class="featured-wrap">
-                            <div class="featured-inner">
-                                <figure class="item-thumb">
-                                    <a class="hover-effect" href="job-page.html">
-                                        <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/about/img_1.jpg" alt="">
-                                    </a>
-                                </figure>
-                                <div class="item-body">
-                                    <h3 class="job-title"><a href="job-page.html">Graphic Designer</a></h3>
-                                    <div class="adderess"><i class="ti-location-pin"></i> Dallas, United States</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item-foot">
-                            <span><i class="ti-calendar"></i> 4 months ago</span>
-                            <span><i class="ti-time"></i> Full Time</span>
-                            <div class="view-iocn">
-                                <a href="job-page.html"><i class="ti-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="featured-item">
-                        <div class="featured-wrap">
-                            <div class="featured-inner">
-                                <figure class="item-thumb">
-                                    <a class="hover-effect" href="job-page.html">
-                                        <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/about/img_1.jpg" alt="">
-                                    </a>
-                                </figure>
-                                <div class="item-body">
-                                    <h3 class="job-title"><a href="job-page.html">Graphic Designer</a></h3>
-                                    <div class="adderess"><i class="ti-location-pin"></i> Dallas, United States</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item-foot">
-                            <span><i class="ti-calendar"></i> 4 months ago</span>
-                            <span><i class="ti-time"></i> Full Time</span>
-                            <div class="view-iocn">
-                                <a href="job-page.html"><i class="ti-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="featured-item">
-                        <div class="featured-wrap">
-                            <div class="featured-inner">
-                                <figure class="item-thumb">
-                                    <a class="hover-effect" href="job-page.html">
-                                        <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/about/img_1.jpg" alt="">
-                                    </a>
-                                </figure>
-                                <div class="item-body">
-                                    <h3 class="job-title"><a href="job-page.html">Graphic Designer</a></h3>
-                                    <div class="adderess"><i class="ti-location-pin"></i> Dallas, United States</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item-foot">
-                            <span><i class="ti-calendar"></i> 4 months ago</span>
-                            <span><i class="ti-time"></i> Full Time</span>
-                            <div class="view-iocn">
-                                <a href="job-page.html"><i class="ti-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div class="showing pull-left"></div>
+                <ul class="pagination pull-right">
+                    <li class="active"><a href="#" class="btn btn-common"><i class="ti-angle-left"></i> prev</a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li class="active"><a href="#" class="btn btn-common">Next <i class="ti-angle-right"></i></a></li>
+                </ul>
             </div>
         </div>
 </section>
@@ -217,77 +243,198 @@
             </div>
             <div class="col-md-12">
                 <div class="row">
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 blog-item">
 
-                        <div class="blog-item-wrapper">
-                            <div class="blog-item-img">
-                                <a href="single-post.html">
-                                    <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/about/img_1.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="blog-item-text">
-                                <div class="meta-tags">
-                                    <span class="date"><i class="ti-calendar"></i> Dec 20, 2017</span>
-                                    <span class="comments"><a href="#"><i class="ti-comment-alt"></i> 5 Comments</a></span>
-                                </div>
-                                <a href="single-post.html">
-                                    <h3>
-                                        Tips to write an impressive resume online for beginner
-                                    </h3>
-                                </a>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore praesentium asperiores ad vitae.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 blog-item">
+                    <div class="direction-reveal direction-reveal--3-grid-flexbox direction-reveal--demo-slide">
 
-                        <div class="blog-item-wrapper">
-                            <div class="blog-item-img">
-                                <a href="single-post.html">
-                                    <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/about/img_1.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="blog-item-text">
-                                <div class="meta-tags">
-                                    <span class="date"><i class="ti-calendar"></i> Dec 20, 2017</span>
-                                    <span class="comments"><a href="#"><i class="ti-comment-alt"></i> 5 Comments</a></span>
-                                </div>
-                                <a href="single-post.html">
-                                    <h3>
-                                        Tips to write an impressive resume online for beginner
-                                    </h3>
-                                </a>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore praesentium asperiores ad vitae.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 blog-item">
+                        <a href="#" class="direction-reveal__card">
+                            <img src="{$smarty.const.URL_WEB}{$themes}/assets/direction/images/mountain-1.jpg"
+                                 alt="Image" class="img-fluid">
 
-                        <div class="blog-item-wrapper">
-                            <div class="blog-item-img">
-                                <a href="single-post.html">
-                                    <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/about/img_1.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="blog-item-text">
-                                <div class="meta-tags">
-                                    <span class="date"><i class="ti-calendar"></i> Dec 20, 2017</span>
-                                    <span class="comments"><a href="#"><i class="ti-comment-alt"></i> 5 Comments</a></span>
-                                </div>
-                                <a href="single-post.html">
-                                    <h3>
-                                        Tips to write an impressive resume online for beginner
-                                    </h3>
-                                </a>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore praesentium asperiores ad vitae.
+                            <div class="direction-reveal__overlay direction-reveal__anim--in">
+                                <h3 class="direction-reveal__title fw-mgt20"><strong>DU HỌC MỸ</strong></h3>
+                                <p class="direction-reveal__text fw-mgt20">Sed ut perspiciatis unde omnis iste natus
+                                    error sit
+                                    voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
+                                    illo inventore eritatis et quasi.
+                                    Sed ut perspiciatis unde omnis iste natus error sit
+                                    voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
+                                    illo inventore eritatis et quasi.
                                 </p>
+
+                                <div class="fw-mgt20 fw-text-right">
+                                    Tìm hiểu thêm
+                                </div>
                             </div>
-                        </div>
+                        </a>
+
+                        <a href="#" class="direction-reveal__card">
+                            <img src="{$smarty.const.URL_WEB}{$themes}/assets/direction/images/mountain-2.jpg"
+                                 alt="Image" class="img-fluid">
+
+                            <div class="direction-reveal__overlay direction-reveal__anim--in">
+                                <h3 class="direction-reveal__title fw-mgt20"><strong>DU HỌC MỸ</strong></h3>
+                                <p class="direction-reveal__text fw-mgt20">Sed ut perspiciatis unde omnis iste natus
+                                    error sit
+                                    voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
+                                    illo inventore eritatis et quasi.
+                                    Sed ut perspiciatis unde omnis iste natus error sit
+                                    voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
+                                    illo inventore eritatis et quasi.
+                                </p>
+
+                                <div class="fw-mgt20 fw-text-right">
+                                    Tìm hiểu thêm
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="#" class="direction-reveal__card">
+                            <img src="{$smarty.const.URL_WEB}{$themes}/assets/direction/images/mountain-3.jpg"
+                                 alt="Image" class="img-fluid">
+
+                            <div class="direction-reveal__overlay direction-reveal__anim--in">
+                                <h3 class="direction-reveal__title fw-mgt20"><strong>DU HỌC MỸ</strong></h3>
+                                <p class="direction-reveal__text fw-mgt20">Sed ut perspiciatis unde omnis iste natus
+                                    error sit
+                                    voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
+                                    illo inventore eritatis et quasi.
+                                    Sed ut perspiciatis unde omnis iste natus error sit
+                                    voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
+                                    illo inventore eritatis et quasi.
+                                </p>
+
+                                <div class="fw-mgt20 fw-text-right">
+                                    Tìm hiểu thêm
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="#" class="direction-reveal__card">
+                            <img src="{$smarty.const.URL_WEB}{$themes}/assets/direction/images/mountain-4.jpg"
+                                 alt="Image" class="img-fluid">
+
+                            <div class="direction-reveal__overlay direction-reveal__anim--in">
+                                <h3 class="direction-reveal__title fw-mgt20"><strong>DU HỌC MỸ</strong></h3>
+                                <p class="direction-reveal__text fw-mgt20">Sed ut perspiciatis unde omnis iste natus
+                                    error sit
+                                    voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
+                                    illo inventore eritatis et quasi.
+                                    Sed ut perspiciatis unde omnis iste natus error sit
+                                    voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
+                                    illo inventore eritatis et quasi.
+                                </p>
+
+                                <div class="fw-mgt20 fw-text-right">
+                                    Tìm hiểu thêm
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="#" class="direction-reveal__card">
+                            <img src="{$smarty.const.URL_WEB}{$themes}/assets/direction/images/mountain-5.jpg"
+                                 alt="Image" class="img-fluid">
+
+                            <div class="direction-reveal__overlay direction-reveal__anim--in">
+                                <h3 class="direction-reveal__title fw-mgt20"><strong>DU HỌC MỸ</strong></h3>
+                                <p class="direction-reveal__text fw-mgt20">Sed ut perspiciatis unde omnis iste natus
+                                    error sit
+                                    voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
+                                    illo inventore eritatis et quasi.
+                                    Sed ut perspiciatis unde omnis iste natus error sit
+                                    voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
+                                    illo inventore eritatis et quasi.
+                                </p>
+
+                                <div class="fw-mgt20 fw-text-right">
+                                    Tìm hiểu thêm
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="#" class="direction-reveal__card">
+                            <img src="{$smarty.const.URL_WEB}{$themes}/assets/direction/images/mountain-6.jpg"
+                                 alt="Image" class="img-fluid">
+
+                            <div class="direction-reveal__overlay direction-reveal__anim--in">
+                                <h3 class="direction-reveal__title fw-mgt20"><strong>DU HỌC MỸ</strong></h3>
+                                <p class="direction-reveal__text fw-mgt20">Sed ut perspiciatis unde omnis iste natus
+                                    error sit
+                                    voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
+                                    illo inventore eritatis et quasi.
+                                    Sed ut perspiciatis unde omnis iste natus error sit
+                                    voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
+                                    illo inventore eritatis et quasi.
+                                </p>
+
+                                <div class="fw-mgt20 fw-text-right">
+                                    Tìm hiểu thêm
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="#" class="direction-reveal__card">
+                            <img src="{$smarty.const.URL_WEB}{$themes}/assets/direction/images/mountain-6.jpg"
+                                 alt="Image" class="img-fluid">
+
+                            <div class="direction-reveal__overlay direction-reveal__anim--in">
+                                <h3 class="direction-reveal__title fw-mgt20"><strong>DU HỌC MỸ</strong></h3>
+                                <p class="direction-reveal__text fw-mgt20">Sed ut perspiciatis unde omnis iste natus
+                                    error sit
+                                    voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
+                                    illo inventore eritatis et quasi.
+                                    Sed ut perspiciatis unde omnis iste natus error sit
+                                    voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
+                                    illo inventore eritatis et quasi.
+                                </p>
+
+                                <div class="fw-mgt20 fw-text-right">
+                                    Tìm hiểu thêm
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="#" class="direction-reveal__card">
+                            <img src="{$smarty.const.URL_WEB}{$themes}/assets/direction/images/mountain-6.jpg"
+                                 alt="Image" class="img-fluid">
+
+                            <div class="direction-reveal__overlay direction-reveal__anim--in">
+                                <h3 class="direction-reveal__title fw-mgt20"><strong>DU HỌC MỸ</strong></h3>
+                                <p class="direction-reveal__text fw-mgt20">Sed ut perspiciatis unde omnis iste natus
+                                    error sit
+                                    voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
+                                    illo inventore eritatis et quasi.
+                                    Sed ut perspiciatis unde omnis iste natus error sit
+                                    voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
+                                    illo inventore eritatis et quasi.
+                                </p>
+
+                                <div class="fw-mgt20 fw-text-right">
+                                    Tìm hiểu thêm
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="#" class="direction-reveal__card">
+                            <img src="{$smarty.const.URL_WEB}{$themes}/assets/direction/images/mountain-6.jpg"
+                                 alt="Image" class="img-fluid">
+
+                            <div class="direction-reveal__overlay direction-reveal__anim--in">
+                                <h3 class="direction-reveal__title fw-mgt20"><strong>DU HỌC MỸ</strong></h3>
+                                <p class="direction-reveal__text fw-mgt20">Sed ut perspiciatis unde omnis iste natus
+                                    error sit
+                                    voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
+                                    illo inventore eritatis et quasi.
+                                    Sed ut perspiciatis unde omnis iste natus error sit
+                                    voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
+                                    illo inventore eritatis et quasi.
+                                </p>
+
+                                <div class="fw-mgt20 fw-text-right">
+                                    Tìm hiểu thêm
+                                </div>
+                            </div>
+                        </a>
+
                     </div>
                 </div>
             </div>
@@ -314,78 +461,107 @@
             </div>
             <div class="col-md-12">
                 <div class="row">
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 blog-item">
+                    <div class="col-md-12 no-padding">
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 blog-item">
 
-                        <div class="blog-item-wrapper">
-                            <div class="blog-item-img">
-                                <a href="single-post.html">
-                                    <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/about/img_1.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="blog-item-text">
-                                <div class="meta-tags">
-                                    <span class="date"><i class="ti-calendar"></i> Dec 20, 2017</span>
-                                    <span class="comments"><a href="#"><i class="ti-comment-alt"></i> 5 Comments</a></span>
+                            <div class="hoc-bong-item-wrapper">
+                                <div class="hoc-bong-item-text">
+                                    <a href="single-post.html" class="link_blue">
+                                        <h3 class="fw-fs-26">
+                                            <strong>HỌC BỔNG</strong>
+                                        </h3>
+                                    </a>
+                                    <p class="fw-mgt10 fw-mgb10">
+                                        This is the article contentThis is the article contentThis is the article
+                                        contentThis is the article contentThis is the article contentThis is the
+                                        article contentThis is the article contentThis is the article contentThis is the
+                                        article contentThis is the article contentThis is the article contentThis is the
+                                        article contentThis is the article content
+
+                                    </p>
+                                    <div class="fw-mgt20">
+                                        <span class="label label-default">Học bổng THPT</span>
+                                        <span class="label label-primary">Học bổng Đại Học</span>
+                                        <span class="label label-success">Học bổng Thạc Sỹ</span>
+                                    </div>
                                 </div>
-                                <a href="single-post.html">
-                                    <h3>
-                                        Tips to write an impressive resume online for beginner
-                                    </h3>
-                                </a>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore praesentium asperiores ad vitae.
-                                </p>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 blog-item">
+
+                            <div class="hoc-bong-item-wrapper">
+                                <div class="hoc-bong-item-text">
+                                    <a href="single-post.html" class="link_blue">
+                                        <h3 class="fw-fs-26">
+                                            <strong>DU HỌC HÈ</strong>
+                                        </h3>
+                                    </a>
+                                    <p class="fw-mgt10 fw-mgb10">
+                                        This is the article contentThis is the article contentThis is the article
+                                        contentThis is the article contentThis is the article
+                                        This is the article contentThis is the article contentThis is the article
+                                        contentThis is the article contentThis is the article
+                                        This is the article contentThis is the article contentThis is the article
+                                        contentThis is the article contentThis is the article
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 blog-item">
 
-                        <div class="blog-item-wrapper">
-                            <div class="blog-item-img">
-                                <a href="single-post.html">
-                                    <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/about/img_1.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="blog-item-text">
-                                <div class="meta-tags">
-                                    <span class="date"><i class="ti-calendar"></i> Dec 20, 2017</span>
-                                    <span class="comments"><a href="#"><i class="ti-comment-alt"></i> 5 Comments</a></span>
+                    <div class="col-md-12 no-padding">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 blog-item">
+
+                            <div class="hoc-bong-item-wrapper">
+                                <div class="hoc-bong-item-text">
+                                    <a href="single-post.html" class="link_blue">
+                                        <h3 class="fw-fs-26">
+                                            <strong>DU HỌC HÈ</strong>
+                                        </h3>
+                                    </a>
+                                    <p class="fw-mgt10 fw-mgb10">
+                                        This is the article contentThis is the article contentThis is the article
+                                        contentThis is the article contentThis is the
+                                    </p>
                                 </div>
-                                <a href="single-post.html">
-                                    <h3>
-                                        Tips to write an impressive resume online for beginner
-                                    </h3>
-                                </a>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore praesentium asperiores ad vitae.
-                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 blog-item">
+
+                            <div class="hoc-bong-item-wrapper">
+                                <div class="hoc-bong-item-text">
+                                    <a href="single-post.html" class="link_blue">
+                                        <h3 class="fw-fs-26">
+                                            <strong>DU HỌC HÈ</strong>
+                                        </h3>
+                                    </a>
+                                    <p class="fw-mgt10 fw-mgb10">
+                                        This is the article contentThis is the article contentThis is the article
+                                        contentThis is the article contentThis is the
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 blog-item">
+
+                            <div class="hoc-bong-item-wrapper">
+                                <div class="hoc-bong-item-text">
+                                    <a href="single-post.html" class="link_blue">
+                                        <h3 class="fw-fs-26">
+                                            <strong>DU HỌC HÈ</strong>
+                                        </h3>
+                                    </a>
+                                    <p class="fw-mgt10 fw-mgb10">
+                                        This is the article contentThis is the article contentThis is the article
+                                        contentThis is the article contentThis is the
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 blog-item">
 
-                        <div class="blog-item-wrapper">
-                            <div class="blog-item-img">
-                                <a href="single-post.html">
-                                    <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/about/img_1.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="blog-item-text">
-                                <div class="meta-tags">
-                                    <span class="date"><i class="ti-calendar"></i> Dec 20, 2017</span>
-                                    <span class="comments"><a href="#"><i class="ti-comment-alt"></i> 5 Comments</a></span>
-                                </div>
-                                <a href="single-post.html">
-                                    <h3>
-                                        Tips to write an impressive resume online for beginner
-                                    </h3>
-                                </a>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore praesentium asperiores ad vitae.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -397,7 +573,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12" style="text-align: left; padding-top: 50px;">
-                <h2 style="font-size: 40px;">ĐƯỜNG ĐẾN ĐẠI HỌC MƠ ƯỚC</h2>
+                <h2 style="font-size: 40px;"><strong>ĐƯỜNG ĐẾN ĐẠI HỌC MƠ ƯỚC</strong></h2>
                 <br> <br>
                 <h4>
                     This is the article contentThis is the article contentThis is the article
@@ -408,36 +584,32 @@
                 </h4>
             </div>
 
-            <div class="col-md-12" style="margin-top: 40px;">
+            <div class="col-md-12 no-padding" style="margin-top: 40px;">
                 <div class="col-md-3">
                     <center>
-                        <h3 style="font-size: 40px;"> 95 +<br/>
-                            Languages
-                        </h3>
+                        <h3 style="font-size: 40px;"> 2.000 +<br/></h3>
+                        <h4>Trường trung học phổ thông các nước</h4>
                     </center>
 
                 </div>
                 <div class="col-md-3">
                     <center>
-                        <h3 style="font-size: 40px;">100,000
-                            <br/>
-                            Translators
-                        </h3>
+                        <h3 style="font-size: 40px;">500 +<br/></h3>
+                        <h4>Trường đại học các nước</h4>
+
                     </center>
                 </div>
                 <div class="col-md-3">
                     <center>
-                        <h3 style="font-size: 40px;"> 35 +<br>
-                            Subject Fields
-                        </h3>
+                        <h3 style="font-size: 40px;"> 1.000 tỷ<br></h3>
+                        <h4>Tổng giá trị học bổng</h4>
                     </center>
                 </div>
 
                 <div class="col-md-3">
                     <center>
-                        <h3 style="font-size: 40px;"> 35 +<br>
-                            Subject Fields
-                        </h3>
+                        <h3 style="font-size: 40px;"> 100%<br></h3>
+                        <h4>Học sinh đậu vào trường mơ ước</h4>
                     </center>
                 </div>
             </div>
@@ -451,7 +623,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 fw-mgb20">
-                <h3>CÓ THỂ BẠN QUAN TÂM</h3>
+                <h3><strong>CÓ THỂ BẠN QUAN TÂM</strong></h3>
                 <div align="center" class="btn-bg-under-center fw-mgt10"></div>
             </div>
             <div class="col-md-12 no-padding fw-mgb20">
@@ -465,83 +637,77 @@
             </div>
             <div class="col-md-12">
                 <div class="row">
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 blog-item">
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 blog-item">
 
-                    <div class="blog-item-wrapper">
-                        <div class="blog-item-img">
-                            <a href="single-post.html">
-                                <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/about/img_1.jpg" alt="">
-                            </a>
-                        </div>
-                        <div class="blog-item-text">
-                            <div class="meta-tags">
-                                <span class="date"><i class="ti-calendar"></i> Dec 20, 2017</span>
-                                <span class="comments"><a href="#"><i class="ti-comment-alt"></i> 5 Comments</a></span>
+                        <div class="blog-item-wrapper">
+                            <div class="blog-item-img">
+                                <a href="single-post.html">
+                                    <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/about/img_1.jpg" alt="">
+                                </a>
                             </div>
-                            <a href="single-post.html">
-                                <h3>
-                                    Tips to write an impressive resume online for beginner
-                                </h3>
-                            </a>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore praesentium asperiores ad vitae.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 blog-item">
-
-                    <div class="blog-item-wrapper">
-                        <div class="blog-item-img">
-                            <a href="single-post.html">
-                                <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/about/img_1.jpg" alt="">
-                            </a>
-                        </div>
-                        <div class="blog-item-text">
-                            <div class="meta-tags">
-                                <span class="date"><i class="ti-calendar"></i> Dec 20, 2017</span>
-                                <span class="comments"><a href="#"><i class="ti-comment-alt"></i> 5 Comments</a></span>
+                            <div class="blog-item-text">
+                                <a href="#" class="link_blue">
+                                    <h2>
+                                        VIDEO PHỎNG VẤN
+                                        <div align="center" class="btn-bg-under-center fw-mgt10 fw-mgb10"></div>
+                                    </h2>
+                                </a>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore praesentium
+                                    asperiores ad vitae.
+                                </p>
                             </div>
-                            <a href="single-post.html">
-                                <h3>
-                                    Tips to write an impressive resume online for beginner
-                                </h3>
-                            </a>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore praesentium asperiores ad vitae.
-                            </p>
                         </div>
                     </div>
 
-                </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 blog-item">
 
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 blog-item">
-
-                    <div class="blog-item-wrapper">
-                        <div class="blog-item-img">
-                            <a href="single-post.html">
-                                <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/about/img_1.jpg" alt="">
-                            </a>
-                        </div>
-                        <div class="blog-item-text">
-                            <div class="meta-tags">
-                                <span class="date"><i class="ti-calendar"></i> Dec 20, 2017</span>
-                                <span class="comments"><a href="#"><i class="ti-comment-alt"></i> 5 Comments</a></span>
+                        <div class="blog-item-wrapper">
+                            <div class="blog-item-img">
+                                <a href="single-post.html">
+                                    <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/about/img_1.jpg" alt="">
+                                </a>
                             </div>
-                            <a href="single-post.html">
-                                <h3>
-                                    Tips to write an impressive resume online for beginner
-                                </h3>
-                            </a>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore praesentium asperiores ad vitae.
-                            </p>
+                            <div class="blog-item-text">
+                                <a href="single-post.html" class="link_blue">
+                                    <h2>
+                                        KHO THÔNG TIN
+                                        <div align="center" class="btn-bg-under-center fw-mgt10 fw-mgb10"></div>
+                                    </h2>
+                                </a>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore praesentium
+                                    asperiores ad vitae.
+                                </p>
+                            </div>
                         </div>
+
                     </div>
 
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 blog-item">
+
+                        <div class="blog-item-wrapper">
+                            <div class="blog-item-img">
+                                <a href="single-post.html">
+                                    <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/about/img_1.jpg" alt="">
+                                </a>
+                            </div>
+                            <div class="blog-item-text">
+                                <a href="single-post.html" class="link_blue">
+                                    <h2>
+                                        ẢNH HOẠT ĐỘNG
+                                        <div align="center" class="btn-bg-under-center fw-mgt10 fw-mgb10"></div>
+                                    </h2>
+                                </a>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore praesentium
+                                    asperiores ad vitae.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-            </div>
             </div>
         </div>
     </div>
@@ -552,9 +718,9 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 no-padding fw-mgt30 fw-mgb30">
-                <div class="col-md-8">
+                <div class="col-md-9">
                     <div class="fw-mgb20">
-                        <h3>MỞ CỬA THẾ GIỚI THÔNG QUA GIÁO DỤC</h3>
+                        <h3><strong>MỞ CỬA THẾ GIỚI THÔNG QUA GIÁO DỤC</strong></h3>
                     </div>
                     <div>
                         This is the article contentThis is the article contentThis is the article content
@@ -567,7 +733,7 @@
                         This is the article contentThis is the article contentThis is the article
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3" align="right">
                     <a class="btn btn-support fw-fs-18" href="#" style="margin-top:55px;">
                         ĐĂNG KÝ TRỰC TUYẾN
                     </a>

@@ -11,7 +11,7 @@ $db->db_query("SET NAMES 'utf8'");
 
 session_start();
 if (!isset($_SESSION[URL_HOME]["lang"])) {
-    $_SESSION[URL_HOME]["lang"] = "en";
+    $_SESSION[URL_HOME]["lang"] = "vn";
 }
 
 if ($_SESSION[URL_HOME]["lang"] == "vn") {

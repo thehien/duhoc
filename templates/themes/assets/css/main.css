@@ -1058,7 +1058,7 @@ a:focus {
     -o-transition: opacity 0.3s ease-in-out;
     visibility: hidden;
     opacity: 0;
-    width: 195px;
+    width: 220px;
     z-index: 999;
     font-size: 15px;
 }
@@ -1133,7 +1133,7 @@ a:focus {
 .sup-dropdown li a.active {
     color: #ff4f57;
     font-size: 15px !important;
-    background: #999 !important;
+    /*background: #999 !important;*/
 }
 
 .dropdown > li:hover > a,
@@ -1141,7 +1141,7 @@ a:focus {
 .sup-dropdown li:hover > a {
     color: #ff4f57;
     font-size: 15px !important;
-    background: #999 !important;
+    /*background: #999 !important;*/
 }
 
 .dropdown li,
@@ -1218,7 +1218,7 @@ a:focus {
     /*color: #fff!important;*/
     /* background-color: rgba(255, 255, 255, 0.1);*/
     border: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 10px 15px;
+    padding: 10px 10px;
     margin-right: 0px;
 }
 
@@ -2239,7 +2239,7 @@ label {
 }
 
 .featured-jobs .item-body {
-    padding: 20px 12px 10px;
+    padding: 10px 12px 10px 0;
     width: 100%;
 }
 
@@ -2249,11 +2249,12 @@ label {
 
 .featured-jobs .item-body .job-title a {
     font-size: 16px;
-    text-transform: uppercase;
 }
 
 .featured-jobs .item-body .job-title a:hover {
-    color: #ff4f57;
+    color: #000;
+    text-decoration: underline;
+
 }
 
 .featured-jobs .item-body .adderess {
@@ -2294,19 +2295,19 @@ label {
 
 .featured-jobs .item-foot .view-iocn {
     position: absolute;
-    top: -24px;
+    top: -18px;
     right: 24px;
 }
 
 .featured-jobs .item-foot .view-iocn a {
-    width: 48px;
+    width: 38px;
     display: block;
     background: #ff4f57;
     color: #fff;
     font-size: 20px;
-    height: 48px;
+    height: 38px;
     text-align: center;
-    line-height: 50px;
+    line-height: 38px;
     border-radius: 50px;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18), 0 2px 5px 0 rgba(0, 0, 0, 0.15);
 }
@@ -2342,10 +2343,30 @@ label {
 /* ==========================================================================
    Blog
    ========================================================================== */
+#blog .hoc-bong-item-wrapper {
+    background: #fff;
+    border: 4px solid #6969f4;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    -webkit-transition: transform 0.2s linear, -webkit-box-shadow 0.2s linear;
+    -moz-transition: transform 0.2s linear, -moz-box-shadow 0.2s linear;
+    transition: transform 0.2s linear, box-shadow 0.2s linear;
+}
+
+#blog .hoc-bong-item-wrapper:hover {
+    background: #cce7fc;
+    box-shadow: 0 13px 21px rgba(0, 0, 0, 0.13);
+    -webkit-box-shadow: 0 13px 21px rgba(0, 0, 0, 0.13);
+    -moz-box-shadow: 0 13px 21px rgba(0, 0, 0, 0.13);
+}
+
+
+
 #blog .blog-item-wrapper {
     background: #fff;
-    border-radius: 0px;
-    margin-bottom: 30px;
+    border:3px solid #6969f4;
+    border-radius: 3px;
+    margin-bottom: 10px;
     -webkit-transition: transform 0.2s linear, -webkit-box-shadow 0.2s linear;
     -moz-transition: transform 0.2s linear, -moz-box-shadow 0.2s linear;
     transition: transform 0.2s linear, box-shadow 0.2s linear;
@@ -2364,6 +2385,12 @@ label {
 #blog .blog-item-img img {
     width: 100%;
 }
+
+#blog .hoc-bong-item-text {
+    border-radius: 4px;
+    padding: 15px;
+}
+
 
 #blog .blog-item-text {
     border: 1px solid #f1f1f1;
@@ -6429,3 +6456,27 @@ for font-size and font-family*/
     font-weight: bold;
     text-decoration: underline;
 }
+
+.fw-text-right {
+    text-align: right;
+}
+
+.link_blue {
+    color: #46C7F2;
+}
+
+.link_blue:hover {
+    color: #39bae5;
+}
+
+.link_menu_blue {
+    color: #46C7F2 !important;
+    font-weight: bold;
+}
+
+.link_menu_blue:hover {
+    color: #39bae5 !important;
+    font-weight: bold;
+    text-decoration: underline;
+}
+

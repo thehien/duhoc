@@ -101,7 +101,7 @@
 
 #slides1 li {
     list-style: none;
-    width: 490px;
+    width: 475px;
 }
 
 #slides1 li img {
@@ -147,7 +147,7 @@
 
 .slides1_wrap .next {
     position: absolute;
-    right: 95px;
+    right: 110px;
     top: 150px;
     outline: 0;
 }
@@ -157,7 +157,7 @@
 }
 
 .slides1_wrap a:active {
-    top: 102px;
+    top: 150px;
 }
 
 .bx_pager {

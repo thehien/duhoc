@@ -211,11 +211,16 @@ a:hover,a:focus{
   border-color: #1650E2;*/
 }
 .navbar-default.affix .float-right li a:hover{
-  /*background: #1650E2;*/
+    background: #fff !important;
+    color: #1650E2 !important;
+    text-decoration: underline;
 }
 .navbar-default .float-right li a:hover{
  /* border-color: #1650E2;
  background-color: #e0dbdb;*/
+    background: #fff !important;
+    color: #1650E2 !important;
+    text-decoration: underline;
 }
 .main-navigation .float-right li a{
  /* border-color: #1650E2;
@@ -247,7 +252,7 @@ a:hover,a:focus{
 }
 .popular-jobs a:hover{
   background:  #1650E2;
-  border-color:  #1650E2; 
+  border-color:  #1650E2;
 }
 .full-time{
   background: #1650E2;
@@ -354,7 +359,7 @@ footer .menu li a:hover{
   color: #1650E2;
 }
 .right-sideabr .lest li a:hover{
-  color: #1650E2; 
+  color: #1650E2;
 }
 .right-sideabr .lest .notinumber{
   background: #1650E2;

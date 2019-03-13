@@ -1,0 +1,94 @@
+{include file="$themes/header.html"}
+<!-- Header Section Start -->
+<div class="header">
+    <!-- Start intro section -->
+    <section id="intro" class="section-intro">
+        <div class="logo-menu" style="background: #fff;">
+            {if $isLogin}
+            {include file="$themes/top-account.html"}
+            {else}
+            {include file="$themes/top.html"}
+            {/if}
+        </div>
+
+    </section>
+</div>
+
+<section class="job-detail section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 fw-border-content-bottom" style="margin: 5px; text-align: center">
+                <h4 class="fw-fs-26 fw-mgt10 fw-mgb10">Du học Canada có phải là lựa chọn hoàn hảo cho bạn...
+                </h4>
+            </div>
+
+            <div class="col-md-12 no-padding fw-mgt10">
+                <div class="col-md-9 no-padding">
+                    <div class="col-md-12 fw-mgb20" style="text-align: justify">
+
+                        <p> Donald Trump’s Presidency has been mired for months in controversy over reports that the Trump Campaign may have colluded with the Russian Government in an effort to influence the outcome of the 2016 presidential election. Last week the White House was rocked again by information revealing that President Trump had two additional, undisclosed meetings with Russian President Vladimir Putin at the G-20 Summit in Germany. In an interview with New York Times journalist, Maggie Haberman, President Trump expressed that during the Summit dinner, the seating arrangement put him next to Japanese Prime Minister Shinzo Abe’s wife, Akie Abe who Trump said, “doesn’t speak English”. As a result of the “language barrier”, President Trump reportedly decided to move to the opposite side of the dining table to sit next to first lady Malania Trump and Putin, where the three conversed until the completion of the dinner. </p>
+                        <br/>
+                        <p>
+                            Donald Trump’s Presidency has been mired for months in controversy over reports that the Trump Campaign may have colluded with the Russian Government in an effort to influence the outcome of the 2016 presidential election. Last week the White House was rocked again by information revealing that President Trump had two additional, undisclosed meetings with Russian President Vladimir Putin at the G-20 Summit in Germany. In an interview with New York Times journalist, Maggie Haberman, President Trump expressed that during the Summit dinner, the seating arrangement put him next to Japanese Prime Minister Shinzo Abe’s wife, Akie Abe who Trump said, “doesn’t speak English”. As a result of the “language barrier”, President Trump reportedly decided to move to the opposite side of the dining table to sit next to first lady Malania Trump and Putin, where the three conversed until the completion of the dinner.
+                        </p>
+
+
+                    </div>
+                    <div class="meta fw-mgt20">
+                        <span><a class="btn btn-border btn-sm" href="#"> Email<div class="ripple-container"></div></a></span>
+                        <span><a class="btn btn-border btn-sm" href="#"> Job Aleart</a></span>
+                        <span><a class="btn btn-border btn-sm" href="#"> Save This job</a></span>
+                        <span><a class="btn btn-border btn-sm" href="#"> Report Abuse</a></span>
+                    </div>
+                </div>
+
+                <div class="col-md-3 no-padding">
+                    <div class="fw-mgb20">
+                        <div class="fw-mgb10">
+                            <a class="btn btn-submit fw-fs-18" href="#">
+                                ĐĂNG  KÝ TRỰC TUYẾN
+                            </a>
+                        </div>
+
+                        <div class="fw-mgb10">
+                            <a class="btn btn-submit fw-fs-18" href="#">
+                                CHUYÊN GIA TƯ VẤN
+                            </a>
+                        </div>
+                        <div class="fw-mgb10 fw-mgt20">
+                            <div class="fw-fs-16"><strong>DANH MỤC:</strong> TUYỂN SINH</div>
+                        </div>
+                        <div>
+                            {foreach from=$list_special_cate item="val" name="val"}
+                            <div class="fw-mgb10">
+                                <a href="{$smarty.const.URL_HOMEPAGE}major-industry.html" class="industry">
+                                    <h3 style="font-size: 16px;">{$val.category_name}</h3>
+                                </a>
+                            </div>
+                            {/foreach}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+</section>
+
+
+<section class="featured-jobs section-about">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="fw-mgb20 fw-mgt10">
+                    <div class="fw-fs-18">BÀI VIẾT LIÊN QUAN</div>
+                    <div align="left" class="btn-bg-under-center fw-mgt10"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- footer -->
+{include file="$themes/footer.html"}
