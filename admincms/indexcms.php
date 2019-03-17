@@ -130,19 +130,28 @@ switch ($module) {
       $function->goto_url(URL_ADMIN);
     }
     break;
-  case 'kinhnghiem':
+  case 'student':
     if (isset($_SESSION[URL_ADMIN]['logined']) AND $_SESSION[URL_ADMIN]['logined'] === true AND $_SESSION[URL_ADMIN]['logined_user'] == LOGINED_TRUE) {
-      require("module/kinhnghiem/main.php");
-      $smarty->assign("panel_module", kinhnghiem_process());
+      require("module/student/main.php");
+      $smarty->assign("panel_module", student_process());
       $smarty->display("homepage.html");
     } else {
       $function->goto_url(URL_ADMIN);
     }
     break;
-  case 'software':
+  case 'question':
     if (isset($_SESSION[URL_ADMIN]['logined']) AND $_SESSION[URL_ADMIN]['logined'] === true AND $_SESSION[URL_ADMIN]['logined_user'] == LOGINED_TRUE) {
-      require("module/software/main.php");
-      $smarty->assign("panel_module", software_process());
+      require("module/question/main.php");
+      $smarty->assign("panel_module", question_process());
+      $smarty->display("homepage.html");
+    } else {
+      $function->goto_url(URL_ADMIN);
+    }
+    break;
+  case 'schools':
+    if (isset($_SESSION[URL_ADMIN]['logined']) AND $_SESSION[URL_ADMIN]['logined'] === true AND $_SESSION[URL_ADMIN]['logined_user'] == LOGINED_TRUE) {
+      require("module/schools/main.php");
+      $smarty->assign("panel_module", schools_process());
       $smarty->display("homepage.html");
     } else {
       $function->goto_url(URL_ADMIN);
