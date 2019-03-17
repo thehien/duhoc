@@ -20,23 +20,24 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 fw-mgb20">
-                <h3>THÔNG TIN DU HỌC</h3>
+                <h3 class="main_title">{$content_ttduhoc[0].category_name}</h3>
                 <div align="center" class="btn-bg-under-center fw-mgt10"></div>
             </div>
             <div class="col-md-12 no-padding fw-mgb20">
-                <div align="left" class="col-md-8">
-                    This is the article contentThis is the article contentThis is the article
-                    contentThis is the article contentThis is the article contentThis is the article
-                    This is the article contentThis is the article contentThis is the article
-                    contentThis is the article contentThis is the article contentThis is the article
+                <div align="left" class="col-md-8 text-justify">
+                    {$content_ttduhoc[0].category_content}
                 </div>
                 <div class="col-md-2"></div>
             </div>
 
             <div class="col-md-12 no-padding">
 
-                <div class="col-md-12 fw-mgb10">
-                    <h3>Tin tức</h3>
+                <div class="col-md-12 fw-mgb20">
+                    <div class="col-md-2 no-padding"><h4><strong>Tuyển sinh</strong></h4></div>
+                    <div class="col-md-2 no-padding"><h4><strong>Hội thảo</strong></h4></div>
+                    <div class="col-md-2 no-padding"><h4><strong>Tin tức</strong></h4></div>
+                    <div class="col-md-2 no-padding"><h4><strong>Kinh nghiệm</strong></h4></div>
+                    <div class="col-md-2 no-padding"><h4><strong>Sự kiện</strong></h4></div>
                 </div>
 
                 <div class="col-md-6 col-sm-6 col-xs-12 fw-mgb10">
@@ -200,7 +201,7 @@
                         </div>
                         <div class="item-foot">
                             <span><i class="ti-calendar"></i> 22/02/2019 10:30</span>
-                             <div class="view-iocn">
+                            <div class="view-iocn">
                                 <a href="job-page.html"><i class="ti-arrow-right"></i></a>
                             </div>
                         </div>
@@ -228,212 +229,36 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 fw-mgb20">
-                <h3>DU HỌC CÁC NƯỚC</h3>
+                <h3 class="main_title">{$content_duhoc[0].category_name}</h3>
                 <div align="center" class="btn-bg-under-center fw-mgt10"></div>
             </div>
             <div class="col-md-12 no-padding fw-mgb20">
-                <div align="left" class="col-md-8">
-                    This is the article contentThis is the article contentThis is the article
-                    contentThis is the article contentThis is the article contentThis is the article
-                    This is the article contentThis is the article contentThis is the article
-                    contentThis is the article contentThis is the article contentThis is the article
+                <div align="left" class="col-md-8 text-justify">
+                    {$content_duhoc[0].category_content}
                 </div>
                 <div class="col-md-2"></div>
             </div>
             <div class="col-md-12">
                 <div class="row">
-
                     <div class="direction-reveal direction-reveal--3-grid-flexbox direction-reveal--demo-slide">
+                        {section name=cate_du_hoc loop=$cate_du_hoc}
+                            {section name=cate_sub loop=$cate_sub[cate_du_hoc]}
+                            <a href="#" class="direction-reveal__card">
+                                <img src="{$smarty.const.URL_HOMEPAGE}upload/categorys/{$cate_sub[cate_du_hoc][cate_sub].category_img}"
+                                     alt="Image" class="img-fluid">
 
-                        <a href="#" class="direction-reveal__card">
-                            <img src="{$smarty.const.URL_WEB}{$themes}/assets/direction/images/mountain-1.jpg"
-                                 alt="Image" class="img-fluid">
+                                <div class="direction-reveal__overlay direction-reveal__anim--in">
+                                    <h3 class="direction-reveal__title fw-mgt20"><strong>{$cate_sub[cate_du_hoc][cate_sub].category_name}</strong></h3>
+                                    <p class="direction-reveal__text fw-mgt20">{$cate_sub[cate_du_hoc][cate_sub].category_content}
+                                    </p>
 
-                            <div class="direction-reveal__overlay direction-reveal__anim--in">
-                                <h3 class="direction-reveal__title fw-mgt20"><strong>DU HỌC MỸ</strong></h3>
-                                <p class="direction-reveal__text fw-mgt20">Sed ut perspiciatis unde omnis iste natus
-                                    error sit
-                                    voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
-                                    illo inventore eritatis et quasi.
-                                    Sed ut perspiciatis unde omnis iste natus error sit
-                                    voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
-                                    illo inventore eritatis et quasi.
-                                </p>
-
-                                <div class="fw-mgt20 fw-text-right">
-                                    Tìm hiểu thêm
+                                    <div class="fw-mgt20 fw-text-right">
+                                        Tìm hiểu thêm
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-
-                        <a href="#" class="direction-reveal__card">
-                            <img src="{$smarty.const.URL_WEB}{$themes}/assets/direction/images/mountain-2.jpg"
-                                 alt="Image" class="img-fluid">
-
-                            <div class="direction-reveal__overlay direction-reveal__anim--in">
-                                <h3 class="direction-reveal__title fw-mgt20"><strong>DU HỌC MỸ</strong></h3>
-                                <p class="direction-reveal__text fw-mgt20">Sed ut perspiciatis unde omnis iste natus
-                                    error sit
-                                    voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
-                                    illo inventore eritatis et quasi.
-                                    Sed ut perspiciatis unde omnis iste natus error sit
-                                    voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
-                                    illo inventore eritatis et quasi.
-                                </p>
-
-                                <div class="fw-mgt20 fw-text-right">
-                                    Tìm hiểu thêm
-                                </div>
-                            </div>
-                        </a>
-
-                        <a href="#" class="direction-reveal__card">
-                            <img src="{$smarty.const.URL_WEB}{$themes}/assets/direction/images/mountain-3.jpg"
-                                 alt="Image" class="img-fluid">
-
-                            <div class="direction-reveal__overlay direction-reveal__anim--in">
-                                <h3 class="direction-reveal__title fw-mgt20"><strong>DU HỌC MỸ</strong></h3>
-                                <p class="direction-reveal__text fw-mgt20">Sed ut perspiciatis unde omnis iste natus
-                                    error sit
-                                    voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
-                                    illo inventore eritatis et quasi.
-                                    Sed ut perspiciatis unde omnis iste natus error sit
-                                    voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
-                                    illo inventore eritatis et quasi.
-                                </p>
-
-                                <div class="fw-mgt20 fw-text-right">
-                                    Tìm hiểu thêm
-                                </div>
-                            </div>
-                        </a>
-
-                        <a href="#" class="direction-reveal__card">
-                            <img src="{$smarty.const.URL_WEB}{$themes}/assets/direction/images/mountain-4.jpg"
-                                 alt="Image" class="img-fluid">
-
-                            <div class="direction-reveal__overlay direction-reveal__anim--in">
-                                <h3 class="direction-reveal__title fw-mgt20"><strong>DU HỌC MỸ</strong></h3>
-                                <p class="direction-reveal__text fw-mgt20">Sed ut perspiciatis unde omnis iste natus
-                                    error sit
-                                    voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
-                                    illo inventore eritatis et quasi.
-                                    Sed ut perspiciatis unde omnis iste natus error sit
-                                    voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
-                                    illo inventore eritatis et quasi.
-                                </p>
-
-                                <div class="fw-mgt20 fw-text-right">
-                                    Tìm hiểu thêm
-                                </div>
-                            </div>
-                        </a>
-
-                        <a href="#" class="direction-reveal__card">
-                            <img src="{$smarty.const.URL_WEB}{$themes}/assets/direction/images/mountain-5.jpg"
-                                 alt="Image" class="img-fluid">
-
-                            <div class="direction-reveal__overlay direction-reveal__anim--in">
-                                <h3 class="direction-reveal__title fw-mgt20"><strong>DU HỌC MỸ</strong></h3>
-                                <p class="direction-reveal__text fw-mgt20">Sed ut perspiciatis unde omnis iste natus
-                                    error sit
-                                    voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
-                                    illo inventore eritatis et quasi.
-                                    Sed ut perspiciatis unde omnis iste natus error sit
-                                    voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
-                                    illo inventore eritatis et quasi.
-                                </p>
-
-                                <div class="fw-mgt20 fw-text-right">
-                                    Tìm hiểu thêm
-                                </div>
-                            </div>
-                        </a>
-
-                        <a href="#" class="direction-reveal__card">
-                            <img src="{$smarty.const.URL_WEB}{$themes}/assets/direction/images/mountain-6.jpg"
-                                 alt="Image" class="img-fluid">
-
-                            <div class="direction-reveal__overlay direction-reveal__anim--in">
-                                <h3 class="direction-reveal__title fw-mgt20"><strong>DU HỌC MỸ</strong></h3>
-                                <p class="direction-reveal__text fw-mgt20">Sed ut perspiciatis unde omnis iste natus
-                                    error sit
-                                    voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
-                                    illo inventore eritatis et quasi.
-                                    Sed ut perspiciatis unde omnis iste natus error sit
-                                    voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
-                                    illo inventore eritatis et quasi.
-                                </p>
-
-                                <div class="fw-mgt20 fw-text-right">
-                                    Tìm hiểu thêm
-                                </div>
-                            </div>
-                        </a>
-
-                        <a href="#" class="direction-reveal__card">
-                            <img src="{$smarty.const.URL_WEB}{$themes}/assets/direction/images/mountain-6.jpg"
-                                 alt="Image" class="img-fluid">
-
-                            <div class="direction-reveal__overlay direction-reveal__anim--in">
-                                <h3 class="direction-reveal__title fw-mgt20"><strong>DU HỌC MỸ</strong></h3>
-                                <p class="direction-reveal__text fw-mgt20">Sed ut perspiciatis unde omnis iste natus
-                                    error sit
-                                    voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
-                                    illo inventore eritatis et quasi.
-                                    Sed ut perspiciatis unde omnis iste natus error sit
-                                    voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
-                                    illo inventore eritatis et quasi.
-                                </p>
-
-                                <div class="fw-mgt20 fw-text-right">
-                                    Tìm hiểu thêm
-                                </div>
-                            </div>
-                        </a>
-
-                        <a href="#" class="direction-reveal__card">
-                            <img src="{$smarty.const.URL_WEB}{$themes}/assets/direction/images/mountain-6.jpg"
-                                 alt="Image" class="img-fluid">
-
-                            <div class="direction-reveal__overlay direction-reveal__anim--in">
-                                <h3 class="direction-reveal__title fw-mgt20"><strong>DU HỌC MỸ</strong></h3>
-                                <p class="direction-reveal__text fw-mgt20">Sed ut perspiciatis unde omnis iste natus
-                                    error sit
-                                    voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
-                                    illo inventore eritatis et quasi.
-                                    Sed ut perspiciatis unde omnis iste natus error sit
-                                    voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
-                                    illo inventore eritatis et quasi.
-                                </p>
-
-                                <div class="fw-mgt20 fw-text-right">
-                                    Tìm hiểu thêm
-                                </div>
-                            </div>
-                        </a>
-
-                        <a href="#" class="direction-reveal__card">
-                            <img src="{$smarty.const.URL_WEB}{$themes}/assets/direction/images/mountain-6.jpg"
-                                 alt="Image" class="img-fluid">
-
-                            <div class="direction-reveal__overlay direction-reveal__anim--in">
-                                <h3 class="direction-reveal__title fw-mgt20"><strong>DU HỌC MỸ</strong></h3>
-                                <p class="direction-reveal__text fw-mgt20">Sed ut perspiciatis unde omnis iste natus
-                                    error sit
-                                    voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
-                                    illo inventore eritatis et quasi.
-                                    Sed ut perspiciatis unde omnis iste natus error sit
-                                    voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
-                                    illo inventore eritatis et quasi.
-                                </p>
-
-                                <div class="fw-mgt20 fw-text-right">
-                                    Tìm hiểu thêm
-                                </div>
-                            </div>
-                        </a>
-
+                            </a>
+                            {/section}
+                        {/section}
                     </div>
                 </div>
             </div>
@@ -446,15 +271,12 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 fw-mgb20">
-                <h3>NHỮNG ĐIỀU THÚ VỊ</h3>
+                <h3 class="main_title">{$content_ndtv[0].category_name}</h3>
                 <div align="center" class="btn-bg-under-center fw-mgt10"></div>
             </div>
             <div class="col-md-12 no-padding fw-mgb20">
-                <div align="left" class="col-md-8">
-                    This is the article contentThis is the article contentThis is the article
-                    contentThis is the article contentThis is the article contentThis is the article
-                    This is the article contentThis is the article contentThis is the article
-                    contentThis is the article contentThis is the article contentThis is the article
+                <div align="left" class="col-md-8 text-justify">
+                    {$content_ndtv[0].category_content}
                 </div>
                 <div class="col-md-2"></div>
             </div>
@@ -572,14 +394,10 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12" style="text-align: left; padding-top: 50px;">
-                <h2 style="font-size: 40px;"><strong>ĐƯỜNG ĐẾN ĐẠI HỌC MƠ ƯỚC</strong></h2>
+                <h2 style="font-size: 40px;" class="main_title"><strong>{$content_dhmu[0].category_name}</strong></h2>
                 <br> <br>
-                <h4>
-                    This is the article contentThis is the article contentThis is the article
-                    contentThis is the article contentThis is the article contentThis is the article
-                    contentThis is the article contentThis is the article contentThis is the article
-                    contentThis is the article contentThis is the article contentThis is the article
-                    contentThis is the article content
+                <h4 class="text-justify">
+                    {$content_dhmu[0].category_content}
                 </h4>
             </div>
 
@@ -622,20 +440,18 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 fw-mgb20">
-                <h3><strong>CÓ THỂ BẠN QUAN TÂM</strong></h3>
+                <h3 class="main_title">{$content_ctbqt[0].category_name}</h3>
                 <div align="center" class="btn-bg-under-center fw-mgt10"></div>
             </div>
             <div class="col-md-12 no-padding fw-mgb20">
-                <div align="left" class="col-md-8">
-                    This is the article contentThis is the article contentThis is the article
-                    contentThis is the article contentThis is the article contentThis is the article
-                    This is the article contentThis is the article contentThis is the article
-                    contentThis is the article contentThis is the article contentThis is the article
+                <div align="left" class="col-md-8 text-justify">
+                    {$content_ctbqt[0].category_content}
                 </div>
                 <div class="col-md-2"></div>
             </div>
             <div class="col-md-12">
                 <div class="row">
+
                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 blog-item">
 
                         <div class="blog-item-wrapper">
@@ -719,17 +535,10 @@
             <div class="col-md-12 no-padding fw-mgt30 fw-mgb30">
                 <div class="col-md-9">
                     <div class="fw-mgb20">
-                        <h3><strong>MỞ CỬA THẾ GIỚI THÔNG QUA GIÁO DỤC</strong></h3>
+                        <h3 class="main_title"><strong>MỞ CỬA THẾ GIỚI THÔNG QUA GIÁO DỤC</strong></h3>
                     </div>
-                    <div>
-                        This is the article contentThis is the article contentThis is the article content
-                        This is the article contentThis is the article contentThis is the article
-
-                        This is the article contentThis is the article contentThis is the article content
-                        This is the article contentThis is the article contentThis is the article
-
-                        This is the article contentThis is the article contentThis is the article content
-                        This is the article contentThis is the article contentThis is the article
+                    <div class="text-justify">
+                        {$content_gd[0].category_content}
                     </div>
                 </div>
                 <div class="col-md-3" align="right">

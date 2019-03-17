@@ -1,0 +1,61 @@
+{include file="$themes/header.html"}
+<!-- Header Section Start -->
+<div class="header">
+    <!-- Start intro section -->
+    <section id="intro" class="section-intro">
+        <div class="logo-menu" style="background: #fff;">
+            {include file="$themes/top.html"}
+        </div>
+
+    </section>
+</div>
+
+<section class="job-detail section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 fw-border-content-bottom" style="margin: 5px; text-align: center">
+                <h4 class="fw-fs-26 fw-mgt10 fw-mgb10">
+                   {$new_detail.news_name}
+                </h4>
+            </div>
+
+            <div class="col-md-12 no-padding fw-mgt10">
+                <div class="col-md-9 no-padding">
+                    <div class="col-md-12 fw-mgb20" style="text-align: justify">
+                        <p>
+                            {$new_detail.news_content}
+                        </p>
+                    </div>
+                    <div class="meta fw-mgt20">
+                        {*
+                        <span><a class="btn btn-border btn-sm" href="#"> Email<div
+                                class="ripple-container"></div></a></span>
+                        <span><a class="btn btn-border btn-sm" href="#"> Job Aleart</a></span>
+                        <span><a class="btn btn-border btn-sm" href="#"> Save This job</a></span>
+                        <span><a class="btn btn-border btn-sm" href="#"> Report Abuse</a></span>
+                        *}
+                    </div>
+                </div>
+
+                <div class="col-md-3 no-padding">
+                    <div class="fw-mgb20 fw-mgt10">
+                        <div class="fw-fs-18">THÔNG TIN KHÁC</div>
+                        <div align="left" class="btn-bg-under-center fw-mgt10"></div>
+                    </div>
+                    <div>
+                        <ul>
+                            {foreach from=$list_about_us item="val" name="val"}
+                            <li class="fw-mgb10">
+                                <a href="{$smarty.const.URL_HOMEPAGE}about/{$val.news_id}-{$val.news_url}.html">
+                                    {$val.news_name}
+                                </a>
+                            </li>
+                            {/foreach}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+<!-- footer -->
+{include file="$themes/footer.html"}

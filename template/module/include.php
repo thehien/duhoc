@@ -21,6 +21,19 @@ if ($_SESSION[URL_HOME]["lang"] == "vn") {
     define("LANG_IDSERVICE", '9');
     define("LANG_IDSUPPORT", '11');
     define("LANG_IDNEWS", '13');
+    //////////////////////////////////
+    // New category define
+    //////////////////////////////////
+    define("LANG_ABOUT", '3');
+    define("LANG_DU_HOC_CATEGORY", '95');
+    define("LANG_THONG_TIN_DU_HOC", '13');
+    define("LANG_CT_BAN_QUAN_TAM", '102');
+    define("LANG_HOC_BONG", '103');
+    define("LANG_DUONG_DEN_DAI_HOC", '104');
+    define("LANG_DAI_HOC_TOP", '105');
+    define("LANG_NDTV", '11');
+    define("LANG_GIAO_DUC", '106');
+    // Include language
     require('general/include/contact.php');
     include('general/language/language_vn.php');
 } else {
@@ -42,10 +55,8 @@ require("template/module/cart.class.php");
 require('general/libraries/Google/gConfig.php');
 require('general/libraries/Facebook/autoload.php');
 require("template/module/main.php");
-
 include("general/class/thumbnail.class.php");
 include("general/class/upload.class.php");
-
 require("template/autohits/marketing.class.php");
 require("template/autohits/main.php");
 

@@ -33,6 +33,17 @@ class News
         return $rows;
     }
 
+    // Get data content of category
+    function get_category_content($category_id)
+    {
+        global $db;
+        $sql = "SELECT category_name, category_content, category_img FROM coupons_category where category_id  = '$category_id'";
+        $res = $db->db_query($sql);
+        $rows = $db->db_fetchrowset($res);
+
+        return $rows;
+    }
+
     function get_all_list_experience()
     {
         global $db;
@@ -94,7 +105,6 @@ class News
             $rows[$i]["news_img"] = URL_HOME . '/timthumb.php?src=' . $imgPath . $rows[$i]["news_img"] . '&h=40&w=40&zc=1';;
 
         }
-
 
         return $rows;
     }
@@ -226,7 +236,8 @@ class News
         return $rows;
     }
 
-    function get_all_special_category()
+    // Get list du hoc cac nuoc
+    function get_list_du_hoc($id)
     {
         global $db;
         $language = LANG_AUGE;
@@ -238,26 +249,12 @@ class News
         return $rows;
     }
 
-    // get all mobile code
-    function show_list_mobile_code()
+    // Get list about
+    function get_list_about_us($id)
     {
         global $db;
         $language = LANG_AUGE;
-        $sql = "SELECT * FROM list_area_code where id >= 1 and language=$language order by id asc";
-        //echo $sql;
-        $res = $db->db_query($sql);
-        $rows = $db->db_fetchrowset($res);
-
-        return $rows;
-    }
-
-    // get all mobile code
-    function show_list_country()
-    {
-        global $db;
-        $language = LANG_AUGE;
-        $sql = "SELECT * FROM list_country where id >= 1 and language=$language order by id asc";
-        //echo $sql;
+        $sql = "SELECT * FROM coupons_news where news_category = $id and language=$language order by news_id asc";
         $res = $db->db_query($sql);
         $rows = $db->db_fetchrowset($res);
 
@@ -368,7 +365,7 @@ class News
             $sr .= "and parent_id='$parent_id'";
         }
 
-        $sql = "SELECT category_id,category_name,parent_id,status,category_url,color,link,layout,news_url,category_img
+        $sql = "SELECT category_id,category_name,category_content,parent_id,status,category_url,color,link,layout,news_url,category_img
 		FROM coupons_category ca where status = '1' and language ='$language' $sr ORDER BY pos asc Limit $page, $per_page";
         //echo $sql;
         $res = $db->db_query($sql);
@@ -1826,8 +1823,10 @@ class News
     function show_new_detail($news_id)
     {
         global $db, $function;
-        $sql = "Select FROM_UNIXTIME(created_date,'%d/%m/%Y') as time_news, news_id, news_name, status, news_img, news_category, news_content,
-		description,news_link,news_url,created_date,userid,seo_title,seo_key,seo_desc from coupons_news where news_id = '$news_id'  ";
+        $sql = "Select FROM_UNIXTIME(created_date,'%d/%m/%Y') as time_news, news_id, news_name, 
+        status, news_img, news_category, news_content,
+		description,news_link,news_url,created_date,userid,seo_title,seo_key,seo_desc 
+		from coupons_news where news_id = '$news_id'  ";
         $res = $db->db_query($sql);
         $rows = $db->db_fetchrow($res);
         $rows["title_top"] = $function->cutnchar($rows["news_name"], 100);

@@ -13,7 +13,7 @@ define("langcms_dangx", "Đăng xuất");
 define("langcms_chucvuht", "Chức vụ");
 define("langcms_mota", "Mô tả");
 define("langcms_tieude", "Tiêu đề");
-define("langcms_ten", "Tên nhân viên");
+define("langcms_ten", "Tên");
 define("langcms_country", "Tên quốc gia");
 define("langcms_area_code", "Tên Mã vùng");
 define("langcms_language", "Tên ngôn ngữ");

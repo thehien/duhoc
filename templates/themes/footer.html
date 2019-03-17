@@ -22,9 +22,14 @@
                     <div class="widget">
                         <h4 class="block-title">DU HỌC CÁC NƯỚC</h4>
                         <ul class="menu">
-                            <li>
-                                <a href="{$smarty.const.URL_HOMEPAGE}">Du học Mỹ</a>
-                            </li>
+
+                            {section name=cate_du_hoc loop=$cate_du_hoc}
+                                {section name=cate_sub loop=$cate_sub[cate_du_hoc]}
+                                <li>
+                                    <a href="{$smarty.const.URL_HOMEPAGE}">{$cate_sub[cate_du_hoc][cate_sub].category_name}</a>
+                                </li>
+                                {/section}
+                            {/section}
                         </ul>
                     </div>
                 </div>
@@ -32,9 +37,13 @@
                     <div class="widget">
                         <h4 class="block-title">CHƯƠNG TRÌNH DU HỌC</h4>
                         <ul class="menu">
+                            {foreach from=$list_about_us item="val" name="val"}
                             <li>
-                                <a href="{$smarty.const.URL_HOMEPAGE}">Học bổng THPT</a>
+                                <a href="{$smarty.const.URL_HOMEPAGE}">
+                                    {$val.news_name}
+                                </a>
                             </li>
+                            {/foreach}
                         </ul>
                     </div>
                 </div>

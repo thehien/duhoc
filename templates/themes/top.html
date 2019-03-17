@@ -17,120 +17,46 @@
             <!-- Start Navigation List -->
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="{$smarty.const.URL_HOMEPAGE}how-it-works.html"
-                       {if $url_views=='how-it-works'}class="active"{else}class="btn btn-common-link"{/if}>
-                    GIỚI THIỆU
-                    <i class="fa fa-angle-down"></i>
+                    <a href="{$smarty.const.URL_HOMEPAGE}">
+                        GIỚI THIỆU
+                        <i class="fa fa-angle-down"></i>
                     </a>
                     <ul class="dropdown">
+                        {foreach from=$list_about_us item="val" name="val"}
                         <li>
-                            <a href="index.html">
-                                Đội Ngũ Sáng Lập
+                            <a href="{$smarty.const.URL_HOMEPAGE}about/{$val.news_id}-{$val.news_url}.html">
+                                {$val.news_name}
                             </a>
                         </li>
-                        <li>
-                            <a href="index-02.html">
-                                Chương Trình Điều Phối
-                            </a>
-                        </li>
-                        <li>
-                            <a href="index-03.html">
-                                Triết Lý Giáo Dục
-                            </a>
-                        </li>
+                        {/foreach}
                     </ul>
                 </li>
                 <li>
-                    <a href="{$smarty.const.URL_HOMEPAGE}" class="btn btn-common-link">
-                        DU HỌC CÁC NƯỚC
-                        <i class="fa fa-angle-down"></i>
+                    <a href="{$smarty.const.URL_HOMEPAGE}"
+                       {if $url_views=='how-it-works'}class="active"{else}class="btn btn-common-link"{/if}>
+                    DU HỌC CÁC NƯỚC
+                    <i class="fa fa-angle-down"></i>
                     </a>
                     <div class="col-md-12 dropdownmenu">
+                        {section name=cate_du_hoc loop=$cate_du_hoc}
                         <div class="col-md-3 no-padding">
                             <ul>
-                                <li style="white-space: nowrap;">
-                                    <a href="index.html" class="link_menu_blue">
-                                        DU HỌC CHÂU MỸ <i class="fa fa-angle-down"></i>
+                                <li class="white_space_uppercase">
+                                    <a href="{$smarty.const.URL_HOMEPAGE}" class="link_menu_blue">
+                                        {$cate_du_hoc[cate_du_hoc].category_name} <i class="fa fa-angle-down"></i>
                                     </a>
                                 </li>
-                                <li style="white-space: nowrap;">
-                                    <a href="index.html">
-                                        Du học mỹ
+                                {section name=cate_sub loop=$cate_sub[cate_du_hoc]}
+                                <li class="white_space">
+                                    <a href="{$smarty.const.URL_HOMEPAGE}duhoc/{$cate_sub[cate_du_hoc][cate_sub].category_id}-{$cate_sub[cate_du_hoc][cate_sub].category_url}.html">
+                                        {$cate_sub[cate_du_hoc][cate_sub].category_name}
                                     </a>
                                 </li>
-                                <li style="white-space: nowrap;">
-                                    <a href="index-02.html">
-                                        Du học Canada
-                                    </a>
-                                </li>
+                                {/section}
 
                             </ul>
                         </div>
-                        <div class="col-md-3 no-padding">
-                            <ul>
-                                <li style="white-space: nowrap;">
-                                    <a href="index.html" class="link_menu_blue">
-                                        DU HỌC CHÂU ÚC <i class="fa fa-angle-down"></i>
-                                    </a>
-                                </li>
-                                <li style="white-space: nowrap;">
-                                    <a href="index.html">
-                                        Du học Úc
-                                    </a>
-                                </li>
-                                <li style="white-space: nowrap;">
-                                    <a href="index-02.html">
-                                        Du Học New Zealand
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </div>
-                        <div class="col-md-3 no-padding">
-                            <ul>
-                                <li style="white-space: nowrap;">
-                                    <a href="index.html" class="link_menu_blue">
-                                        DU HỌC CHÂU ÂU <i class="fa fa-angle-down"></i>
-                                    </a>
-                                </li>
-                                <li style="white-space: nowrap;">
-                                    <a href="index.html">
-                                        Du Học Anh
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="index-02.html">
-                                        Du Học Pháp
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="index-03.html">
-                                        Du Học Ireland
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-md-3 no-padding">
-                            <ul>
-                                <li style="white-space: nowrap;">
-                                    <a href="index.html" class="link_menu_blue">
-                                        DU HỌC CHÂU Á<i class="fa fa-angle-down"></i>
-                                    </a>
-                                </li>
-                                <li style="white-space: nowrap;">
-                                    <a href="index.html">
-                                        Du Học Singapore
-                                    </a>
-                                </li>
-                                <li style="white-space: nowrap;">
-                                    <a href="index-02.html">
-                                        Du Học Thái Lan
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </div>
-
+                        {/section}
                     </div>
 
                 </li>
@@ -140,21 +66,13 @@
                         <i class="fa fa-angle-down"></i>
                     </a>
                     <ul class="dropdown">
+                        {foreach from=$list_about_us item="val" name="val"}
                         <li>
-                            <a href="index.html">
-                                Học Bổng THPT
+                            <a href="{$smarty.const.URL_HOMEPAGE}">
+                                {$val.news_name}
                             </a>
                         </li>
-                        <li>
-                            <a href="index-02.html">
-                                Học Bổng Đại Học
-                            </a>
-                        </li>
-                        <li>
-                            <a href="index-03.html">
-                                Học Bổng Thạc Sỹ
-                            </a>
-                        </li>
+                        {/foreach}
                     </ul>
 
                 </li>
@@ -164,21 +82,13 @@
                         <i class="fa fa-angle-down"></i>
                     </a>
                     <ul class="dropdown">
+                        {foreach from=$list_about_us item="val" name="val"}
                         <li>
-                            <a href="index.html">
-                                Học Bổng THPT
+                            <a href="{$smarty.const.URL_HOMEPAGE}">
+                                {$val.news_name}
                             </a>
                         </li>
-                        <li>
-                            <a href="index-02.html">
-                                Học Bổng Đại Học
-                            </a>
-                        </li>
-                        <li>
-                            <a href="index-03.html">
-                                Học Bổng Thạc Sỹ
-                            </a>
-                        </li>
+                        {/foreach}
                     </ul>
                 </li>
                 <li>
@@ -204,7 +114,65 @@
 
     <!-- Mobile Menu Start -->
     <ul class="wpb-mobile-menu">
-
+        <li>
+            <a href="{$smarty.const.URL_HOMEPAGE}how-it-works.html"
+               {if $url_views=='how-it-works'}class="active"{else}class="btn btn-common-link"{/if}>
+            GIỚI THIỆU
+            </a>
+            <ul>
+                {foreach from=$list_about_us item="val" name="val"}
+                <li>
+                    <a href="{$smarty.const.URL_HOMEPAGE}study-detail.html">
+                        {$val.news_name}
+                    </a>
+                </li>
+                {/foreach}
+            </ul>
+        </li>
+        <li>
+            <a href="{$smarty.const.URL_HOMEPAGE}">DU HỌC CÁC NƯỚC</a>
+            <ul>
+                {section name=cate_du_hoc loop=$cate_du_hoc}
+                {section name=cate_sub loop=$cate_sub[cate_du_hoc]}
+                <li class="white_space">
+                    <a href="{$smarty.const.URL_HOMEPAGE}">
+                        {$cate_sub[cate_du_hoc][cate_sub].category_name}
+                    </a>
+                </li>
+                {/section}
+                {/section}
+            </ul>
+        </li>
+        <li>
+            <a href="#">ĐẠI HỌC TOP</a>
+            <ul>
+                {foreach from=$list_about_us item="val" name="val"}
+                <li>
+                    <a href="{$smarty.const.URL_HOMEPAGE}study-detail.html">
+                        {$val.news_name}
+                    </a>
+                </li>
+                {/foreach}
+            </ul>
+        </li>
+        <li>
+            <a href="#">HỌC BỔNG</a>
+            <ul>
+                {foreach from=$list_about_us item="val" name="val"}
+                <li>
+                    <a href="{$smarty.const.URL_HOMEPAGE}study-detail.html">
+                        {$val.news_name}
+                    </a>
+                </li>
+                {/foreach}
+            </ul>
+        </li>
+        <li>
+            <a href="blog.html">DU HỌC TIẾT KIỆM</a>
+        </li>
+        <li>
+            <a href="blog.html">DU HỌC ĐỊNH CƯ</a>
+        </li>
     </ul>
     <!-- Mobile Menu End -->
 </nav>

@@ -1325,6 +1325,12 @@ a:focus {
     .tbtn {
         display: none;
     }
+
+    .navbar-header {
+        width: 100%;
+        margin-left: -5px !important;
+        margin-right: 5px !important;
+    }
 }
 
 .tbtn {
@@ -6480,3 +6486,15 @@ for font-size and font-family*/
     text-decoration: underline;
 }
 
+.white_space_uppercase {
+    white-space: nowrap;
+    text-transform: uppercase;
+}
+
+.white_space {
+    white-space: nowrap;
+}
+
+.main_title {
+    text-transform: uppercase;
+}

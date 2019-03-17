@@ -1,0 +1,766 @@
+{include file="$themes/header.html"}
+<script src="{$smarty.const.URL_WEB}{$themes}/assets/js/jquery.popupoverlay.js"></script>
+<script src="{$smarty.const.URL_WEB}{$themes}/assets/js/slick/slick.js" type="text/javascript" charset="utf-8"></script>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.URL_WEB}{$themes}/assets/js/slick/slick.css">
+<link rel="stylesheet" type="text/css" href="{$smarty.const.URL_WEB}{$themes}/assets/js/slick/slick-theme.css">
+
+{literal}
+<style type="text/css">
+    * {
+        box-sizing: border-box;
+    }
+
+    .slider {
+        width: 90%;
+        margin: 10px auto;
+    }
+
+    .slick-slide {
+        margin: 0 10px;
+    }
+
+    .slick-slide img {
+        width: 70%;
+    }
+
+    .slick-prev:before,
+    .slick-next:before {
+        color: black;
+    }
+
+    .slick-slide {
+        transition: all ease-in-out .3s;
+        opacity: 1;
+    }
+
+    .slick-active {
+        opacity: 1;
+    }
+
+    .slick-current {
+        opacity: 1;
+    }
+</style>
+<script type="text/javascript">
+    $(document).on('ready', function () {
+        $(".regular").slick({
+            dots: true,
+            infinite: true,
+            slidesToShow: 6,
+            slidesToScroll: 6,
+            autoplay: true
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('#fadeandscale_1').popup({
+            pagecontainer: '.container',
+            transition: 'all 0.3s ease-out',
+            horizontal: 'right',
+            escape: true,
+            scrolllock: false
+        });
+    });
+</script>
+<style type="text/css">
+    #fadeandscale_1 {
+        transform: scale(0.8);
+        background: #fff;
+    }
+
+    .popup_visible #fadeandscale_1 {
+        transform: scale(1);
+    }
+</style>
+{/literal}
+<!-- Header Section Start -->
+<div class="header">
+    <!-- Start intro section -->
+    <section id="intro" class="section-intro">
+        <div class="logo-menu" style="background: #fff;">
+            {include file="$themes/top.html"}
+        </div>
+        <section class="find-jobs section-about">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 no-padding fw-mgt20 fw-mgb20">
+                        <div class="col-md-6 fw-mgt10">
+                            <span class="fw-fs-32"><strong>{$cate_detail[0].category_name}</strong></span>
+                        </div>
+                        <div class="col-md-6 no-padding">
+                            <div class="col-md-2" align="right">
+                                <div class="fw-mgt7"><i class="fa fa fa-mobile fa-2x"></i></div>
+                            </div>
+                            <div class="col-md-4 text-justify" style="line-height: 50px;">
+                                <span class="fw-fs-18">{$smarty.const.lang_hotine}</span>
+                            </div>
+                            <div class="col-md-6">
+                                <a class="btn btn-see-more fw-fs-18" href="{$smarty.const.URL_HOMEPAGE}">
+                                    <strong>ĐĂNG KÝ TRỰC TUYẾN</strong>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="slider">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        {include file="$themes/sub_banner.html"}
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </section>
+</div>
+
+<!-- end intro section -->
+<section class="find-jobs section-about">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 fw-mgt20 fw-mgb20">
+                <h3>GIỚI THIỆU CHUNG</h3>
+                <div align="center" class="btn-bg-under-center fw-mgt10"></div>
+            </div>
+            <div class="col-md-12 no-padding fw-mgb20">
+                <div align="left" class="col-md-8">
+                    {$cate_detail[0].category_content}
+                </div>
+                <div class="col-md-4">
+                    <img src="{$smarty.const.URL_HOMEPAGE}upload/categorys/{$cate_detail[0].category_img}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Find Job Section Start -->
+<section class="featured-jobs section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 fw-mgb20">
+                <h3 class="main_title">{$content_ttduhoc[0].category_name}</h3>
+                <div align="center" class="btn-bg-under-center fw-mgt10"></div>
+            </div>
+            <div class="col-md-12 no-padding fw-mgb20">
+                <div align="left" class="col-md-8 text-justify">
+                    {$content_ttduhoc[0].category_content}
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+
+
+            <div class="col-md-12 no-padding">
+
+                <div class="col-md-12 fw-mgb20">
+                    <div class="col-md-2 no-padding"><h4><strong>Tuyển sinh</strong></h4></div>
+                    <div class="col-md-2 no-padding"><h4><strong>Hội thảo</strong></h4></div>
+                    <div class="col-md-2 no-padding"><h4><strong>Tin tức</strong></h4></div>
+                    <div class="col-md-2 no-padding"><h4><strong>Kinh nghiệm</strong></h4></div>
+                    <div class="col-md-2 no-padding"><h4><strong>Sự kiện</strong></h4></div>
+                </div>
+
+                <div class="col-md-6 col-sm-6 col-xs-12 fw-mgb10">
+                    <div style="background: #fff;">
+                        {include file="$themes/content_banner.html"}
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-xs-12 fw-mgb10">
+                    <div class="featured-item">
+                        <div class="featured-wrap">
+                            <div class="featured-inner">
+                                <figure class="item-thumb">
+                                    <a class="hover-effect" href="job-page.html">
+                                        <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/about/img_1.jpg" alt="">
+                                    </a>
+                                </figure>
+                                <div class="item-body">
+                                    <span class="job-title">
+                                        <a href="job-page.html">
+                                            Chủ đề bài viết: Ex: Du học Canada có phải là lựa chọn hoàn
+                                            hảo cho bạn...
+                                    </a></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-foot">
+                            <span><i class="ti-calendar"></i> 22/02/2019 10:30</span>
+                            <div class="view-iocn">
+                                <a href="job-page.html"><i class="ti-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12 fw-mgb10">
+                    <div class="featured-item">
+                        <div class="featured-wrap">
+                            <div class="featured-inner">
+                                <figure class="item-thumb">
+                                    <a class="hover-effect" href="job-page.html">
+                                        <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/about/img_1.jpg" alt="">
+                                    </a>
+                                </figure>
+                                <div class="item-body">
+                                    <span class="job-title">
+                                        <a href="job-page.html">
+                                            Chủ đề bài viết: Ex: Du học Canada có phải là lựa chọn hoàn
+                                            hảo cho bạn...
+                                    </a></span>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-foot">
+                            <span><i class="ti-calendar"></i> 22/02/2019 10:30</span>
+                            <div class="view-iocn">
+                                <a href="job-page.html"><i class="ti-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-xs-12 fw-mgb10">
+                    <div class="featured-item">
+                        <div class="featured-wrap">
+                            <div class="featured-inner">
+                                <figure class="item-thumb">
+                                    <a class="hover-effect" href="job-page.html">
+                                        <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/about/img_1.jpg" alt="">
+                                    </a>
+                                </figure>
+                                <div class="item-body">
+                                   <span class="job-title">
+                                        <a href="job-page.html">
+                                            Chủ đề bài viết: Ex: Du học Canada có phải là lựa chọn hoàn
+                                            hảo cho bạn...
+                                    </a></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-foot">
+                            <span><i class="ti-calendar"></i> 22/02/2019 10:30</span>
+                            <div class="view-iocn">
+                                <a href="job-page.html"><i class="ti-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-xs-12 fw-mgb10">
+                    <div class="featured-item">
+                        <div class="featured-wrap">
+                            <div class="featured-inner">
+                                <figure class="item-thumb">
+                                    <a class="hover-effect" href="job-page.html">
+                                        <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/about/img_1.jpg" alt="">
+                                    </a>
+                                </figure>
+                                <div class="item-body">
+                                    <span class="job-title">
+                                        <a href="job-page.html">
+                                            Chủ đề bài viết: Ex: Du học Canada có phải là lựa chọn hoàn
+                                            hảo cho bạn...
+                                    </a></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-foot">
+                            <span><i class="ti-calendar"></i> 22/02/2019 10:30</span>
+                            <div class="view-iocn">
+                                <a href="job-page.html"><i class="ti-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-xs-12 fw-mgb10">
+                    <div class="featured-item">
+                        <div class="featured-wrap">
+                            <div class="featured-inner">
+                                <figure class="item-thumb">
+                                    <a class="hover-effect" href="job-page.html">
+                                        <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/about/img_1.jpg" alt="">
+                                    </a>
+                                </figure>
+                                <div class="item-body">
+                                    <span class="job-title">
+                                        <a href="job-page.html">
+                                            Chủ đề bài viết: Ex: Du học Canada có phải là lựa chọn hoàn
+                                            hảo cho bạn...
+                                    </a></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-foot">
+                            <span><i class="ti-calendar"></i> 22/02/2019 10:30</span>
+                            <div class="view-iocn">
+                                <a href="job-page.html"><i class="ti-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="featured-item">
+                        <div class="featured-wrap">
+                            <div class="featured-inner">
+                                <figure class="item-thumb">
+                                    <a class="hover-effect" href="job-page.html">
+                                        <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/about/img_1.jpg" alt="">
+                                    </a>
+                                </figure>
+                                <div class="item-body">
+                                    <span class="job-title">
+                                        <a href="job-page.html">
+                                            Chủ đề bài viết: Ex: Du học Canada có phải là lựa chọn hoàn
+                                            hảo cho bạn...
+                                    </a></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-foot">
+                            <span><i class="ti-calendar"></i> 22/02/2019 10:30</span>
+                            <div class="view-iocn">
+                                <a href="job-page.html"><i class="ti-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="showing pull-left"></div>
+                <ul class="pagination pull-right">
+                    <li class="active"><a href="#" class="btn btn-common"><i class="ti-angle-left"></i> prev</a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li class="active"><a href="#" class="btn btn-common">Next <i class="ti-angle-right"></i></a></li>
+                </ul>
+            </div>
+        </div>
+</section>
+<!-- Find Job Section End -->
+
+
+<!-- end intro section -->
+<section class="find-jobs section-about">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 fw-mgt20 fw-mgb20">
+                <h3>DU HỌC VIÊN TẠI MỸ</h3>
+                <div align="center" class="btn-bg-under-center fw-mgt10"></div>
+            </div>
+            <div class="col-md-12 no-padding fw-mgb10">
+                <div align="left" class="col-md-8">
+                    This is the article contentThis is the article contentThis is the article
+                    contentThis is the article contentThis is the article contentThis is the article
+                    This is the article contentThis is the article contentThis is the article
+                    contentThis is the article contentThis is the article contentThis is the article
+                    This is the article contentThis is the article contentThis is the article
+                    contentThis is the article contentThis is the article contentThis is the article
+                    This is the article contentThis is the article contentThis is the article
+                    contentThis is the article contentThis is the article contentThis is the article
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+
+            <div class="col-md-12 fw-mgb10">
+                <div class="fw-mgb15">
+                    <section class="regular slider">
+                        {foreach from=$all_cv_online item="val" name="val"}
+                        <div style="border: 1px solid #ccc; padding-top:10px; padding-bottom: 10px;">
+                            <div align="center">
+                                <a href="#fadeandscale_student_{$val.userid}"
+                                   class="fadeandscale_student_{$val.userid}_open">
+                                    {if $val.avatar}
+                                    <img height="100" src="{$smarty.const.URL_HOME}/upload/avatar/{$val.avatar}"
+                                         class="img-circle"/>
+                                    {else}
+                                    <img height="100"
+                                         src="{$smarty.const.URL_WEB}{$themes}/assets/img/info/man-user.png"
+                                         class="img-circle"/>
+                                    {/if}
+                                </a>
+                            </div>
+                            <div style="clear: both;"></div>
+                            <div align="center" style="font-size: 14px;">
+                                <strong title="{$val.full_name}">{$val.full_name}</strong>
+                            </div>
+                        </div>
+                        {/foreach}
+                    </section>
+                    {foreach from=$all_cv_online item="val" name="val"}
+                    {literal}
+                    <script>
+                        $(document).ready(function () {
+                            $('#fadeandscale_student_{/literal}{$val.userid}{literal}').popup({
+                                pagecontainer: '.container',
+                                transition: 'all 0.3s ease-out',
+                                horizontal: 'center',
+                                escape: true,
+                                scrolllock: false
+                            });
+                        });
+                    </script>
+
+                    <style type="text/css">
+                        #fadeandscale_student_ {
+                        / literal
+                        }
+
+                        {
+                            $ val . userid
+                        }
+                        {
+                            literal
+                        }
+                        {
+                            transform: scale(0.8)
+                        ;
+                        }
+                        .popup_visible #fadeandscale_student_ {
+                        / literal
+                        }
+
+                        {
+                            $ val . userid
+                        }
+                        {
+                            literal
+                        }
+                        {
+                            transform: scale(1)
+                        ;
+                        }
+                    </style>
+                    {/literal}
+
+                    <div id="fadeandscale_student_{$val.userid}" class="well" style="width: 600px; display: none;">
+                        <div align="center" class="col-md-12 no-padding fw-mgb10">
+                            {if $val.avatar}
+                            <img width="120" height="120" src="{$smarty.const.URL_HOME}/upload/avatar/{$val.avatar}"
+                                 class="img-circle"/>
+                            {else}
+                            <img width="120" height="120"
+                                 src="{$smarty.const.URL_WEB}{$themes}/assets/img/info/man-user.png"
+                                 class="img-circle"/>
+                            {/if}
+                        </div>
+                        <div align="center" class="col-md-12 no-padding">
+                            <strong>{$val.full_name}</strong>
+                        </div>
+                        <div class="col-md-12 fw-mgt10" style="text-align: justify">
+                            Donald Trump’s Presidency has been mired for months in controversy over reports that
+                            the Trump Campaign may have colluded with the Russian Government in an effort to influence
+                            the outcome of the 2016 presidential election. Last week the White House was rocked again
+                            by information revealing that President Trump had two additional, undisclosed meetings
+                            with Russian President Vladimir Putin at the G-20 Summit in Germany. In an interview
+                            with New York Times
+                        </div>
+                    </div>
+                    {/foreach}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Find Job Section Start -->
+<section class="featured-jobs section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 fw-mgb20">
+                <h3>DANH SÁCH CÁC TRƯỜNG</h3>
+                <div align="center" class="btn-bg-under-center fw-mgt10"></div>
+            </div>
+            <div class="col-md-12 no-padding fw-mgb20">
+                <div align="left" class="col-md-8">
+                    This is the article contentThis is the article contentThis is the article
+                    contentThis is the article contentThis is the article contentThis is the article
+                    This is the article contentThis is the article contentThis is the article
+                    contentThis is the article contentThis is the article contentThis is the article
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            <div class="col-md-12 no-padding">
+                <div class="col-md-6 fw-mgb10">
+                    <div class="box_how_it_works" style="padding:10px;">
+                        <div class="col-md-3 no-padding">
+                            <a href="#fadeandscale_1" class="fadeandscale_1_open">
+                                <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/services/logo-04.png"/>
+                            </a>
+                        </div>
+
+                        <div class="col-md-9 no-padding">
+                            <div class="fw-mgb10"><h4><strong>Đại học Utah- Top 110 trường đại học tốt nhất nước
+                                Mỹ</strong></h4></div>
+                            <div class="fw-mgb10">This is the article contentThis is the article contentThis is the
+                                article contentThis is the
+                                article contentThis is the article contentThis is the article content
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 fw-mgb10">
+                    <div class="box_how_it_works" style="padding:10px;">
+                        <div class="col-md-3 no-padding">
+                            <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/services/logo-04.png"/>
+                        </div>
+
+                        <div class="col-md-9 no-padding">
+                            <div class="fw-mgb10"><h4><strong>Đại học Utah- Top 110 trường đại học tốt nhất nước
+                                Mỹ</strong></h4></div>
+                            <div class="fw-mgb10">This is the article contentThis is the article contentThis is the
+                                article contentThis is the
+                                article contentThis is the article contentThis is the article content
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 fw-mgb10">
+                    <div class="box_how_it_works" style="padding:10px;">
+                        <div class="col-md-3 no-padding">
+                            <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/services/logo-04.png"/>
+                        </div>
+
+                        <div class="col-md-9 no-padding">
+                            <div class="fw-mgb10"><h4><strong>Đại học Utah- Top 110 trường đại học tốt nhất nước
+                                Mỹ</strong></h4></div>
+                            <div class="fw-mgb10">This is the article contentThis is the article contentThis is the
+                                article contentThis is the
+                                article contentThis is the article contentThis is the article content
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 fw-mgb10">
+                    <div class="box_how_it_works" style="padding:10px;">
+                        <div class="col-md-3 no-padding">
+                            <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/services/logo-04.png"/>
+                        </div>
+
+                        <div class="col-md-9 no-padding">
+                            <div class="fw-mgb10"><h4><strong>Đại học Utah- Top 110 trường đại học tốt nhất nước
+                                Mỹ</strong></h4></div>
+                            <div class="fw-mgb10">This is the article contentThis is the article contentThis is the
+                                article contentThis is the
+                                article contentThis is the article contentThis is the article content
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-12">
+                <div class="showing pull-left"></div>
+                <ul class="pagination pull-right">
+                    <li class="active"><a href="#" class="btn btn-common"><i class="ti-angle-left"></i> prev</a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li class="active"><a href="#" class="btn btn-common">Next <i class="ti-angle-right"></i></a></li>
+                </ul>
+            </div>
+
+            <div id="fadeandscale_1" class="well" style="width: 950px; display: none;">
+                <div class="col-md-12 no-padding">
+                    <div class="col-md-2">
+                        {if $val.avatar}
+                        <img width="100" height="100" src="{$smarty.const.URL_HOME}/upload/avatar/{$val.avatar}"
+                             class="img-circle"/>
+                        {else}
+                        <img width="100" height="100"
+                             src="{$smarty.const.URL_WEB}{$themes}/assets/img/info/man-user.png" class="img-circle"/>
+                        {/if}
+                    </div>
+
+                    <div class="col-md-10">
+                        <h3>
+                            <strong>Đại học Utah- Top 110 trường đại học tốt nhất nước Mỹ</strong>
+                        </h3>
+                    </div>
+                </div>
+
+                <div class="col-md-12 no-padding">
+                    <div class="divider-info"></div>
+                </div>
+
+                <div class="col-md-12 no-padding">
+                    <p>
+                        Donald Trump’s Presidency has been mired for months in controversy
+                        over reports that the Trump Campaign may have colluded with the Russian
+                        Government in an effort to influence the outcome of the 2016 presidential
+                        election. Last week the White House was rocked again by information revealing
+                        that President Trump had two additional, undisclosed meetings with Russian President
+                        Vladimir Putin at the G-20 Summit in Germany. In an interview with New York Times journalist,
+                        Maggie Haberman, President Trump expressed that during the Summit dinner, the seating
+                        arrangement put him next to Japanese Prime Minister Shinzo Abe’s wife, Akie Abe who Trump said,
+                        “doesn’t speak English”. As a result of the “language barrier”, President Trump reportedly
+                        decided to move to the opposite side of the dining table to sit next to first lady Malania Trump
+                        and Putin, where the three conversed until the completion of the dinner.
+
+                    </p>
+                    <p>
+                        Donald Trump’s Presidency has been mired for months in controversy
+                        over reports that the Trump Campaign may have colluded with the Russian
+                        Government in an effort to influence the outcome of the 2016 presidential
+                        election. Last week the White House was rocked again by information revealing
+                        that President Trump had two additional, undisclosed meetings with Russian President
+                        Vladimir Putin at the G-20 Summit in Germany. In an interview with New York Times journalist,
+                        Maggie Haberman, President Trump expressed that during the Summit dinner, the seating
+                        arrangement put him next to Japanese Prime Minister Shinzo Abe’s wife, Akie Abe who Trump said,
+                        “doesn’t speak English”. As a result of the “language barrier”, President Trump reportedly
+                        decided to move to the opposite side of the dining table to sit next to first lady Malania Trump
+                        and Putin, where the three conversed until the completion of the dinner.
+
+                    </p>
+                    <p>
+                        Donald Trump’s Presidency has been mired for months in controversy
+                        over reports that the Trump Campaign may have colluded with the Russian
+                        Government in an effort to influence the outcome of the 2016 presidential
+                        election. Last week the White House was rocked again by information revealing
+                        that President Trump had two additional, undisclosed meetings with Russian President
+                        Vladimir Putin at the G-20 Summit in Germany. In an interview with New York Times journalist,
+                        Maggie Haberman, President Trump expressed that during the Summit dinner, the seating
+                        arrangement put him next to Japanese Prime Minister Shinzo Abe’s wife, Akie Abe who Trump said,
+                        “doesn’t speak English”. As a result of the “language barrier”, President Trump reportedly
+                        decided to move to the opposite side of the dining table to sit next to first lady Malania Trump
+                        and Putin, where the three conversed until the completion of the dinner.
+
+                    </p>
+                </div>
+            </div>
+        </div>
+</section>
+<!-- Find Job Section End -->
+
+
+<!-- end intro section -->
+<section class="find-jobs section-about">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 fw-mgt20 fw-mgb20">
+                <h3>CÂU HỎI THƯỜNG GẶP</h3>
+                <div align="center" class="btn-bg-under-center fw-mgt10"></div>
+            </div>
+
+            <div class="col-md-12 no-padding fw-mgb10">
+                <ul id="toggle-view">
+                    <li>
+                        <h3>Title 1</h3>
+                        <span>+</span>
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra
+                            gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet
+                            enim.</p>
+                    </li>
+                    <li>
+                        <h3>Title 2</h3>
+                        <span>+</span>
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra
+                            gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet
+                            enim.</p>
+                    </li>
+                    <li>
+                        <h3>Title 3</h3>
+                        <span>+</span>
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra
+                            gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet
+                            enim.</p>
+                    </li>
+
+                    <li>
+                        <h3>Title 4</h3>
+                        <span>+</span>
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra
+                            gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet
+                            enim.</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+{literal}
+<style type="text/css">
+
+    #toggle-view {
+        list-style: none;
+        font-size: 15px;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+
+    #toggle-view li {
+        margin: 20px;
+        border-bottom: 1px solid #ccc;
+        position: relative;
+        cursor: pointer;
+    }
+
+    #toggle-view h3 {
+        margin: 0;
+        font-size: 20px;
+    }
+
+    #toggle-view span {
+        position: absolute;
+        right: 5px;
+        top: 0;
+        color: #ccc;
+        font-size: 16px;
+    }
+
+    #toggle-view p {
+        margin: 5px 0;
+        display: none;
+    }
+</style>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $('#toggle-view li').click(function () {
+
+            var text = $(this).children('p');
+
+            if (text.is(':hidden')) {
+                text.slideDown('200');
+                $(this).children('span').html('-');
+            } else {
+                text.slideUp('200');
+                $(this).children('span').html('+');
+            }
+
+        });
+
+    });
+
+</script>
+
+{/literal}
+<!-- footer -->
+{include file="$themes/footer.html"}
