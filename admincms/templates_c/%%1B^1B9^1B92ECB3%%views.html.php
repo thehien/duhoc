@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.13, created on 2018-11-18 09:09:41
+<?php /* Smarty version 2.6.13, created on 2019-03-13 09:51:00
          compiled from users_cv/views.html */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "left.html", 'smarty_include_vars' => array()));
@@ -200,7 +200,7 @@ unset($_smarty_tpl_vars);
 </td>
           <td><?php echo @langcms_trangthai; ?>
 </td>
-          <td>Active translate</td>
+          <td>Accept</td>
           <?php if ($this->_tpl_vars['action_edit']): ?><td align="center"><?php echo @langcms_capnhat; ?>
 </td><?php endif; ?>
           <td align="center"><label><input type="checkbox" data-toggle="checkall" data-target="input[id=checks]" /></label></td>
