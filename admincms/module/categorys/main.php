@@ -71,6 +71,9 @@ function categorys_process()
             if ($submit) {
                 $data['info']['category_name'] = $function->sql_injection(isset($_POST['category_name']) ? $_POST['category_name'] : "");
                 $data['info']['category_content'] = $function->sql_injection(isset($_POST['category_content']) ? $_POST['category_content'] : "");
+                $data['info']['category_info_news'] = $function->sql_injection(isset($_POST['category_info_news']) ? $_POST['category_info_news'] : "");
+                $data['info']['category_info_student'] = $function->sql_injection(isset($_POST['category_info_student']) ? $_POST['category_info_student'] : "");
+                $data['info']['category_info_schools'] = $function->sql_injection(isset($_POST['category_info_schools']) ? $_POST['category_info_schools'] : "");
                 if ($_POST['category_url']) {
                     $data['info']['category_url'] = $function->character_url(isset($_POST['category_url']) ? $_POST['category_url'] : "");
                 } else {

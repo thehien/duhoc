@@ -37,7 +37,7 @@ class News
     function get_category_content($category_id)
     {
         global $db;
-        $sql = "SELECT category_name, category_content, category_img FROM coupons_category where category_id  = '$category_id'";
+        $sql = "SELECT category_name, category_content,category_info_news,category_info_student,category_info_schools, category_img FROM coupons_category where category_id  = '$category_id'";
         $res = $db->db_query($sql);
         $rows = $db->db_fetchrowset($res);
 

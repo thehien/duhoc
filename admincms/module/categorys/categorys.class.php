@@ -155,8 +155,8 @@ class categorys_class
     function insert_table($data)
     {
         global $db;
-        $sql = "INSERT INTO coupons_category(category_id,category_name,category_content,category_url,category_img,parent_id,pos,status,color,link,layout,language,seo_title,seo_desc,seo_key,news_url,total_percent) 
-				VALUES(NULL,'" . $data['category_name'] . "','" . $data['category_content'] . "','" . $data['category_url'] . "','" . $data['category_img'] . "','" . $data['parent_id'] . "','" . $data['pos'] . "','" . $data['status'] . "','" . $data['color'] . "','" . $data['link'] . "','" . $data['layout'] . "','" . $data['language'] . "','" . $data['seo_title'] . "','" . $data['seo_desc'] . "','" . $data['seo_key'] . "','" . $data['news_url'] . "','" . $data['total_percent'] . "')";
+        $sql = "INSERT INTO coupons_category(category_id,category_name,category_content,category_info_news,category_info_student,category_info_schools,category_url,category_img,parent_id,pos,status,color,link,layout,language,seo_title,seo_desc,seo_key,news_url,total_percent) 
+				VALUES(NULL,'" . $data['category_name'] . "','" . $data['category_content'] . "','" . $data['category_info_news'] . "','" . $data['category_info_student'] . "','" . $data['category_info_schools'] . "','" . $data['category_url'] . "','" . $data['category_img'] . "','" . $data['parent_id'] . "','" . $data['pos'] . "','" . $data['status'] . "','" . $data['color'] . "','" . $data['link'] . "','" . $data['layout'] . "','" . $data['language'] . "','" . $data['seo_title'] . "','" . $data['seo_desc'] . "','" . $data['seo_key'] . "','" . $data['news_url'] . "','" . $data['total_percent'] . "')";
         $res = $db->db_query($sql);
         $db->db_freeresult($res);
         return false;
@@ -176,7 +176,7 @@ class categorys_class
     function edit_table($id, $data)
     {
         global $db;
-        $sql = "Update coupons_category set category_name='" . $data['category_name'] . "', category_content='" . $data['category_content'] . "',
+        $sql = "Update coupons_category set category_name='" . $data['category_name'] . "', category_content='" . $data['category_content'] . "',category_info_news='" . $data['category_info_news'] . "',category_info_student='" . $data['category_info_student'] . "',category_info_schools='" . $data['category_info_schools'] . "',
 		category_url='" . $data['category_url'] . "',category_img='" . $data['category_img'] . "',parent_id='" . $data['parent_id'] . "',
 		pos='" . $data['pos'] . "',status='" . $data['status'] . "',color='" . $data['color'] . "',link='" . $data['link'] . "',
 		layout='" . $data['layout'] . "',seo_title='" . $data['seo_title'] . "',total_percent='" . $data['total_percent'] . "',

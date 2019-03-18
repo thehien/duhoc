@@ -392,6 +392,24 @@ a:focus {
     position: relative;
 }
 
+.btn-submit-1:hover,
+.btn-submit-1:focus {
+    color: #fff;
+    box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
+}
+
+.btn-submit-1 {
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    text-transform: uppercase;
+    overflow: hidden;
+    position: relative;
+}
+
+
+
 .btn-seemore:hover,
 .btn-seemore:focus {
     color: #000;

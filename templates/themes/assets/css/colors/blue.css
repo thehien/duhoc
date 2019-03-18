@@ -105,6 +105,14 @@ a:hover,a:focus{
   color: #fff;
 }
 
+.btn-submit-1 {
+  background: #e85151;
+}
+.btn-submit-1:hover, .btn-submit-1:focus{
+  background: #e85151;
+  color: #fff;
+}
+
 .btn-seemore {
   background: #fff;
   color: #119dc4;
