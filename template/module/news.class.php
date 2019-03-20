@@ -44,11 +44,42 @@ class News
         return $rows;
     }
 
-    function get_all_list_experience()
+    // Get data all student
+    function get_all_student($news_id)
     {
         global $db;
         $language = LANG_AUGE;
-        $sql = "SELECT * FROM list_experience where language=$language order by id asc ";
+        $sql = "SELECT * FROM ";
+        $sql .= "coupons_students ";
+        $sql .= "where news_category = $news_id and language=$language order by news_id asc";
+        $res = $db->db_query($sql);
+        $rows = $db->db_fetchrowset($res);
+
+        return $rows;
+    }
+
+    // Get data all schools
+    function get_all_schools($news_id)
+    {
+        global $db;
+        $language = LANG_AUGE;
+        $sql = "SELECT * FROM ";
+        $sql .= "coupons_schools ";
+        $sql .= "where news_category = $news_id and language=$language order by news_id asc";
+        $res = $db->db_query($sql);
+        $rows = $db->db_fetchrowset($res);
+
+        return $rows;
+    }
+
+    // Get data all question
+    function get_all_question($news_id)
+    {
+        global $db;
+        $language = LANG_AUGE;
+        $sql = "SELECT * FROM ";
+        $sql .= "coupons_faqs ";
+        $sql .= "where news_category = $news_id and language=$language order by news_id asc";
         $res = $db->db_query($sql);
         $rows = $db->db_fetchrowset($res);
 

@@ -227,9 +227,17 @@ function process_client()
             $content_ttduhoc = $oNews->get_category_content(LANG_THONG_TIN_DU_HOC);
             $smarty->assign("content_ttduhoc", $content_ttduhoc);
 
-            // Get all translater
-            $all_cv_online = $oMember->get_all_translator_online();
-            $smarty->assign("all_cv_online", $all_cv_online);
+            // Get all student
+            $all_student = $oNews->get_all_student($b);
+            $smarty->assign("all_student", $all_student);
+
+            // Get all schools
+            $all_schools = $oNews->get_all_schools($b);
+            $smarty->assign("all_schools", $all_schools);
+
+            // Get all question
+            $all_question = $oNews->get_all_question($b);
+            $smarty->assign("all_question", $all_question);
             // SEO link
             $_SESSION[URL_HOME]['tinseo'] = $function->sql_injection($_SERVER['REQUEST_URI']);
 

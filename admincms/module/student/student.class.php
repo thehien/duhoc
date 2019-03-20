@@ -23,7 +23,7 @@ class Student_class
             $sr_search .= " and b.category_id IN ($arr_id) ";
         }
 
-        $sql = "SELECT a.news_id FROM coupons_studentss a, coupons_category b 
+        $sql = "SELECT a.news_id FROM coupons_students a, coupons_category b 
 		where a.news_id >= '1' and a.news_category = b.category_id and a.language ='$language' $sr_search";
 
         $res = $db->db_query($sql);
@@ -60,7 +60,6 @@ class Student_class
         $sql = "SELECT a.news_id as id_tem,a.news_name,a.status,a.news_img,a.news_url,a.pos, b.category_name,b.category_url,b.news_url as news_urlcate
 		FROM coupons_students a, coupons_category b where a.news_id >= '1' and a.news_category = b.category_id 
 		and a.language ='$language' $sr_search $orderby Limit $page,$per_page";
-        echo $sql;
         $res = $db->db_query($sql);
         $rows = $db->db_fetchrowset($res);
         $db->db_freeresult($res);

@@ -29,7 +29,7 @@ function schools_process()
     $smarty->assign("main_content", $main_content);
 
     $class_cate = new categorys_class();
-    $tree_select = $class_cate->select_tree_arrays(0, 2);
+    $tree_select = $class_cate->select_tree_arrays(0);
     $smarty->assign('tree_select', $tree_select);
 
     switch ($main) {

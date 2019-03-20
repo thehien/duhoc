@@ -52,28 +52,6 @@
         });
     });
 </script>
-
-<script>
-    $(document).ready(function () {
-        $('#fadeandscale_1').popup({
-            pagecontainer: '.container',
-            transition: 'all 0.3s ease-out',
-            horizontal: 'right',
-            escape: true,
-            scrolllock: false
-        });
-    });
-</script>
-<style type="text/css">
-    #fadeandscale_1 {
-        transform: scale(0.8);
-        background: #fff;
-    }
-
-    .popup_visible #fadeandscale_1 {
-        transform: scale(1);
-    }
-</style>
 {/literal}
 <!-- Header Section Start -->
 <div class="header">
@@ -476,13 +454,13 @@
             <div class="col-md-12 fw-mgb10">
                 <div class="fw-mgb15">
                     <section class="regular slider">
-                        {foreach from=$all_cv_online item="val" name="val"}
+                        {foreach from=$all_student item="val" name="val"}
                         <div style="border: 1px solid #ccc; padding-top:10px; padding-bottom: 10px;">
                             <div align="center">
-                                <a href="#fadeandscale_student_{$val.userid}"
-                                   class="fadeandscale_student_{$val.userid}_open">
-                                    {if $val.avatar}
-                                    <img height="100" src="{$smarty.const.URL_HOME}/upload/avatar/{$val.avatar}"
+                                <a href="#fadeandscale_student_{$val.news_id}"
+                                   class="fadeandscale_student_{$val.news_id}_open">
+                                    {if $val.news_img}
+                                    <img height="100" src="{$smarty.const.URL_HOME}/upload/student/{$val.news_img}"
                                          class="img-circle"/>
                                     {else}
                                     <img height="100"
@@ -498,11 +476,11 @@
                         </div>
                         {/foreach}
                     </section>
-                    {foreach from=$all_cv_online item="val" name="val"}
+                    {foreach from=$all_student item="val" name="val"}
                     {literal}
                     <script>
                         $(document).ready(function () {
-                            $('#fadeandscale_student_{/literal}{$val.userid}{literal}').popup({
+                            $('#fadeandscale_student_{/literal}{$val.news_id}{literal}').popup({
                                 pagecontainer: '.container',
                                 transition: 'all 0.3s ease-out',
                                 horizontal: 'center',
@@ -513,10 +491,10 @@
                     </script>
 
                     <style type="text/css">
-                        #fadeandscale_student_{/literal}{$val.userid}{literal}
+                        #fadeandscale_student_{/literal}{$val.news_id}{literal}
                         {
                             transform: scale(0.8);
-                        
+
                         }
                         .popup_visible #fadeandscale_student__{/literal}{$val.userid}{literal}
                         {
@@ -525,27 +503,22 @@
                     </style>
                     {/literal}
 
-                    <div id="fadeandscale_student_{$val.userid}" class="well" style="width: 600px; display: none;">
+                    <div id="fadeandscale_student_{$val.news_id}" class="well" style="width: 600px; display: none;">
                         <div align="center" class="col-md-12 no-padding fw-mgb10">
-                            {if $val.avatar}
-                            <img width="120" height="120" src="{$smarty.const.URL_HOME}/upload/avatar/{$val.avatar}"
+                            {if $val.news_img}
+                            <img width="160" height="160" src="{$smarty.const.URL_HOME}/upload/student/{$val.news_img}"
                                  class="img-circle"/>
                             {else}
-                            <img width="120" height="120"
+                            <img width="160" height="160"
                                  src="{$smarty.const.URL_WEB}{$themes}/assets/img/info/man-user.png"
                                  class="img-circle"/>
                             {/if}
                         </div>
                         <div align="center" class="col-md-12 no-padding">
-                            <strong>{$val.full_name}</strong>
+                            <strong style="font-size:22px;">{$val.news_name}</strong>
                         </div>
-                        <div class="col-md-12 fw-mgt10" style="text-align: justify">
-                            Donald Trump’s Presidency has been mired for months in controversy over reports that
-                            the Trump Campaign may have colluded with the Russian Government in an effort to influence
-                            the outcome of the 2016 presidential election. Last week the White House was rocked again
-                            by information revealing that President Trump had two additional, undisclosed meetings
-                            with Russian President Vladimir Putin at the G-20 Summit in Germany. In an interview
-                            with New York Times
+                        <div class="col-md-12 fw-mgt10" style="text-align: justify; font-size:18px;">
+                            {$val.description}
                         </div>
                     </div>
                     {/foreach}
@@ -572,83 +545,25 @@
             </div>
 
             <div class="col-md-12 no-padding">
-                <div class="col-md-6 fw-mgb10">
-                    <div class="box_how_it_works" style="padding:10px;">
-                        <div class="col-md-3 no-padding">
-                            <a href="#fadeandscale_1" class="fadeandscale_1_open">
-                                <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/services/logo-04.png"/>
-                            </a>
-                        </div>
-
-                        <div class="col-md-9 no-padding">
-                            <div class="fw-mgb10"><h4><strong>Đại học Utah- Top 110 trường đại học tốt nhất nước
-                                Mỹ</strong></h4></div>
-                            <div class="fw-mgb10">This is the article contentThis is the article contentThis is the
-                                article contentThis is the
-                                article contentThis is the article contentThis is the article content
+                {foreach from=$all_schools item="val" name="val"}
+                    <div class="col-md-6 fw-mgb10">
+                        <div class="box_how_it_works" style="padding:10px;">
+                            <div class="col-md-3">
+                                <a href="#fadeandscale_schools_{$val.news_id}" class="fadeandscale_schools_{$val.news_id}_open">
+                                    <img width="160" height="100" src="{$smarty.const.URL_HOME}/upload/schools/{$val.news_img}"/>
+                                </a>
                             </div>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
 
-
-                <div class="col-md-6 fw-mgb10">
-                    <div class="box_how_it_works" style="padding:10px;">
-                        <div class="col-md-3 no-padding">
-                            <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/services/logo-04.png"/>
-                        </div>
-
-                        <div class="col-md-9 no-padding">
-                            <div class="fw-mgb10"><h4><strong>Đại học Utah- Top 110 trường đại học tốt nhất nước
-                                Mỹ</strong></h4></div>
-                            <div class="fw-mgb10">This is the article contentThis is the article contentThis is the
-                                article contentThis is the
-                                article contentThis is the article contentThis is the article content
+                            <div class="col-md-9">
+                                <div class="fw-mgb10"><h4><strong>{$val.news_name}</strong></h4></div>
+                                <div class="fw-mgb10">
+                                    {$val.description}
+                                </div>
                             </div>
+                            <div class="clearfix"></div>
                         </div>
-                        <div class="clearfix"></div>
                     </div>
-                </div>
-
-
-                <div class="col-md-6 fw-mgb10">
-                    <div class="box_how_it_works" style="padding:10px;">
-                        <div class="col-md-3 no-padding">
-                            <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/services/logo-04.png"/>
-                        </div>
-
-                        <div class="col-md-9 no-padding">
-                            <div class="fw-mgb10"><h4><strong>Đại học Utah- Top 110 trường đại học tốt nhất nước
-                                Mỹ</strong></h4></div>
-                            <div class="fw-mgb10">This is the article contentThis is the article contentThis is the
-                                article contentThis is the
-                                article contentThis is the article contentThis is the article content
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-
-
-                <div class="col-md-6 fw-mgb10">
-                    <div class="box_how_it_works" style="padding:10px;">
-                        <div class="col-md-3 no-padding">
-                            <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/services/logo-04.png"/>
-                        </div>
-
-                        <div class="col-md-9 no-padding">
-                            <div class="fw-mgb10"><h4><strong>Đại học Utah- Top 110 trường đại học tốt nhất nước
-                                Mỹ</strong></h4></div>
-                            <div class="fw-mgb10">This is the article contentThis is the article contentThis is the
-                                article contentThis is the
-                                article contentThis is the article contentThis is the article content
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-
+                {/foreach}
             </div>
 
             <div class="col-md-12">
@@ -663,75 +578,64 @@
                     <li class="active"><a href="#" class="btn btn-common">Next <i class="ti-angle-right"></i></a></li>
                 </ul>
             </div>
+            {foreach from=$all_schools item="val" name="val"}
+                {literal}
+                <script>
+                    $(document).ready(function () {
+                        $('#fadeandscale_schools_{/literal}{$val.news_id}{literal}').popup({
+                            pagecontainer: '.container',
+                            transition: 'all 0.3s ease-out',
+                            horizontal: 'right',
+                            escape: true,
+                            scrolllock: false
+                        });
+                    });
+                </script>
 
-            <div id="fadeandscale_1" class="well" style="width: 950px; display: none;">
-                <div class="col-md-12 no-padding">
-                    <div class="col-md-2">
-                        {if $val.avatar}
-                        <img width="100" height="100" src="{$smarty.const.URL_HOME}/upload/avatar/{$val.avatar}"
-                             class="img-circle"/>
-                        {else}
-                        <img width="100" height="100"
-                             src="{$smarty.const.URL_WEB}{$themes}/assets/img/info/man-user.png" class="img-circle"/>
-                        {/if}
+                <style type="text/css">
+                    #fadeandscale_schools_{/literal}{$val.news_id}{literal}
+                    {
+                        transform: scale(0.8);
+
+                    }
+                    .popup_visible #fadeandscale_schools_{/literal}{$val.userid}{literal}
+                    {
+                        transform: scale(1);
+                    }
+                </style>
+                {/literal}
+
+                <div id="fadeandscale_schools_{$val.news_id}" class="well" style="width: 950px; display: none;">
+                    <div class="col-md-12 no-padding">
+                        <div class="col-md-2">
+                            {if $val.news_img}
+                            <img width="100" height="100" src="{$smarty.const.URL_HOME}/upload/schools/{$val.news_img}"
+                                 class="img-circle"/>
+                            {else}
+                            <img width="100" height="100"
+                                 src="{$smarty.const.URL_WEB}{$themes}/assets/img/info/man-user.png" class="img-circle"/>
+                            {/if}
+                        </div>
+
+                        <div class="col-md-10">
+                            <h3>
+                                <strong>{$val.news_name}</strong>
+                            </h3>
+                        </div>
                     </div>
 
-                    <div class="col-md-10">
-                        <h3>
-                            <strong>Đại học Utah- Top 110 trường đại học tốt nhất nước Mỹ</strong>
-                        </h3>
+                    <div class="col-md-12 no-padding">
+                        <div class="divider-info"></div>
+                    </div>
+
+                    <div class="col-md-12 no-padding">
+                        <p>
+                            {$val.description}
+                        </p>
                     </div>
                 </div>
+            {/foreach}
 
-                <div class="col-md-12 no-padding">
-                    <div class="divider-info"></div>
-                </div>
-
-                <div class="col-md-12 no-padding">
-                    <p>
-                        Donald Trump’s Presidency has been mired for months in controversy
-                        over reports that the Trump Campaign may have colluded with the Russian
-                        Government in an effort to influence the outcome of the 2016 presidential
-                        election. Last week the White House was rocked again by information revealing
-                        that President Trump had two additional, undisclosed meetings with Russian President
-                        Vladimir Putin at the G-20 Summit in Germany. In an interview with New York Times journalist,
-                        Maggie Haberman, President Trump expressed that during the Summit dinner, the seating
-                        arrangement put him next to Japanese Prime Minister Shinzo Abe’s wife, Akie Abe who Trump said,
-                        “doesn’t speak English”. As a result of the “language barrier”, President Trump reportedly
-                        decided to move to the opposite side of the dining table to sit next to first lady Malania Trump
-                        and Putin, where the three conversed until the completion of the dinner.
-
-                    </p>
-                    <p>
-                        Donald Trump’s Presidency has been mired for months in controversy
-                        over reports that the Trump Campaign may have colluded with the Russian
-                        Government in an effort to influence the outcome of the 2016 presidential
-                        election. Last week the White House was rocked again by information revealing
-                        that President Trump had two additional, undisclosed meetings with Russian President
-                        Vladimir Putin at the G-20 Summit in Germany. In an interview with New York Times journalist,
-                        Maggie Haberman, President Trump expressed that during the Summit dinner, the seating
-                        arrangement put him next to Japanese Prime Minister Shinzo Abe’s wife, Akie Abe who Trump said,
-                        “doesn’t speak English”. As a result of the “language barrier”, President Trump reportedly
-                        decided to move to the opposite side of the dining table to sit next to first lady Malania Trump
-                        and Putin, where the three conversed until the completion of the dinner.
-
-                    </p>
-                    <p>
-                        Donald Trump’s Presidency has been mired for months in controversy
-                        over reports that the Trump Campaign may have colluded with the Russian
-                        Government in an effort to influence the outcome of the 2016 presidential
-                        election. Last week the White House was rocked again by information revealing
-                        that President Trump had two additional, undisclosed meetings with Russian President
-                        Vladimir Putin at the G-20 Summit in Germany. In an interview with New York Times journalist,
-                        Maggie Haberman, President Trump expressed that during the Summit dinner, the seating
-                        arrangement put him next to Japanese Prime Minister Shinzo Abe’s wife, Akie Abe who Trump said,
-                        “doesn’t speak English”. As a result of the “language barrier”, President Trump reportedly
-                        decided to move to the opposite side of the dining table to sit next to first lady Malania Trump
-                        and Putin, where the three conversed until the completion of the dinner.
-
-                    </p>
-                </div>
-            </div>
         </div>
 </section>
 <!-- Find Job Section End -->
@@ -748,35 +652,13 @@
 
             <div class="col-md-12 no-padding fw-mgb10">
                 <ul id="toggle-view">
-                    <li>
-                        <h3>Title 1</h3>
-                        <span>+</span>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra
-                            gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet
-                            enim.</p>
-                    </li>
-                    <li>
-                        <h3>Title 2</h3>
-                        <span>+</span>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra
-                            gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet
-                            enim.</p>
-                    </li>
-                    <li>
-                        <h3>Title 3</h3>
-                        <span>+</span>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra
-                            gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet
-                            enim.</p>
-                    </li>
-
-                    <li>
-                        <h3>Title 4</h3>
-                        <span>+</span>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra
-                            gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet
-                            enim.</p>
-                    </li>
+                    {foreach from=$all_question item="val" name="val"}
+                        <li>
+                            <h3>{$val.news_name}</h3>
+                            <span>+</span>
+                            <p>{$val.description}</p>
+                        </li>
+                    {/foreach}
                 </ul>
             </div>
         </div>
