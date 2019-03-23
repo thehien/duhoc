@@ -197,10 +197,10 @@ switch ($module) {
             $function->goto_url(URL_ADMIN);
         }
         break;
-    case 'country':
+    case 'hocbong':
         if (isset($_SESSION[URL_ADMIN]['logined']) AND $_SESSION[URL_ADMIN]['logined'] === true AND $_SESSION[URL_ADMIN]['logined_user'] == LOGINED_TRUE) {
-            require("module/country/main.php");
-            $smarty->assign("panel_module", country_process());
+            require("module/hocbong/main.php");
+            $smarty->assign("panel_module", hocbong_process());
             $smarty->display("homepage.html");
         } else {
             $function->goto_url(URL_ADMIN);

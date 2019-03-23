@@ -1,47 +1,95 @@
-{include file="$themes/header.html"}
-<!--[if lt IE 9]>
-  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
-<div id="wrapper">
- {include file="$themes/top.html"} 
-
-
-<!-- Titlebar
-================================================== -->
-<div id="titlebar" class="single">
-  <div class="container">
-
-    <div class="sixteen columns">
-      <h2>News</h2>
-      <nav id="breadcrumbs">
-        <ul>
-          <li>You are here:</li>
-          <li><a href="#">Home</a></li>
-          <li>News</li>
-        </ul>
-      </nav>
+<div class="col-md-12 no-padding fw-mgb20">
+    {foreach from=$list_category_content item="val" name="val"}
+    <div style="float:left; margin: 10px 15px 10px 15px;">
+        <h4><strong>{$val.category_name}</strong></h4>
     </div>
-
-  </div>
+    {/foreach}
 </div>
 
-<!-- Content
-================================================== -->
 
-<!-- Container -->
-<div class="container">
-
-<div class="eleven columns">
-
-{* News in home *}
-{include file="$themes/public/content/foreach_news.html"}  
-
+<div class="col-md-6 col-sm-6 col-xs-12">
+    <div style="background: #fff;">
+        {include file="$themes/content_banner.html"}
+    </div>
 </div>
-<!-- Container / End -->
 
-
+<div class="col-md-3 col-sm-6 col-xs-12">
+    <div class="featured-item">
+        <div class="featured-wrap">
+            <div class="featured-inner">
+                <figure class="item-thumb">
+                    <a class="hover-effect" href="{$smarty.const.URL_HOMEPAGE}study-detail.html">
+                        <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/about/img_1.jpg" alt="">
+                    </a>
+                </figure>
+                <div class="item-body">
+                                    <span class="job-title">
+                                        <a href="job-page.html">
+                                            Chủ đề bài viết: Ex: Du học Canada có phải là lựa chọn hoàn
+                                            hảo cho bạn...
+                                    </a></span>
+                </div>
+            </div>
+        </div>
+        <div class="item-foot">
+            <span><i class="ti-calendar"></i> 22/02/2019 10:30</span>
+            <div class="view-iocn">
+                <a href="job-page.html"><i class="ti-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
 </div>
-{include file="$themes/footer.html"}
+<div class="col-md-3 col-sm-6 col-xs-12">
+    <div class="featured-item">
+        <div class="featured-wrap">
+            <div class="featured-inner">
+                <figure class="item-thumb">
+                    <a class="hover-effect" href="{$smarty.const.URL_HOMEPAGE}study-detail.html">
+                        <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/about/img_1.jpg" alt="">
+                    </a>
+                </figure>
+                <div class="item-body">
+                                    <span class="job-title">
+                                        <a href="job-page.html">
+                                            Chủ đề bài viết: Ex: Du học Canada có phải là lựa chọn hoàn
+                                            hảo cho bạn...
+                                    </a></span>
 
+                </div>
+            </div>
+        </div>
+        <div class="item-foot">
+            <span><i class="ti-calendar"></i> 22/02/2019 10:30</span>
+            <div class="view-iocn">
+                <a href="job-page.html"><i class="ti-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
 
-
+<div class="col-md-3 col-sm-6 col-xs-12">
+    <div class="featured-item">
+        <div class="featured-wrap">
+            <div class="featured-inner">
+                <figure class="item-thumb">
+                    <a class="hover-effect" href="{$smarty.const.URL_HOMEPAGE}study-detail.html">
+                        <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/about/img_1.jpg" alt="">
+                    </a>
+                </figure>
+                <div class="item-body">
+                                   <span class="job-title">
+                                        <a href="job-page.html">
+                                            Chủ đề bài viết: Ex: Du học Canada có phải là lựa chọn hoàn
+                                            hảo cho bạn...
+                                    </a></span>
+                </div>
+            </div>
+        </div>
+        <div class="item-foot">
+            <span><i class="ti-calendar"></i> 22/02/2019 10:30</span>
+            <div class="view-iocn">
+                <a href="job-page.html"><i class="ti-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+</div>

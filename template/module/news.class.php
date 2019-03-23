@@ -37,7 +37,8 @@ class News
     function get_category_content($category_id)
     {
         global $db;
-        $sql = "SELECT category_name, category_content,category_info_news,category_info_student,category_info_schools, category_img FROM coupons_category where category_id  = '$category_id'";
+        $sql = "SELECT category_name, category_content,category_info_news,category_info_student,category_info_schools, category_img 
+                FROM coupons_category where category_id  = '$category_id'";
         $res = $db->db_query($sql);
         $rows = $db->db_fetchrowset($res);
 
@@ -86,12 +87,13 @@ class News
         return $rows;
     }
 
-    // kiem tra muc con url
-    function get_all_language()
+    function get_all_hocbong($news_id)
     {
         global $db;
         $language = LANG_AUGE;
-        $sql = "SELECT * FROM list_languages where language=$language order by id asc ";
+        $sql = "SELECT *, FROM_UNIXTIME(t1.created_date,'%d/%m/%Y') as created_date FROM ";
+        $sql .= "coupons_hocbong t1 ";
+        $sql .= "where news_category = $news_id and language=$language order by news_id asc";
         $res = $db->db_query($sql);
         $rows = $db->db_fetchrowset($res);
 
@@ -255,28 +257,16 @@ class News
         return $rows;
     }
 
-    function show_info_language($id)
+    // Get list hoc bong
+    function get_list_category($category_id)
     {
         global $db;
         $language = LANG_AUGE;
-        $sql = "SELECT img_flag FROM list_languages where language=$language and id=$id order by id asc ";
-        //echo $sql;
-        $res = $db->db_query($sql);
-        $rows = $db->db_fetchrow($res);
-
-        return $rows;
-    }
-
-    // Get list du hoc cac nuoc
-    function get_list_du_hoc($id)
-    {
-        global $db;
-        $language = LANG_AUGE;
-        $sql = "SELECT * FROM coupons_special_category where language=$language and status = 1";
+        $sql = "SELECT category_name, category_url, category_id, category_content, category_img FROM coupons_category 
+                where parent_id = '$category_id' and language=$language and status = 1";
         //echo $sql;
         $res = $db->db_query($sql);
         $rows = $db->db_fetchrowset($res);
-
         return $rows;
     }
 
@@ -302,6 +292,18 @@ class News
 
         return $rows;
 
+    }
+
+    function show_info_language($id)
+    {
+        global $db;
+        $language = LANG_AUGE;
+        $sql = "SELECT img_flag FROM list_languages where language=$language and id=$id order by id asc ";
+        //echo $sql;
+        $res = $db->db_query($sql);
+        $rows = $db->db_fetchrow($res);
+
+        return $rows;
     }
 
     // kiem tra supcate muc con
@@ -382,6 +384,32 @@ class News
     function category_all_home($category_id, $parent_id, $page, $per_page)
     {
         global $db, $function;
+        $language = LANG_AUGE;
+        $sr = '';
+        if ($category_id == '0') {
+            $sr .= "";
+        } else {
+            $sr .= "and category_id ='$category_id' ";
+        }
+
+        if ($parent_id == '0') {
+            $sr .= "and parent_id='$parent_id' ";
+        } else {
+            $sr .= "and parent_id='$parent_id'";
+        }
+
+        $sql = "SELECT category_id,category_name,category_content,parent_id,status,category_url,color,link,layout,news_url,category_img
+		FROM coupons_category ca where status = '1' and language ='$language' $sr ORDER BY pos asc Limit $page, $per_page";
+        //echo $sql;
+        $res = $db->db_query($sql);
+        $rows = $db->db_fetchrowset($res);
+
+        return $rows;
+    }
+
+    function get_list_news($category_id, $parent_id, $page, $per_page)
+    {
+        global $db;
         $language = LANG_AUGE;
         $sr = '';
         if ($category_id == '0') {
@@ -1849,6 +1877,22 @@ class News
         $res = $db->db_query($sql);
 
         return 1;
+    }
+
+    function show_hoc_bong_detail($news_id)
+    {
+        global $db, $function;
+        $sql = "Select FROM_UNIXTIME(created_date,'%d/%m/%Y') as time_news, news_id, news_name, 
+        status, news_img, news_category, news_content,
+		description,news_link,news_url,created_date,userid,seo_title,seo_key,seo_desc 
+		from coupons_hocbong where news_id = '$news_id'  ";
+        $res = $db->db_query($sql);
+        $rows = $db->db_fetchrow($res);
+        $rows["title_top"] = $function->cutnchar($rows["news_name"], 100);
+        $rows["description_top"] = $function->cutnchar($rows["news_content"], 200);
+        $rows["img_meta"] = "news";
+
+        return $rows;
     }
 
     function show_new_detail($news_id)

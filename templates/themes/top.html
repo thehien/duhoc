@@ -63,18 +63,17 @@
                 <li>
                     <a href="{$smarty.const.URL_HOMEPAGE}" class="btn btn-common-link">
                         ĐẠI HỌC TOP
-                        <i class="fa fa-angle-down"></i>
+                        <!--<i class="fa fa-angle-down"></i>-->
                     </a>
-                    <ul class="dropdown">
-                        {foreach from=$list_about_us item="val" name="val"}
-                        <li>
-                            <a href="{$smarty.const.URL_HOMEPAGE}">
-                                {$val.news_name}
-                            </a>
-                        </li>
-                        {/foreach}
-                    </ul>
-
+                    <!--<ul class="dropdown">-->
+                        <!--{foreach from=$list_about_us item="val" name="val"}-->
+                        <!--<li>-->
+                            <!--<a href="{$smarty.const.URL_HOMEPAGE}">-->
+                                <!--{$val.news_name}-->
+                            <!--</a>-->
+                        <!--</li>-->
+                        <!--{/foreach}-->
+                    <!--</ul>-->
                 </li>
                 <li>
                     <a href="{$smarty.const.URL_HOMEPAGE}" class="btn btn-common-link">
@@ -82,10 +81,10 @@
                         <i class="fa fa-angle-down"></i>
                     </a>
                     <ul class="dropdown">
-                        {foreach from=$list_about_us item="val" name="val"}
+                        {foreach from=$list_hoc_bong item="val" name="val"}
                         <li>
-                            <a href="{$smarty.const.URL_HOMEPAGE}">
-                                {$val.news_name}
+                            <a href="{$smarty.const.URL_HOMEPAGE}hocbong/{$val.category_id}-{$val.category_url}.html">
+                                {$val.category_name}
                             </a>
                         </li>
                         {/foreach}

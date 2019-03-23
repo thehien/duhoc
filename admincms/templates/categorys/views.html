@@ -80,7 +80,7 @@
                                     <textarea rows="5"
                                               class="form-control ckeditor" name="category_content"
                                               id="category_content">{$rs_edit.category_content}</textarea>
-                                   
+
                                 </td>
                             </tr>
 
@@ -256,7 +256,7 @@
                                 </div>
                             </td>
                             <td align="center" class="mw_100">{$smarty.const.langcms_loaitin}</td>
-                            <td align="center">{$smarty.const.langcms_giaodien}</td>
+                            {*<td align="center">{$smarty.const.langcms_giaodien}</td>*}
                             <td align="center">{$smarty.const.langcms_tilept}</td>
                             <td align="center">{$smarty.const.langcms_vitri}</td>
                             <td align="center" class="mw_80">{$smarty.const.langcms_trangthai}</td>
@@ -278,10 +278,10 @@
                                 {if $rs.news_url}{$smarty.const.langcms_baiviet}{else}<strong>{$smarty.const.langcms_sanpham}</strong>{/if}
                             </a>
                         </td>
-                        <td align="center">
+                        {*<td align="center">
                             {if $rs.layout eq 01}layout 1{/if}
                             {if $rs.layout eq 02}layout 2{/if}
-                        </td>
+                        </td>*}
 
                         <td align="center"><input type="text" maxlength="2" size="1" name="total_percent{$rs.id_tem}"
                                                   value="{$rs.total_percent}" class="check_num"

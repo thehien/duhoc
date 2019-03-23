@@ -50,6 +50,8 @@ class categorys_class
                     $str = $spacing . '&nbsp;&nbsp;&nbsp;&nbsp;&raquo;&raquo;&nbsp;<b>' . $tree['category_name'] . '</b>';
                 } elseif ($level == 2) {
                     $str = $spacing . '&nbsp;&nbsp;&nbsp;&raquo;&raquo;&raquo;&nbsp;<b>' . $tree['category_name'] . '</b>';
+                } elseif ($level == 3) {
+                    $str = $spacing . '&nbsp;&nbsp;&nbsp;&raquo;&raquo;&raquo;&nbsp;&nbsp;<b>' . $tree['category_name'] . '</b>';
                 }
                 $i = '';
                 $tree_arrays[] = [

@@ -164,6 +164,30 @@ a:hover,a:focus{
   color: #fff;
 }
 
+.btn-daihoc {
+    background: #63A326;
+}
+.btn-daihoc:hover, .btn-daihoc:focus{
+    background: #6caf28;
+    color: #fff;
+}
+
+.btn-thpt {
+    background: #ed5b17;
+}
+.btn-thpt:hover, .btn-thpt:focus{
+    background: #f27941;
+    color: #fff;
+}
+
+.btn-thacsi {
+    background: #5059fc;
+}
+.btn-thacsi:hover, .btn-thacsi:focus{
+    background: #4c53e0;
+    color: #fff;
+}
+
 
 .btn-order-translate {
   background: #FF7900;

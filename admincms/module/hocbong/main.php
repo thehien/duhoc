@@ -1,5 +1,7 @@
 <?php
-function news_process()
+require("module/hocbong/hocbong.class.php");
+
+function hocbong_process()
 {
     global $db, $smarty, $function;
     global $module, $action_views, $action_insert, $action_edit, $action_delete, $main_url, $main_name, $main_content, $msg_time;
@@ -19,15 +21,15 @@ function news_process()
     $smarty->assign("category", $category);
     $submit = $function->sql_injection(isset($_POST['submit']) ? $_POST['submit'] : "");
 
-    $Process = new News_class;
+    $Process = new Hocbong_class();
     $url = $function->sql_injection($main_url);
     $file = $function->sql_injection($main_url);
     $smarty->assign("url", $url);
     $smarty->assign("main_name", $main_name);
     $smarty->assign("main_content", $main_content);
 
-    $class_cate = new categorys_class;
-    $tree_select = $class_cate->select_tree_arrays(0);
+    $class_cate = new categorys_class();
+    $tree_select = $class_cate->select_tree_arrays(0, 1);
     $smarty->assign('tree_select', $tree_select);
 
     switch ($main) {

@@ -171,6 +171,10 @@ function process_client()
     $list_about_us = $oNews->get_list_about_us(LANG_ABOUT);
     $smarty->assign("list_about_us", $list_about_us);
 
+    // Get list hoc bong
+    $list_hoc_bong = $oNews->get_list_category(LANG_HOC_BONG);
+    $smarty->assign("list_hoc_bong", $list_hoc_bong);
+
     // Get list du hoc cac nuoc
     $cate_du_hoc = $oNews->category_all_home(0, LANG_DU_HOC_CATEGORY, 0, 100);
     for ($i = 0; $i < count($cate_du_hoc); $i++) {
@@ -210,9 +214,18 @@ function process_client()
             $content_ctbqt = $oNews->get_category_content(LANG_CT_BAN_QUAN_TAM);
             $smarty->assign("content_ctbqt", $content_ctbqt);
 
+            // Get data hoc bong
+            $content_hocbong = $oNews->get_category_content(LANG_HOC_BONG);
+            $smarty->assign("content_hocbong", $content_hocbong);
+
             // Get data giao duc
             $content_gd = $oNews->get_category_content(LANG_GIAO_DUC);
             $smarty->assign("content_gd", $content_gd);
+
+            // Get list category content
+            $list_category_content = $oNews->get_list_category(LANG_THONG_TIN_DU_HOC);
+            $smarty->assign("list_category_content", $list_category_content);
+
             return $smarty->fetch($themes . "/index.html");
             break;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -220,8 +233,8 @@ function process_client()
             $arr_detail = explode("-", $b);
             $b = $function->sql_injection($arr_detail[0]);
             // Get list banner home
-            $list_banner_home = $oNews->show_all_coupons_banner(0, LANG_IDHOME, 0, 100);
-            $smarty->assign("list_banner_home", $list_banner_home);
+            $list_banner = $oNews->show_all_coupons_banner($b, 0, 0, 100);
+            $smarty->assign("list_banner", $list_banner);
 
             // Get data thong tin du hoc
             $content_ttduhoc = $oNews->get_category_content(LANG_THONG_TIN_DU_HOC);
@@ -243,6 +256,15 @@ function process_client()
 
             $cate_detail = $oNews->get_category_content($b);
             $smarty->assign("cate_detail", $cate_detail);
+
+            // Get list content of category
+            $list_category_content = $oNews->get_list_category($b);
+            $smarty->assign("list_category_content", $list_category_content);
+
+            for ($i = 0; $i < count($list_category_content); $i++) {
+                $list_news_sub[$i] = $oNews->get_list_news(0, $list_category_content[$i]["category_id"], 0, 100);
+            }
+            $smarty->assign("news_sub", $list_news_sub);
 
             return $smarty->fetch($themes . "/web/du_hoc.html");
             break;
@@ -285,6 +307,112 @@ function process_client()
 
             return $smarty->fetch($themes . "/web/about_detail.html");
             break;
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+        case "hocbong":
+            $arr_detail = explode("-", $b);
+            $b = $function->sql_injection($arr_detail[0]);
+
+            $smarty->assign("main_cate", $b);
+
+            // Get list banner home
+            $list_banner = $oNews->show_all_coupons_banner($b, 0, 0, 100);
+            $smarty->assign("list_banner", $list_banner);
+
+            // Get data thong tin du hoc
+            $content_ttduhoc = $oNews->get_category_content(LANG_THONG_TIN_DU_HOC);
+            $smarty->assign("content_ttduhoc", $content_ttduhoc);
+
+            // Get all student
+            $all_student = $oNews->get_all_student($b);
+            $smarty->assign("all_student", $all_student);
+
+            // Get all schools
+            $all_schools = $oNews->get_all_schools($b);
+            $smarty->assign("all_schools", $all_schools);
+
+            // Get all question
+            $all_question = $oNews->get_all_question($b);
+            $smarty->assign("all_question", $all_question);
+
+            // Get list hoc bong con
+            $list_hoc_bong_child = $oNews->get_list_category($b);
+            $smarty->assign("list_hoc_bong_child", $list_hoc_bong_child);
+
+            // SEO link
+            $_SESSION[URL_HOME]['tinseo'] = $function->sql_injection($_SERVER['REQUEST_URI']);
+
+            $cate_detail = $oNews->get_category_content($b);
+            $smarty->assign("cate_detail", $cate_detail);
+
+            return $smarty->fetch($themes . "/web/hoc_bong.html");
+            break;
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+        case "hb":
+            $smarty->assign("hoc_bong", 1);
+            $arr_detail = explode("-", $b);
+            $b = $function->sql_injection($arr_detail[1]);
+            $main_cate = $function->sql_injection($arr_detail[0]);
+            $smarty->assign("main_cate", $main_cate);
+
+            // Get name hoc bong
+            $hoc_bong = $oNews->category_name_category_id($b);
+            $smarty->assign("category_name", $hoc_bong['category_name']);
+
+            // Get list hoc bong con
+            $list_hoc_bong_child = $oNews->get_list_category($main_cate);
+            $smarty->assign("list_hoc_bong_child", $list_hoc_bong_child);
+
+            // Get all tin hoc bong
+            $all_hocbong = $oNews->get_all_hocbong($b);
+            $smarty->assign("all_hocbong", $all_hocbong);
+
+            return $smarty->fetch($themes . "/web/hoc_bong_detail.html");
+            break;
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+        case "hb-detail":
+            $arr_detail = explode("-", $b);
+            $b = $function->sql_injection($arr_detail[1]);
+            $main_cate = $function->sql_injection($arr_detail[0]);
+            $smarty->assign("main_cate", $main_cate);
+
+            // Get list hoc bong con
+            $list_hoc_bong_child = $oNews->get_list_category($main_cate);
+            $smarty->assign("list_hoc_bong_child", $list_hoc_bong_child);
+
+            // SEO link
+            $_SESSION[URL_HOME]['tinseo'] = $function->sql_injection($_SERVER['REQUEST_URI']);
+
+            $hocbong_detail = $oNews->show_hoc_bong_detail($b);
+            $smarty->assign("hocbong_detail", $hocbong_detail);
+
+            $news_category = $hocbong_detail["news_category"];
+            //Seo google
+            $smarty->assign("seo_title", $function->sql_injection($hocbong_detail["seo_title"]));
+            $smarty->assign("seo_key", $function->sql_injection($hocbong_detail["seo_key"]));
+            $smarty->assign("seo_desc", $function->sql_injection($hocbong_detail["seo_desc"]));
+            $rs_key = $oNews->show_keyword(0, 5, $news_category);
+            $smarty->assign("rs_key", $rs_key);
+
+            // News other
+            $page = $function->sql_injection($arr_str[3]);
+            if ($page == "") {
+                $page = 0;
+            }
+            $numf = $oNews->num_news_category(0, $news_category);
+            $per_page = 4;
+            $all_page = $numf ? $numf : 1;
+            $base_url = URL_HOMEPAGE . "detail/{$b}/0";
+            $url_last = "trang.html#shownews";
+            $paging = $function->generate_page_news($base_url, $url_last, $all_page, $per_page, $page);
+            $smarty->assign("paging", $paging);
+            $rs = $oNews->show_news_category($news_category, 0, $page, $per_page);
+            $smarty->assign("rs", $rs);
+            $smarty->assign("numf", $numf);
+
+            return $smarty->fetch($themes . "/web/hoc_bong_detail_content.html");
+            break;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
         case "how-it-works":
             $smarty->assign("how_it_works", 1);
@@ -322,22 +450,7 @@ function process_client()
             return $smarty->fetch($themes . "/user/order_cv_category.html");
             break;
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-        case "news":
-            $smarty->assign("news", 1);
-            $spr_bo = $oNews->category_all_home(LANG_IDSERVICE, 0, 0, 10);
-            for ($i = 0; $i < count($spr_bo); $i++) {
-
-                $spr_con[$i] = $oNews->show_news_category(14, 0, 0, 100);
-
-            }
-
-            $smarty->assign("spr_bo", $spr_bo);
-            $smarty->assign("spr_con", $spr_con);
-
-            return $smarty->fetch($themes . "/web/news.html");
-            break;
-        //////////////////////////////////////////////Product new link/////////////////////////////
+//////////////////////////////////////////////Product new link//////////////////////////////////////////
         case $url_category:
 
             $_SESSION[URL_HOME]['tinseo'] = $function->sql_injection($_SERVER['REQUEST_URI']);

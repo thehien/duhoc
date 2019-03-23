@@ -479,10 +479,10 @@ a:focus {
 }
 
 .btn-submit-cv:hover,
-.btn-submit-cv:focus {
-    color: #fff;
-    box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
-}
+ .btn-submit-cv:focus {
+     color: #fff;
+     box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
+ }
 
 .btn-submit-cv {
     width: 100%;
@@ -494,6 +494,51 @@ a:focus {
     position: relative;
 }
 
+
+.btn-daihoc:hover,
+.btn-daihoc:focus {
+    color: #fff;
+    box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
+}
+.btn-daihoc {
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    text-transform: uppercase;
+    overflow: hidden;
+    position: relative;
+}
+
+.btn-thpt:hover,
+.btn-thpt:focus {
+    color: #fff;
+    box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
+}
+.btn-thpt {
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    text-transform: uppercase;
+    overflow: hidden;
+    position: relative;
+}
+
+.btn-thacsi:hover,
+.btn-thacsi:focus {
+    color: #fff;
+    box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
+}
+.btn-thacsi {
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    text-transform: uppercase;
+    overflow: hidden;
+    position: relative;
+}
 
 .btn-dangkycv:hover,
 .btn-dangkycv:focus {
@@ -4882,7 +4927,7 @@ blockquote p a:hover {
     border-top: 1px solid #ddd;
     border-left: 1px solid #ddd;
     border-right: 1px solid #ddd;
-    border-bottom: 4px solid #ddd;
+    border-bottom: 2px solid #ddd;
     box-shadow: 3px 3px 9px rgba(0, 0, 0, 0.075);
 }
 
@@ -6491,6 +6536,16 @@ for font-size and font-family*/
 
 .link_blue:hover {
     color: #39bae5;
+}
+
+.link_hover {
+    color: #3B4148;
+}
+
+.link_hover:hover {
+    color: #46C7F2;
+    text-decoration: underline;
+
 }
 
 .link_menu_blue {

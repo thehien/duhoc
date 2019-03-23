@@ -1,0 +1,78 @@
+{include file="$themes/header.html"}
+<!-- Header Section Start -->
+<div class="header">
+    <!-- Start intro section -->
+    <section id="intro" class="section-intro">
+        <div class="logo-menu" style="background: #fff;">
+            {include file="$themes/top.html"}
+        </div>
+
+    </section>
+</div>
+
+<section class="job-detail section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 fw-border-content-bottom" style="margin: 5px; text-align: center">
+                <h4 class="fw-fs-26 fw-mgt10 fw-mgb10">
+                    {$hocbong_detail.news_name}
+                </h4>
+            </div>
+
+            <div class="col-md-12 no-padding fw-mgt10">
+                <div class="col-md-9 no-padding">
+                    <div class="col-md-12 fw-mgb20" style="text-align: justify">
+                        <p>
+                            {$hocbong_detail.description}
+                        </p>
+                    </div>
+                    <div class="col-md-12 meta fw-mgt20">
+                        <span class="label label-success">Du hoc my</span>
+                        <span class="label label-info">Du hoc canada</span>
+                    </div>
+                </div>
+
+                <div class="col-md-3 no-padding">
+                    <div class="fw-mgb10">
+                        <a class="btn btn-submit fw-fs-18" href="#">
+                            ĐĂNG  KÝ TRỰC TUYẾN
+                        </a>
+                    </div>
+
+                    <div class="fw-mgb10">
+                        <a class="btn btn-submit-1 fw-fs-18" href="#">
+                            CHUYÊN GIA TƯ VẤN
+                        </a>
+                    </div>
+                    <div class="fw-mgb20">
+                        <div class="fw-mgb10">
+                            <div class="fw-fs-16"><strong>HỌC BỔNG DU HỌC</strong></div>
+                        </div>
+                        <div>
+                            {foreach from=$list_hoc_bong_child item="val" name="val"}
+                            <div class="fw-mgb10">
+                                <a href="{$smarty.const.URL_HOMEPAGE}hb/{$main_cate}-{$val.category_id}-{$val.category_url}.html" class="link_hover">
+                                    <h3 style="font-size: 16px;">{$val.category_name}</h3>
+                                </a>
+                            </div>
+                            {/foreach}
+                        </div>
+                    </div>
+
+                    <div class="fw-mgb20">
+                        <div class="fw-mgb10">
+                            <div class="fw-fs-16"><strong>
+                                TIN TỨC DU HỌC MỸ
+                            </strong></div>
+                        </div>
+                        <div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+</section>
+<!-- footer -->
+{include file="$themes/footer.html"}
