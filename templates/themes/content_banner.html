@@ -1,67 +1,29 @@
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-        <li data-target="#myCarousel" data-slide-to="3"></li>
+        {foreach from=$list_news_sub item="val" key="key" name="val"}
+          <li data-target="#myCarousel" data-slide-to="{$key}" {if $smarty.foreach.val.first}class="active"{/if}></li>
+        {/foreach}
     </ol>
     <div class="carousel-inner">
-        <div class="item active">
-            <img src="http://lorempixel.com/1200/400/sports" style="width:100%;height: 100%;" alt="First slide">
+        {foreach from=$list_news_sub item="val" key="key" name="val"}
+        <div class="item {if $smarty.foreach.val.first}active{/if}">
+            {if $val.news_img}
+            <a class="hover-effect" href="{$smarty.const.URL_HOMEPAGE}detail/{$main_cate}-{$val.news_id}-{$val.news_url}.html">
+                <img src="{$smarty.const.URL_HOME}/upload/news/{$val.news_img}" style="width:100%;height: 280px;" alt="{$val.news_name}">
+            </a>
+            {else}
+            <a class="hover-effect" href="{$smarty.const.URL_HOMEPAGE}detail/{$main_cate}-{$val.news_id}-{$val.news_url}.html">
+                <img style="width:100%;height: 280px;" src="{$smarty.const.URL_WEB}{$themes}/assets/img/about/img_1.jpg" alt="{$val.news_name}">
+            </a>
+            {/if}
             <div class="container">
                 <div class="carousel-caption">
-                    <h1>Slide 1</h1>
-                    <p>Aenean a rutrum nulla. Vestibulum a arcu at nisi tristique pretium.</p>
-                    <p>
-                        Aenean a rutrum nulla. Vestibulum a arcu at nisi tristique pretium.
-                        Aenean a rutrum nulla. Vestibulum a arcu at nisi tristique pretium.
-                    </p>
+                    <h3>{$val.news_name}</h3>
                 </div>
             </div>
         </div>
-        <div class="item">
-            <img src="http://lorempixel.com/1200/400/people" style="width:100%;height: 100%;" data-src="" alt="Second slide">
-            <div class="container">
-                <div class="carousel-caption">
-                    <h1>Slide 2</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae egestas purus. </p>
-                    <p>
-                        Aenean a rutrum nulla. Vestibulum a arcu at nisi tristique pretium.
-                        Aenean a rutrum nulla. Vestibulum a arcu at nisi tristique pretium.
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="item">
-            <img src="http://lorempixel.com/1200/400/people" style="width:100%;height: 320px;" data-src="" alt="Second slide">
-            <div class="container">
-                <div class="carousel-caption">
-                    <h1>Slide 2</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae egestas purus. </p>
-                    <p>
-                        Aenean a rutrum nulla. Vestibulum a arcu at nisi tristique pretium.
-                        Aenean a rutrum nulla. Vestibulum a arcu at nisi tristique pretium.
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="item">
-            <img src="http://lorempixel.com/1200/400/abstract" style="width:100%; height: 320px;" data-src="" alt="Third slide">
-            <div class="container">
-                <div class="carousel-caption">
-                    <h1>Slide 3</h1>
-                    <p>Donec sit amet mi imperdiet mauris viverra accumsan ut at libero.</p>
-                    <p>
-                        Donec sit amet mi imperdiet mauris viverra accumsan ut at libero.
-                        Donec sit amet mi imperdiet mauris viverra accumsan ut at libero.
-                        Donec sit amet mi imperdiet mauris viverra accumsan ut at libero.
-                        Donec sit amet mi imperdiet mauris viverra accumsan ut at libero.
-
-                    </p>
-                </div>
-            </div>
-        </div>
+        {/foreach}
     </div>
     <a class="left carousel-control" href="#myCarousel" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left"></span>

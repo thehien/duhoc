@@ -6545,7 +6545,15 @@ for font-size and font-family*/
 .link_hover:hover {
     color: #46C7F2;
     text-decoration: underline;
+}
 
+.link_duhoc_hover {
+    color: #3B4148;
+}
+
+.link_duhoc_hover:hover {
+    color: #46C7F2;
+    text-decoration: underline;
 }
 
 .link_menu_blue {

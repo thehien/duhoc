@@ -119,43 +119,6 @@ function process_client()
             $url_views = "index.html";
         }
     }
-
-// Normal login
-    if ($_SESSION[URL_HOME]["is_login"]) {
-        $show_member = $oMember->show_member_id($function->sql_injection($_SESSION[URL_HOME]["userid_u"]));
-        $smarty->assign("show_member", $show_member);
-
-        $number_notices = $oMember->show_number_order_notices($_SESSION[URL_HOME]["userid_u"]);
-        $smarty->assign("number_notices", $number_notices);
-    }
-
-// Chuyen vien login
-    if ($_SESSION[URL_HOME]["is_login_cv"]) {
-        $show_expert_user = $oMember->show_expert_user_id($function->sql_injection($_SESSION[URL_HOME]["userid_cv_u"]));
-
-        $getFromtoLanguage = $oMember->show_from_to_language($function->sql_injection($_SESSION[URL_HOME]["userid_cv_u"]));
-
-        $number_trans_notices = $oMember->show_number_trans_notices($_SESSION[URL_HOME]["userid_cv_u"]);
-        $smarty->assign("number_trans_notices", $number_trans_notices);
-
-        // List special category name
-        $listSpecialCategory = explode(',', $show_expert_user['special_category']);
-        foreach ($listSpecialCategory as $key => $value) {
-            $listSpecialName[] = $oMember->show_special_category_name($value);
-        }
-
-        $smarty->assign("show_member_language", $getFromtoLanguage);
-        $smarty->assign("show_member", $show_expert_user);
-        $smarty->assign("show_member_category", $listSpecialName);
-        $smarty->assign("show_member_about", $show_expert_user['about']);
-
-        $show_software = $oMember->show_list_software($function->sql_injection($_SESSION[URL_HOME]["userid_cv_u"]));
-        $smarty->assign("show_software", $show_software);
-
-        $show_service = $oMember->show_list_service($function->sql_injection($_SESSION[URL_HOME]["userid_cv_u"]));
-        $smarty->assign("show_service", $show_service);
-    }
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Call session of chuyen vien or user
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -182,7 +145,6 @@ function process_client()
     }
     $smarty->assign("cate_du_hoc", $cate_du_hoc);
     $smarty->assign("cate_sub", $cate_sub);
-
 
     switch (strtolower($a)) {
         /////////////////////////////////////////////Trang chu/////////////////////////////////////
@@ -222,9 +184,18 @@ function process_client()
             $content_gd = $oNews->get_category_content(LANG_GIAO_DUC);
             $smarty->assign("content_gd", $content_gd);
 
+            //////////////////////////////////////////////////////
             // Get list category content
+            //////////////////////////////////////////////////////
             $list_category_content = $oNews->get_list_category(LANG_THONG_TIN_DU_HOC);
             $smarty->assign("list_category_content", $list_category_content);
+
+            //////////////////////////////////////////////////////
+            // Get all list news du hoc
+            //////////////////////////////////////////////////////
+            $list_news_sub = $oNews->get_list_news(null, 0, 100);
+            //$function->debugPrint($list_news_sub);
+            $smarty->assign("list_news_sub", $list_news_sub);
 
             return $smarty->fetch($themes . "/index.html");
             break;
@@ -232,6 +203,8 @@ function process_client()
         case "duhoc":
             $arr_detail = explode("-", $b);
             $b = $function->sql_injection($arr_detail[0]);
+
+            $smarty->assign("main_cate", $b);
             // Get list banner home
             $list_banner = $oNews->show_all_coupons_banner($b, 0, 0, 100);
             $smarty->assign("list_banner", $list_banner);
@@ -261,12 +234,78 @@ function process_client()
             $list_category_content = $oNews->get_list_category($b);
             $smarty->assign("list_category_content", $list_category_content);
 
+            //////////////////////////////////////////////////////
+            // Get list news du hoc follow main category
+            //////////////////////////////////////////////////////
+            $list_category = '';
             for ($i = 0; $i < count($list_category_content); $i++) {
-                $list_news_sub[$i] = $oNews->get_list_news(0, $list_category_content[$i]["category_id"], 0, 100);
+                $list_category .= $list_category_content[$i]["category_id"] . ",";
             }
-            $smarty->assign("news_sub", $list_news_sub);
-
+            $new_list_category = trim($list_category, ',');
+            if ($new_list_category != '') {
+                $list_news_sub = $oNews->get_list_news($new_list_category, 0, 100);
+                $smarty->assign("list_news_sub", $list_news_sub);
+            } else {
+                $smarty->assign("list_news_sub", null);
+            }
+            //$function->debugPrint($list_news_sub);
             return $smarty->fetch($themes . "/web/du_hoc.html");
+            break;
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+        case "detail":
+            $arr_detail = explode("-", $b);
+            $b = $function->sql_injection($arr_detail[1]);
+            $main_cate = $function->sql_injection($arr_detail[0]);
+            $smarty->assign("main_cate", $main_cate);
+
+            $news_detail = $oNews->show_new_detail($b);
+            //$function->debugPrint($news_detail);
+            $smarty->assign("news_detail", $news_detail);
+
+            // Get list content of category
+            $list_category_content = $oNews->get_list_category($b);
+            $smarty->assign("list_category_content", $list_category_content);
+
+            $list_category = '';
+            for ($i = 0; $i < count($list_category_content); $i++) {
+                $list_category .= $list_category_content[$i]["category_id"] . ",";
+            }
+            $new_list_category = trim($list_category, ',');
+            $list_news_sub = $oNews->get_list_news($new_list_category, 0, 100);
+            $smarty->assign("list_news_sub", $list_news_sub);
+
+            // Get name category
+            $categoryNews = $oNews->category_name_category_id($news_detail["news_category"]);
+            $smarty->assign("categoryNews", $categoryNews);
+
+            $news_category = $news_detail["news_category"];
+            ////////////////////////////////////////////////////////////////
+            // Seo google
+            ////////////////////////////////////////////////////////////////
+            $_SESSION[URL_HOME]['tinseo'] = $function->sql_injection($_SERVER['REQUEST_URI']);
+            $smarty->assign("seo_title", $function->sql_injection($news_detail["seo_title"]));
+            $smarty->assign("seo_key", $function->sql_injection($news_detail["seo_key"]));
+            $smarty->assign("seo_desc", $function->sql_injection($news_detail["seo_desc"]));
+            $rs_key = $oNews->show_keyword(0, 5, $news_category);
+            $smarty->assign("rs_key", $rs_key);
+
+            // News other
+            $page = $function->sql_injection($arr_str[3]);
+            if ($page == "") {
+                $page = 0;
+            }
+            $numf = $oNews->num_news_category(0, $news_category);
+            $per_page = 4;
+            $all_page = $numf ? $numf : 1;
+            $base_url = URL_HOMEPAGE . "detail/{$b}/0";
+            $url_last = "trang.html#shownews";
+            $paging = $function->generate_page_news($base_url, $url_last, $all_page, $per_page, $page);
+            $smarty->assign("paging", $paging);
+            $rs = $oNews->show_news_category($news_category, 0, $page, $per_page);
+            $smarty->assign("rs", $rs);
+            $smarty->assign("numf", $numf);
+
+            return $smarty->fetch($themes . "/web/news_detail.html");
             break;
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
         case "about":
@@ -413,24 +452,6 @@ function process_client()
 
             return $smarty->fetch($themes . "/web/hoc_bong_detail_content.html");
             break;
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-        case "how-it-works":
-            $smarty->assign("how_it_works", 1);
-            // Get all translater
-            $all_cv_online = $oMember->get_all_translator_online();
-            $smarty->assign("all_cv_online", $all_cv_online);
-            return $smarty->fetch($themes . "/web/how_it_works.html");
-            break;
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-        case "study-detail":
-            $smarty->assign("study_detail", 1);
-            // Get all translater
-            $all_cv_online = $oMember->get_all_translator_online();
-            $smarty->assign("all_cv_online", $all_cv_online);
-
-            return $smarty->fetch($themes . "/web/study_detail.html");
-            break;
-
 ////////////////////////////////////////////////////////////////////////////////
         case "industry":
             $arr_detail = explode("-", $b);
@@ -449,512 +470,7 @@ function process_client()
 
             return $smarty->fetch($themes . "/user/order_cv_category.html");
             break;
-
-//////////////////////////////////////////////Product new link//////////////////////////////////////////
-        case $url_category:
-
-            $_SESSION[URL_HOME]['tinseo'] = $function->sql_injection($_SERVER['REQUEST_URI']);
-            //Seo google
-            $smarty->assign("seo_title", $function->sql_injection($rs_category["seo_title"]));
-            $smarty->assign("seo_key", $function->sql_injection($rs_category["seo_key"]));
-            $smarty->assign("seo_desc", $function->sql_injection($rs_category["seo_desc"]));
-            $rs_key = $oNews->show_keyword(0, 5, $category_id);
-            $smarty->assign("rs_key", $rs_key);
-
-            //Category hien tai
-            $_SESSION[URL_HOME]["category_id"] = $category_id;
-            $smarty->assign("category_hover", $category_url);
-            $smarty->assign("category_name", $category_name);
-            $smarty->assign("category_id", $category_id);
-            $smarty->assign("category_content", $category_content);
-            $smarty->assign("category_img", $category_img);
-            $smarty->assign("category_color", $category_color);
-
-            //Category cha
-            $new_cat_name_con = $oNews->category_all_parent_id($parent_id);
-            $smarty->assign("new_cat_name_con", $new_cat_name_con);
-            $smarty->assign("supcate_hover", $new_cat_name_con["category_url"]);
-            $smarty->assign("supcate_name", $new_cat_name_con["category_name"]);
-            $smarty->assign("supcate_content", $new_cat_name_con["category_content"]);
-            $_SESSION[URL_HOME]["category_id"] = $new_cat_name_con["category_id"];
-
-            //menu left
-            $smarty->assign("catename_left", $category_name);
-            $category_left = $oNews->category_all_home(0, $category_id, 0, 20);
-            $smarty->assign("category_left", $category_left);
-
-            //Section Product
-            $cate_bo = $oNews->category_all_home(0, $category_id, 0, 10);
-            for ($i = 0; $i < count($cate_bo); $i++) {
-                $cate_pro[$i] = $oNews->show_all_coupons_coupons($cate_bo[$i]["category_id"], 0, 1, 0, 0, 10, 'pos');
-            }
-            $smarty->assign("cate_bo", $cate_bo);
-            $smarty->assign("cate_pro", $cate_pro);
-
-            ///////////////////////////////////////////////////////////////////////////////
-            ////////////////////////////// bo loc san pham ////////////////////////////////
-            $smarty->assign("cate_filter", $a);
-            $smarty->assign("url_filter", $category_url);
-            $category_id = $category_id;
-            $parent_id = $parent_id;
-            $key_cty = '';
-            $key_dis = '';
-            $key_one = '';
-            $key_two = '';
-            $key_three = '';
-            $key_four = '';
-            $arr_link = explode("?", $function->sql_injection($_SERVER['REQUEST_URI']));
-            $arr_link[1] = isset($arr_link[1]) ? $arr_link[1] : "";
-            $arr_fil = explode("_", $arr_link[1]);
-            $arr_fil[1] = isset($arr_fil[1]) ? $arr_fil[1] : "";
-            $arr_fil[2] = isset($arr_fil[2]) ? $arr_fil[2] : "";
-            $arr_fil[3] = isset($arr_fil[3]) ? $arr_fil[3] : "";
-            $arr_fil[4] = isset($arr_fil[4]) ? $arr_fil[4] : "";
-            $arr_fil[5] = isset($arr_fil[5]) ? $arr_fil[5] : "";
-            $arr_fil[6] = isset($arr_fil[6]) ? $arr_fil[6] : "";
-
-            // bo loc 1
-            $check_one = $oNews->num_filter_one($category_id);
-            if ($check_one) {
-                $category_one = $category_id;
-            } else {
-                $category_one = $parent_id;
-            }
-            if ($arr_fil[1] == "" or $arr_fil[1] == "all") {
-                $fil_one = 'all';
-            } else {
-                $fil_one = $arr_fil[1];
-                $seo_one = $oNews->seo_filter_one($category_one, $fil_one);;
-                $key_one = $seo_one["name"] . " " . $seo_one["filter_name"];
-            }
-            $smarty->assign("fil_one", $fil_one);
-            $smarty->assign("numf_one", $oNews->num_filter_one($category_one));
-            $smarty->assign("rs_one", $oNews->show_filter_one($category_one));
-
-            // bo loc 2
-            $check_two = $oNews->num_filter_two($category_id);
-            if ($check_two) {
-                $category_two = $category_id;
-            } else {
-                $category_two = $parent_id;
-            }
-            if ($arr_fil[2] == '' or $arr_fil[2] == 'all') {
-                $fil_two = 'all';
-            } else {
-                $fil_two = $arr_fil[2];
-                $seo_two = $oNews->seo_filter_two($category_two, $fil_two);
-                $key_two = $seo_two["name"] . " " . $seo_two["filter_name"];
-            }
-            $smarty->assign("fil_two", $fil_two);
-            $smarty->assign("numf_two", $oNews->num_filter_two($category_two));
-            $smarty->assign("rs_two", $oNews->show_filter_two($category_two));
-
-            // bo loc 3
-            $check_three = $oNews->num_filter_three($category_id);
-            if ($check_three) {
-                $category_three = $category_id;
-            } else {
-                $category_three = $parent_id;
-            }
-            if ($arr_fil[3] == '' or $arr_fil[3] == 'all') {
-                $fil_three = 'all';
-            } else {
-                $fil_three = $arr_fil[3];
-                $seo_three = $oNews->seo_filter_three($category_three, $fil_three);
-                $key_three = $seo_three["name"] . " " . $seo_three["filter_name"];
-            }
-            $smarty->assign("fil_three", $fil_three);
-            $smarty->assign("numf_three", $oNews->num_filter_three($category_three));
-            $smarty->assign("rs_three", $oNews->show_filter_three($category_three));
-
-            // bo loc 4
-            $check_four = $oNews->num_filter_four($category_id);
-            if ($check_four) {
-                $category_four = $category_id;
-            } else {
-                $category_four = $parent_id;
-            }
-            if ($arr_fil[4] == '' or $arr_fil[4] == 'all') {
-                $fil_four = 'all';
-            } else {
-                $fil_four = $arr_fil[4];
-                $seo_four = $oNews->seo_filter_four($category_four, $fil_four);
-                $key_four = $seo_four["name"] . " " . $seo_four["filter_name"];
-            }
-            $smarty->assign("fil_four", $fil_four);
-            $smarty->assign("numf_four", $oNews->num_filter_four($category_four));
-            $smarty->assign("rs_four", $oNews->show_filter_four($category_four));
-
-            // bo loc tinh thanh
-            $rs_priority = $oNews->filter_priority(0, 100);
-            $smarty->assign("rs_priority", $rs_priority);
-            if ($arr_fil[5] == "" or $arr_fil[5] == "all") {
-                $fil_cty = 'all';
-            } else {
-                $fil_cty = $arr_fil[5];
-                $seo_cty = $oNews->seo_filter_cities($fil_cty);
-                $key_cty = $seo_cty["cityname"];
-            }
-            $smarty->assign("fil_cty", $fil_cty);
-
-            // bo loc quan huyen
-            $rs_district = $oNews->filter_district(0, 100, $fil_cty);
-            $smarty->assign("rs_district", $rs_district);
-            if ($arr_fil[6] == "" or $arr_fil[6] == "all") {
-                $fil_dis = 'all';
-            } else {
-                $fil_dis = $arr_fil[6];
-                $seo_dis = $oNews->seo_filter_district($fil_dis);
-                $key_dis = $seo_dis["district_name"];
-            }
-            $smarty->assign("fil_dis", $fil_dis);
-
-            //Seo google filter
-            if ($key_cty != "") {
-                $key_cty = " " . $key_cty;
-            } else {
-                $key_cty = "";
-            }
-            if ($key_dis != "") {
-                $key_dis = " " . $key_dis;
-            } else {
-                $key_dis = "";
-            }
-
-            if ($key_one != "") {
-                $key_one = " " . $key_one;
-            } else {
-                $key_one = "";
-            }
-            if ($key_two != "") {
-                $key_two = " " . $key_two;
-            } else {
-                $key_two = "";
-            }
-            if ($key_three != "") {
-                $key_three = " " . $key_three;
-            } else {
-                $key_three = "";
-            }
-            if ($key_four != "") {
-                $key_four = " " . $key_four;
-            } else {
-                $key_four = "";
-            }
-
-            $key_filter = $key_cty . $key_dis . $key_one . $key_two . $key_three . $key_four;
-            $smarty->assign("key_filter", $key_filter);
-
-            ////////////////////////////////// ORDER BY ///////////////////////////////////
-            $get_order = $function->sql_injection($arr_str[1]);
-            if ($get_order == "") {
-                $get_order = '0';
-            }
-            if ($get_order == '0') {
-                $order_by = 'ORDER BY cc.pos desc, cc.created_date desc';
-            }
-            if ($get_order == 'priceasc') {
-                $order_by = 'ORDER BY cc.price_new asc';
-                $smarty->assign("hover_gia", "priceasc");
-            }
-            if ($get_order == 'pricedesc') {
-                $order_by = 'ORDER BY cc.price_new desc';
-                $smarty->assign("hover_gia", "pricedesc");
-            }
-            if ($get_order == 'saledesc') {
-                $order_by = 'ORDER BY giam_gia desc';
-                $smarty->assign("hover_gia", "saledesc");
-            }
-            if ($get_order == 'viewsdesc') {
-                $order_by = 'ORDER BY cc.views desc';
-                $smarty->assign("hover_gia", "viewsdesc");
-            }
-
-            $page = $function->sql_injection($arr_str[2]);
-            if ($page == "") {
-                $page = 0;
-            }
-            $numf = $oNews->num_all_filter(0, $category_id, 1, 0, $fil_one, $fil_two, $fil_three, $fil_four, $fil_cty,
-                $fil_dis);
-
-            if ($layout_home == '_NT01') {
-                $per_page = 10;
-            } else {
-                $per_page = 12;
-            }
-
-            $all_page = $numf ? $numf : 1;
-            $base_url = URL_HOMEPAGE . "{$a}/{$get_order}";
-            $url_last = ".html?search" . "_{$fil_one}_{$fil_two}_{$fil_three}_{$fil_four}";
-            $paging = $function->generate_page_news($base_url, $url_last, $all_page, $per_page, $page);
-            $smarty->assign("paging", $paging);
-            $rs = $oNews->show_all_filter($page, $per_page, 0, $category_id, 1, 0, $fil_one, $fil_two, $fil_three,
-                $fil_four, 0, 0, $order_by);
-            $smarty->assign("rs", $rs);
-
-            //////////////////////////////////Giao dien hien thi //////////////////////////
-            $layout = $layout_home;
-
-            return $smarty->fetch($themes . "/web/category.html");
-            break;
-
-        ///////////////////////////////////////////////////////////////////////////////////
-        // Job of category
-        ///////////////////////////////////////////////////////////////////////////////////
-        case $url_supcate:
-            $_SESSION[URL_HOME]['tinseo'] = $function->sql_injection($_SERVER['REQUEST_URI']);
-            //Seo google
-            $smarty->assign("seo_title", $function->sql_injection($rs_category["seo_title"]));
-            $smarty->assign("seo_key", $function->sql_injection($rs_category["seo_key"]));
-            $smarty->assign("seo_desc", $function->sql_injection($rs_category["seo_desc"]));
-            $rs_key = $oNews->show_keyword(0, 5, $category_id);
-            $smarty->assign("rs_key", $rs_key);
-
-            //Category hien tai
-            $smarty->assign("category_hover", $category_url);
-            $smarty->assign("category_name", $category_name);
-            $smarty->assign("category_id", $category_id);
-            $smarty->assign("category_content", $category_content);
-            $smarty->assign("category_img", $category_img);
-
-            //Category cha
-            $new_cat_name = $oNews->category_all_parent_id($category_id);
-
-            $countProduct = $oNews->check_category_id($category_id);
-            $smarty->assign("new_cat_name", $new_cat_name);
-            $smarty->assign("new_product_count", $countProduct);
-            $smarty->assign("supcate_hover", $new_cat_name_con["category_url"]);
-            $smarty->assign("supcate_name", $new_cat_name_con["category_name"]);
-            $smarty->assign("supcate_content", $new_cat_name_con["category_content"]);
-            $_SESSION[URL_HOME]["category_id"] = $new_cat_name_con["category_id"];
-
-            //category ong noi
-            $category_parent_id = $oNews->category_all_parent_id($new_cat_name_con["parent_id"]);
-            $smarty->assign("category_parent_id", $category_parent_id);
-            $smarty->assign("home_hover", $category_parent_id["category_url"]);
-            $smarty->assign("name_home", $category_parent_id["category_name"]);
-
-            //menu left
-            $smarty->assign("catename_left", $new_cat_name_con["category_name"]);
-            $category_left = $oNews->category_all_home(0, $new_cat_name_con["category_id"], 0, 20);
-            $smarty->assign("category_left", $category_left);
-
-            $numf = $oNews->num_ckeck_category($category_id);
-            $smarty->assign("numf", $numf);
-            if ($numf == '1') {
-                $new_detail = $oNews->show_coupons_products_detail($category_id);
-                $function->goto_url(URL_HOMEPAGE . $new_detail["news_id"] . "-" . $new_detail["news_url"] . ".html");
-            } else {
-                ///////////////////////////////////////////////////////////////////////////////
-                ////////////////////////////// bo loc san pham ///////////////////////////////
-                $smarty->assign("cate_filter", $a);
-                $smarty->assign("url_filter", $category_url);
-                $category_id = $category_id;
-                $parent_id = $parent_id;
-                $key_cty = '';
-                $key_dis = '';
-                $key_one = '';
-                $key_two = '';
-                $key_three = '';
-                $key_four = '';
-                $arr_link = explode("?", $function->sql_injection($_SERVER['REQUEST_URI']));
-                $arr_link[1] = isset($arr_link[1]) ? $arr_link[1] : "";
-                $arr_fil = explode("_", $arr_link[1]);
-                $arr_fil[1] = isset($arr_fil[1]) ? $arr_fil[1] : "";
-                $arr_fil[2] = isset($arr_fil[2]) ? $arr_fil[2] : "";
-                $arr_fil[3] = isset($arr_fil[3]) ? $arr_fil[3] : "";
-                $arr_fil[4] = isset($arr_fil[4]) ? $arr_fil[4] : "";
-                $arr_fil[5] = isset($arr_fil[5]) ? $arr_fil[5] : "";
-                $arr_fil[6] = isset($arr_fil[6]) ? $arr_fil[6] : "";
-
-                // bo loc 1
-                $check_one = $oNews->num_filter_one($category_id);
-                if ($check_one) {
-                    $category_one = $category_id;
-                } else {
-                    $category_one = $parent_id;
-                }
-                if ($arr_fil[1] == "" or $arr_fil[1] == "all") {
-                    $fil_one = 'all';
-                } else {
-                    $fil_one = $arr_fil[1];
-                    $seo_one = $oNews->seo_filter_one($category_one, $fil_one);;
-                    $key_one = $seo_one["name"] . " " . $seo_one["filter_name"];
-                }
-                $smarty->assign("fil_one", $fil_one);
-                $smarty->assign("numf_one", $oNews->num_filter_one($category_one));
-                $smarty->assign("rs_one", $oNews->show_filter_one($category_one));
-
-                // bo loc 2
-                $check_two = $oNews->num_filter_two($category_id);
-                if ($check_two) {
-                    $category_two = $category_id;
-                } else {
-                    $category_two = $parent_id;
-                }
-                if ($arr_fil[2] == '' or $arr_fil[2] == 'all') {
-                    $fil_two = 'all';
-                } else {
-                    $fil_two = $arr_fil[2];
-                    $seo_two = $oNews->seo_filter_two($category_two, $fil_two);
-                    $key_two = $seo_two["name"] . " " . $seo_two["filter_name"];
-                }
-                $smarty->assign("fil_two", $fil_two);
-                $smarty->assign("numf_two", $oNews->num_filter_two($category_two));
-                $smarty->assign("rs_two", $oNews->show_filter_two($category_two));
-
-                // bo loc 3
-                $check_three = $oNews->num_filter_three($category_id);
-                if ($check_three) {
-                    $category_three = $category_id;
-                } else {
-                    $category_three = $parent_id;
-                }
-                if ($arr_fil[3] == '' or $arr_fil[3] == 'all') {
-                    $fil_three = 'all';
-                } else {
-                    $fil_three = $arr_fil[3];
-                    $seo_three = $oNews->seo_filter_three($category_three, $fil_three);
-                    $key_three = $seo_three["name"] . " " . $seo_three["filter_name"];
-                }
-                $smarty->assign("fil_three", $fil_three);
-                $smarty->assign("numf_three", $oNews->num_filter_three($category_three));
-                $smarty->assign("rs_three", $oNews->show_filter_three($category_three));
-
-                // bo loc 4
-                $check_four = $oNews->num_filter_four($category_id);
-                if ($check_four) {
-                    $category_four = $category_id;
-                } else {
-                    $category_four = $parent_id;
-                }
-                if ($arr_fil[4] == '' or $arr_fil[4] == 'all') {
-                    $fil_four = 'all';
-                } else {
-                    $fil_four = $arr_fil[4];
-                    $seo_four = $oNews->seo_filter_four($category_four, $fil_four);
-                    $key_four = $seo_four["name"] . " " . $seo_four["filter_name"];
-                }
-                $smarty->assign("fil_four", $fil_four);
-                $smarty->assign("numf_four", $oNews->num_filter_four($category_four));
-                $smarty->assign("rs_four", $oNews->show_filter_four($category_four));
-
-                // bo loc tinh thanh
-                $rs_priority = $oNews->filter_priority(0, 100);
-                $smarty->assign("rs_priority", $rs_priority);
-                if ($arr_fil[5] == "" or $arr_fil[5] == "all") {
-                    $fil_cty = 'all';
-                } else {
-                    $fil_cty = $arr_fil[5];
-                    $seo_cty = $oNews->seo_filter_cities($fil_cty);
-                    $key_cty = $seo_cty["cityname"];
-                }
-                $smarty->assign("fil_cty", $fil_cty);
-
-                // bo loc quan huyen
-                $rs_district = $oNews->filter_district(0, 100, $fil_cty);
-                $smarty->assign("rs_district", $rs_district);
-                if ($arr_fil[6] == "" or $arr_fil[6] == "all") {
-                    $fil_dis = 'all';
-                } else {
-                    $fil_dis = $arr_fil[6];
-                    $seo_dis = $oNews->seo_filter_district($fil_dis);
-                    $key_dis = $seo_dis["district_name"];
-                }
-                $smarty->assign("fil_dis", $fil_dis);
-
-                //Seo google filter
-                if ($key_cty != "") {
-                    $key_cty = " " . $key_cty;
-                } else {
-                    $key_cty = "";
-                }
-                if ($key_dis != "") {
-                    $key_dis = " " . $key_dis;
-                } else {
-                    $key_dis = "";
-                }
-
-                if ($key_one != "") {
-                    $key_one = " " . $key_one;
-                } else {
-                    $key_one = "";
-                }
-                if ($key_two != "") {
-                    $key_two = " " . $key_two;
-                } else {
-                    $key_two = "";
-                }
-                if ($key_three != "") {
-                    $key_three = " " . $key_three;
-                } else {
-                    $key_three = "";
-                }
-                if ($key_four != "") {
-                    $key_four = " " . $key_four;
-                } else {
-                    $key_four = "";
-                }
-
-                $key_filter = $key_cty . $key_dis . $key_one . $key_two . $key_three . $key_four;
-                $smarty->assign("key_filter", $key_filter);
-                ////////////////////////////////// end bo loc /////////////////////////////////
-
-                ////////////////////////////////// ORDER BY ///////////////////////////////////
-                $get_order = $function->sql_injection($arr_str[1]);
-                if ($get_order == "") {
-                    $get_order = '0';
-                }
-                if ($get_order == '0') {
-                    $order_by = 'ORDER BY cc.pos desc, cc.created_date desc';
-                }
-                if ($get_order == 'priceasc') {
-                    $order_by = 'ORDER BY cc.price_new asc';
-                    $smarty->assign("hover_gia", "priceasc");
-                }
-                if ($get_order == 'pricedesc') {
-                    $order_by = 'ORDER BY cc.price_new desc';
-                    $smarty->assign("hover_gia", "pricedesc");
-                }
-                if ($get_order == 'saledesc') {
-                    $order_by = 'ORDER BY giam_gia desc';
-                    $smarty->assign("hover_gia", "saledesc");
-                }
-                if ($get_order == 'viewsdesc') {
-                    $order_by = 'ORDER BY cc.views desc';
-                    $smarty->assign("hover_gia", "viewsdesc");
-                }
-
-                $page = $function->sql_injection($arr_str[2]);
-
-                if ($page == "") {
-                    $page = 0;
-                }
-                $numf = $oNews->num_all_filter($category_id, 0, 1, 0, $fil_one, $fil_two, $fil_three, $fil_four,
-                    $fil_cty, $fil_dis);
-
-                if ($layout_home == '_NT01') {
-                    $per_page = 10;
-                } else {
-                    $per_page = 10;
-                }
-
-                $all_page = $numf ? $numf : 1;
-                $base_url = URL_HOMEPAGE . "{$a}/{$get_order}";
-                $url_last = ".html?search" . "_{$fil_one}_{$fil_two}_{$fil_three}_{$fil_four}";
-                $paging = $function->generate_page_news($base_url, $url_last, $all_page, $per_page, $page);
-                $smarty->assign("paging", $paging);
-
-                // Du lieu category
-                $rs = $oNews->show_all_filter_detail($page, $per_page, $category_id, 0, 1, 0, $fil_one, $fil_two,
-                    $fil_three, $fil_four, 0, 0, $order_by);
-                $smarty->assign("rs", $rs);
-                //////////////////////////////////Giao dien hien thi /////////////////////////////
-                //$layout = $layout_home;
-                return $smarty->fetch($themes . "/public/content/all_jobs_cate.html");
-            }
-            break;
-
+////////////////////////////////////////////////////////////////////////////////
         case $url_views;
             $_SESSION[URL_HOME]['tinseo'] = $function->sql_injection($_SERVER['REQUEST_URI']);
             $b = $product_id;

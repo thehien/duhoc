@@ -407,28 +407,27 @@ class News
         return $rows;
     }
 
-    function get_list_news($category_id, $parent_id, $page, $per_page)
+    function get_list_news($category_id, $page, $per_page)
     {
-        global $db;
+        global $db, $function;
         $language = LANG_AUGE;
         $sr = '';
-        if ($category_id == '0') {
-            $sr .= "";
+        if (!$category_id) {
+            $sr .= "and news_category > 3 ";
         } else {
-            $sr .= "and category_id ='$category_id' ";
+            $sr .= "and news_category IN ($category_id) ";
         }
-
-        if ($parent_id == '0') {
-            $sr .= "and parent_id='$parent_id' ";
-        } else {
-            $sr .= "and parent_id='$parent_id'";
-        }
-
-        $sql = "SELECT category_id,category_name,category_content,parent_id,status,category_url,color,link,layout,news_url,category_img
-		FROM coupons_category ca where status = '1' and language ='$language' $sr ORDER BY pos asc Limit $page, $per_page";
+        $sql = "SELECT news_id, news_url, news_name, news_img, news_content, FROM_UNIXTIME(created_date,'%d/%m/%Y %h:%i') as time_news ";
+        $sql .= "FROM coupons_news where status = '1' and language ='$language' $sr 
+                 ORDER BY pos asc Limit $page, $per_page";
         //echo $sql;
         $res = $db->db_query($sql);
         $rows = $db->db_fetchrowset($res);
+
+        for ($i = 0; $i < count($rows); $i++) {
+            $rows[$i]["news_name_limit"] = $function->cutnchar($rows[$i]["news_name"], 100);
+            $rows[$i]["full_news_name"] = $function->cutnchar($rows[$i]["news_name"], 10000);
+        }
 
         return $rows;
     }

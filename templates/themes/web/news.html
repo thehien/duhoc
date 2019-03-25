@@ -1,95 +1,91 @@
 <div class="col-md-12 no-padding fw-mgb20">
     {foreach from=$list_category_content item="val" name="val"}
-    <div style="float:left; margin: 10px 15px 10px 15px;">
-        <h4><strong>{$val.category_name}</strong></h4>
+    <div style="float:left; margin: 10px 15px 10px 15px;line-height: 25px;">
+        <a class="link_duhoc_hover" href="#">
+            <h4><strong>{$val.category_name}</strong></h4>
+        </a>
     </div>
+    {if !$smarty.foreach.val.last}
+        <div style="float:left; border: 1px solid #CCC; height: 25px; margin-top: 7px;"></div>
+    {/if}
     {/foreach}
 </div>
 
+{literal}
+<script type="text/javascript">
+    function loadMoreData(last_id){
+        $.ajax( {
+            url: 'load/load_more_data.php?last_id=' + last_id,
+            type: "get",
+            dataType: 'json',
+            async: false,
+            beforeSend: function() {
+                $('.ajax-load').show();
+            }
+        })
+            .done(function(data) {
+                $('.ajax-load').hide();
+                $("#post-data").append(data);
+            })
+            .fail(function(jqXHR, ajaxOptions, thrownError) {
+                alert('server not responding...');
+            });
+    }
+</script>
+{/literal}
 
+{if count($list_news_sub) > 0}
 <div class="col-md-6 col-sm-6 col-xs-12">
     <div style="background: #fff;">
         {include file="$themes/content_banner.html"}
     </div>
 </div>
+{foreach from=$list_news_sub item="val" key="key" name="val"}
+    <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="featured-item">
+            <div class="featured-wrap">
+                <div class="featured-inner">
+                    <figure class="item-thumb">
+                        {if $val.news_img}
+                        <a class="hover-effect" href="{$smarty.const.URL_HOMEPAGE}detail/{$main_cate}-{$val.news_id}-{$val.news_url}.html">
+                            <img width="100%" height="160" src="{$smarty.const.URL_HOME}/upload/news/{$val.news_img}" alt="{$val.news_name}">
+                        </a>
+                        {else}
+                        <a class="hover-effect" href="{$smarty.const.URL_HOMEPAGE}detail/{$main_cate}-{$val.news_id}-{$val.news_url}.html">
+                            <img width="100%" height="160" src="{$smarty.const.URL_WEB}{$themes}/assets/img/about/img_1.jpg" alt="{$val.news_name}">
+                        </a>
+                        {/if}
 
-<div class="col-md-3 col-sm-6 col-xs-12">
-    <div class="featured-item">
-        <div class="featured-wrap">
-            <div class="featured-inner">
-                <figure class="item-thumb">
-                    <a class="hover-effect" href="{$smarty.const.URL_HOMEPAGE}study-detail.html">
-                        <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/about/img_1.jpg" alt="">
-                    </a>
-                </figure>
-                <div class="item-body">
-                                    <span class="job-title">
-                                        <a href="job-page.html">
-                                            Chủ đề bài viết: Ex: Du học Canada có phải là lựa chọn hoàn
-                                            hảo cho bạn...
-                                    </a></span>
+                    </figure>
+                    <div class="item-body">
+                        <span class="job-title">
+                            <a title="{$val.full_news_name}" href="{$smarty.const.URL_HOMEPAGE}detail/{$main_cate}-{$val.news_id}-{$val.news_url}.html">
+                                {$val.news_name_limit}
+                            </a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="item-foot">
+                <span><i class="ti-calendar"></i> {$val.time_news}</span>
+                <div class="view-iocn">
+                    <a href="{$smarty.const.URL_HOMEPAGE}detail/{$main_cate}-{$val.news_id}-{$val.news_url}.html"><i class="ti-arrow-right"></i></a>
                 </div>
             </div>
         </div>
-        <div class="item-foot">
-            <span><i class="ti-calendar"></i> 22/02/2019 10:30</span>
-            <div class="view-iocn">
-                <a href="job-page.html"><i class="ti-arrow-right"></i></a>
-            </div>
-        </div>
     </div>
-</div>
-<div class="col-md-3 col-sm-6 col-xs-12">
-    <div class="featured-item">
-        <div class="featured-wrap">
-            <div class="featured-inner">
-                <figure class="item-thumb">
-                    <a class="hover-effect" href="{$smarty.const.URL_HOMEPAGE}study-detail.html">
-                        <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/about/img_1.jpg" alt="">
-                    </a>
-                </figure>
-                <div class="item-body">
-                                    <span class="job-title">
-                                        <a href="job-page.html">
-                                            Chủ đề bài viết: Ex: Du học Canada có phải là lựa chọn hoàn
-                                            hảo cho bạn...
-                                    </a></span>
+{/foreach}
 
-                </div>
-            </div>
-        </div>
-        <div class="item-foot">
-            <span><i class="ti-calendar"></i> 22/02/2019 10:30</span>
-            <div class="view-iocn">
-                <a href="job-page.html"><i class="ti-arrow-right"></i></a>
-            </div>
-        </div>
-    </div>
+<div class="col-md-12">
+    <div class="showing pull-left"></div>
+    <ul class="pagination pull-right">
+        <li class="active"><a href="#" class="btn btn-common"><i class="ti-angle-left"></i> prev</a></li>
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+        <li class="active"><a href="#" class="btn btn-common">Next <i class="ti-angle-right"></i></a></li>
+    </ul>
 </div>
-
-<div class="col-md-3 col-sm-6 col-xs-12">
-    <div class="featured-item">
-        <div class="featured-wrap">
-            <div class="featured-inner">
-                <figure class="item-thumb">
-                    <a class="hover-effect" href="{$smarty.const.URL_HOMEPAGE}study-detail.html">
-                        <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/about/img_1.jpg" alt="">
-                    </a>
-                </figure>
-                <div class="item-body">
-                                   <span class="job-title">
-                                        <a href="job-page.html">
-                                            Chủ đề bài viết: Ex: Du học Canada có phải là lựa chọn hoàn
-                                            hảo cho bạn...
-                                    </a></span>
-                </div>
-            </div>
-        </div>
-        <div class="item-foot">
-            <span><i class="ti-calendar"></i> 22/02/2019 10:30</span>
-            <div class="view-iocn">
-                <a href="job-page.html"><i class="ti-arrow-right"></i></a>
-            </div>
-        </div>
-    </div>
-</div>
+{/if}

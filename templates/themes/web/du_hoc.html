@@ -109,7 +109,7 @@
                     {$cate_detail[0].category_content}
                 </div>
                 <div class="col-md-4">
-                    <img src="{$smarty.const.URL_HOMEPAGE}upload/categorys/{$cate_detail[0].category_img}" alt="">
+                    <img width="100%" height="250" src="{$smarty.const.URL_HOMEPAGE}upload/categorys/{$cate_detail[0].category_img}" alt="">
                 </div>
             </div>
         </div>
@@ -133,19 +133,6 @@
 
             <div class="col-md-12 no-padding">
                 {include file="$themes/web/news.html"}
-            </div>
-
-            <div class="col-md-12">
-                <div class="showing pull-left"></div>
-                <ul class="pagination pull-right">
-                    <li class="active"><a href="#" class="btn btn-common"><i class="ti-angle-left"></i> prev</a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li class="active"><a href="#" class="btn btn-common">Next <i class="ti-angle-right"></i></a></li>
-                </ul>
             </div>
         </div>
     </div>
@@ -280,7 +267,7 @@
                                     </a>
                                 </div>
                                 <div class="fw-mgb10">
-                                    {$val.description}
+                                    {$val.news_content}
                                 </div>
                             </div>
                             <div class="clearfix"></div>
@@ -288,7 +275,7 @@
                     </div>
                 {/foreach}
             </div>
-
+            {if count($all_schools) > 0}
             <div class="col-md-12">
                 <div class="showing pull-left"></div>
                 <ul class="pagination pull-right">
@@ -301,6 +288,7 @@
                     <li class="active"><a href="#" class="btn btn-common">Next <i class="ti-angle-right"></i></a></li>
                 </ul>
             </div>
+            {/if}
             {foreach from=$all_schools item="val" name="val"}
                 {literal}
                 <script>
@@ -321,7 +309,7 @@
                         transform: scale(0.8);
 
                     }
-                    .popup_visible #fadeandscale_schools_{/literal}{$val.userid}{literal}
+                    .popup_visible #fadeandscale_schools_{/literal}{$val.news_id}{literal}
                     {
                         transform: scale(1);
                     }
@@ -341,9 +329,7 @@
                         </div>
 
                         <div class="col-md-10">
-                            <h3>
-                                <strong>{$val.news_name}</strong>
-                            </h3>
+                            <h3><strong>{$val.news_name}</strong></h3>
                         </div>
                     </div>
 
@@ -352,7 +338,7 @@
                     </div>
 
                     <div class="col-md-12 no-padding">
-                        <p>
+                        <p style="font-size:14px;">
                             {$val.description}
                         </p>
                     </div>
