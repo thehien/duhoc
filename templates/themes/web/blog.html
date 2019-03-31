@@ -1,0 +1,78 @@
+{include file="$themes/header.html"}
+<script src="{$smarty.const.URL_WEB}{$themes}/assets/js/jquery.popupoverlay.js"></script>
+<!-- Header Section Start -->
+<div class="header">
+    <!-- Start intro section -->
+    <section id="intro" class="section-intro">
+        <div class="logo-menu" style="background: #fff;">
+            {include file="$themes/top.html"}
+        </div>
+        <!-- Header Section End -->
+        <section class="featured-jobs">
+            {include file="$themes/top-support.html"}
+        </section>
+        <section class="find-jobs section-about">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 fw-mgt30 fw-mgb10">
+                        <span class="fw-fs-26"><strong>{$cate_detail[0].category_name}</strong></span>
+                        <div align="center" class="btn-bg-under-center fw-mgt10"></div>
+                    </div>
+                    <div class="col-md-12 no-padding">
+                        <div align="left" class="col-md-8 text-justify">
+                            {$cate_detail[0].category_content}
+                        </div>
+                        <div class="col-md-2"></div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </section>
+</div>
+
+<!-- end intro section -->
+<section id="blog" class="find-jobs section-about fw-mgt10">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 no-padding fw-mgb20">
+                {if $main_cate == 108}
+                    {assign var="border" value="border-daihoc"}
+                {elseif $main_cate == 107}
+                    {assign var="border" value="border-thpt"}
+                {else}
+                    {assign var="border" value="border-thacsi"}
+                {/if}
+                {foreach from=$list_hoc_bong_child item="val" name="val"}
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 blog-item">
+
+                    <div class="{$border} blog-item-wrapper">
+                        <div class="blog-item-img">
+                            <a href="{$smarty.const.URL_HOMEPAGE}hb/{$main_cate}-{$val.category_id}-{$val.category_url}.html">
+                                {if $val.category_img}
+                                <img src="{$smarty.const.URL_HOME}/upload/categorys/{$val.category_img}"/>
+                                {else}
+                                <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/info/man-user.png"/>
+                                {/if}
+                            </a>
+                        </div>
+                        <div class="blog-item-text">
+                            <a href="{$smarty.const.URL_HOMEPAGE}hb/{$main_cate}-{$val.category_id}-{$val.category_url}.html" class="link_blue">
+                                <h3>
+                                    {$val.category_name}
+                                    <div align="center" class="btn-bg-under-center fw-mgt10 fw-mgb10"></div>
+                                </h3>
+                            </a>
+                            <p class="h-25 d-inline-block">
+                                {$val.category_content}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {/foreach}
+            </div>
+        </div>
+    </div>
+</section>
+<!-- footer -->
+{include file="$themes/footer.html"}

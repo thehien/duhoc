@@ -73,6 +73,19 @@ class News
         return $rows;
     }
 
+        // Get data all schools
+    function count_all_schools($news_id)
+    {
+        global $db;
+        $language = LANG_AUGE;
+        $sql = "SELECT * FROM ";
+        $sql .= "coupons_schools ";
+        $sql .= "where news_category = $news_id and language=$language and status=1 order by news_id asc";
+        $res = $db->db_query($sql);
+        $rows = $db->db_numrows($res);
+        return $rows;
+    }
+
     // Get data all question
     function get_all_question($news_id)
     {

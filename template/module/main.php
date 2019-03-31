@@ -237,6 +237,11 @@ function process_client()
             $all_schools = $oNews->get_all_schools($b, 0, 4);
             $smarty->assign("all_schools", $all_schools);
 
+            // Count all schools
+            $count_schools = $oNews->count_all_schools($b);
+            $total_pages = ceil($count_schools / 4);
+            $smarty->assign("total_pages", $total_pages);
+
             // Get all question
             $all_question = $oNews->get_all_question($b);
             $smarty->assign("all_question", $all_question);
@@ -386,7 +391,7 @@ function process_client()
             $smarty->assign("all_student", $all_student);
 
             // Get all schools
-            $all_schools = $oNews->get_all_schools($b);
+            $all_schools = $oNews->get_all_schools($b, 0, 4);
             $smarty->assign("all_schools", $all_schools);
 
             // Get all question
