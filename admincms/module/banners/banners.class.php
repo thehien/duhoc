@@ -56,7 +56,7 @@ class Banners_class
         }
 
         $sql = "SELECT a.banner_id as id_tem, a.banner_name, a.status, a.pos ,a.banner_img, b.category_name, a.banner_category
-		FROM coupons_banner a, coupons_category b where a.banner_id >= '1' and  a.status = '1' and a.category_id = b.category_id 
+		FROM coupons_banner a, coupons_category b where a.banner_id >= '1' and a.category_id = b.category_id 
 		and a.language ='$language' $sr_search $orderby Limit $page,$per_page";
         //echo $sql;
         $res = $db->db_query($sql);

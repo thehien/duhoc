@@ -4,7 +4,7 @@ define("DB_HOST", 'localhost');
 define("LOGINED_TRUE", '29092013');
 if ($_SERVER['SERVER_NAME'] == "localhost") {
 
-    define("DB_NAME", 'duhoc');
+    define("DB_NAME", 'duhoc_2');
     define("DB_USER", 'root');
     define("DB_PWD", '');
     define("URL_HOME", "http://localhost/duhoc");

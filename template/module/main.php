@@ -193,8 +193,25 @@ function process_client()
             //////////////////////////////////////////////////////
             // Get all list news du hoc
             //////////////////////////////////////////////////////
-            $list_news_sub = $oNews->get_list_news(null, 0, 100);
+            $list_news_sub = $oNews->get_list_new_home(null, 0, 10, 0, 1);
             $smarty->assign("list_news_sub", $list_news_sub);
+
+            $list_news_slide = $oNews->get_slide_new_home(null, 0, 10, 1);
+            $smarty->assign("list_news_slide", $list_news_slide);
+
+            // News other
+            $page = $function->sql_injection($arr_str[3]);
+            if ($page == "") {
+
+            }
+            $numf = $oNews->num_news_category(0, $b);
+
+            $per_page = 4;
+            $all_page = $numf ? $numf : 1;
+            $base_url = URL_HOMEPAGE . "detail/{$b}/0";
+            $url_last = "trang.html";
+            $paging = $function->generate_page_news($base_url, $url_last, $all_page, $per_page, $page);
+            $smarty->assign("paging", $paging);
 
             return $smarty->fetch($themes . "/index.html");
             break;
@@ -217,7 +234,7 @@ function process_client()
             $smarty->assign("all_student", $all_student);
 
             // Get all schools
-            $all_schools = $oNews->get_all_schools($b);
+            $all_schools = $oNews->get_all_schools($b, 0, 4);
             $smarty->assign("all_schools", $all_schools);
 
             // Get all question
@@ -251,20 +268,6 @@ function process_client()
                 $smarty->assign("list_news_sub", null);
                 $smarty->assign("list_news_slide", null);
             }
-
-            // News other
-            $page = $function->sql_injection($arr_str[3]);
-            if ($page == "") {
-                $page = 0;
-            }
-            $numf = $oNews->num_news_category(0, $b);
-
-            $per_page = 4;
-            $all_page = $numf ? $numf : 1;
-            $base_url = URL_HOMEPAGE . "detail/{$b}/0";
-            $url_last = "trang.html#shownews";
-            $paging = $function->generate_page_news($base_url, $url_last, $all_page, $per_page, $page);
-            $smarty->assign("paging", $paging);
 
             return $smarty->fetch($themes . "/web/du_hoc.html");
             break;
@@ -407,9 +410,10 @@ function process_client()
         case "hb":
             $smarty->assign("hoc_bong", 1);
             $arr_detail = explode("-", $b);
-            $b = $function->sql_injection($arr_detail[1]);
             $main_cate = $function->sql_injection($arr_detail[0]);
+            $b = $function->sql_injection($arr_detail[1]);
             $smarty->assign("main_cate", $main_cate);
+            $smarty->assign("sub_cate", $b);
 
             // Get name hoc bong
             $hoc_bong = $oNews->category_name_category_id($b);
@@ -433,18 +437,23 @@ function process_client()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
         case "hb-detail":
             $arr_detail = explode("-", $b);
-            $b = $function->sql_injection($arr_detail[1]);
             $main_cate = $function->sql_injection($arr_detail[0]);
+            $b = $function->sql_injection($arr_detail[1]);
+            $c = $function->sql_injection($arr_detail[2]);
             $smarty->assign("main_cate", $main_cate);
-
+            $smarty->assign("sub_cate", $b);
             // Get list hoc bong con
             $list_hoc_bong_child = $oNews->get_list_category($main_cate);
             $smarty->assign("list_hoc_bong_child", $list_hoc_bong_child);
 
+            // Get all tin tuc
+            $list_news_sub = $oNews->get_cate_list_news($b, 0, 10);
+            $smarty->assign("list_news_sub", $list_news_sub);
+
             // SEO link
             $_SESSION[URL_HOME]['tinseo'] = $function->sql_injection($_SERVER['REQUEST_URI']);
 
-            $hocbong_detail = $oNews->show_hoc_bong_detail($b);
+            $hocbong_detail = $oNews->show_hoc_bong_detail($c);
             $smarty->assign("hocbong_detail", $hocbong_detail);
 
             $news_category = $hocbong_detail["news_category"];
@@ -475,22 +484,69 @@ function process_client()
             break;
 ////////////////////////////////////////////////////////////////////////////////
         case "contact":
-            $arr_detail = explode("-", $b);
-            $b = $function->sql_injection($arr_detail[0]);
-
-            $rs_order_active = $oMember->show_all_orders_cv_by_category(0, 200, $b);
-            $smarty->assign("rs_order_active", $rs_order_active);
-
-            foreach ($rs_order_active as $value) {
-                $fromTolanguage[] = $oMember->get_order_language_by_id($value['translate_id']);
-            }
-            $smarty->assign("fromTolanguage", $fromTolanguage);
-
-            $rs_news_industry = $oMember->show_all_industry(10);
-            $smarty->assign("rs_news_industry", $rs_news_industry);
-
+            $smarty->assign("contact", 1);
             return $smarty->fetch($themes . "/web/contact.html");
             break;
+
+        case "contactexe":
+            $_SESSION['tinseo'] = $function->sql_injection($_SERVER['REQUEST_URI']);
+            global $db, $smarty, $function;
+            $smarty->assign("contact", 1);
+            $smarty->assign("seo_title", "Hợp tác với chúng tôi");
+            $smarty->assign("seo_key", "Hợp tác với chúng tôi");
+            $smarty->assign("seo_desc", "Hợp tác với chúng tôi");
+
+            // Request param
+            $company_name = $function->sql_injection($_POST["company_name"]);
+            $personal_name = $function->sql_injection($_POST["personal_name"]);
+            $mobile = $function->sql_injection($_POST["mobile"]);
+            $email = $function->sql_injection($_POST["email"]);
+            $content = $function->sql_injection($_POST["content"]);
+
+            $body = "<div style='font-size:20px;'><strong>Yêu cầu hợp tác từ Website: " . lang_website . ":</strong></div>
+            <br/>
+            <div>Tên công ty: <strong>" . $company_name . "</strong></div>
+            <div>Tên người đại diện pháp lý: <strong>" . $personal_name . "</strong></div>
+            <div>Điện thoại: <strong>" . $mobile . "</strong></div>
+            <div>Email: <strong>" . $email . "</strong></div>
+            <div>Nội dung : " . $content . "</div>
+            ";
+
+            $to_admin = lang_email;
+            $from = lang_email;
+            $title = 'Yêu cầu hợp tác từ website '. lang_website;
+            $FromName = 'Được gửi từ ' . $email;
+
+            $function->smtpmailer($to_admin, $from, $FromName, $title, $body);
+            $function->goto_url(URL_HOMEPAGE . "contact-thanks.html");
+            break;
+
+        case "contact-thanks":
+            $smarty->assign("contact_ok", 1);
+            return $function->msg_box_new(lang_main_support, 5, URL_HOMEPAGE);
+            break;
+////////////////////////////////////////////////////////////////////////////////
+        case "blog":
+            $smarty->assign("blog", 1);
+            return $smarty->fetch($themes . "/web/blog.html");
+            break;
+////////////////////////////////////////////////////////////////////////////////
+        case "blog-detail":
+            $smarty->assign("blog_detail", 1);
+            return $smarty->fetch($themes . "/web/blog_detail.html");
+            break;
+
+////////////////////////////////////////////////////////////////////////////////
+        case "career":
+            $smarty->assign("career", 1);
+            return $smarty->fetch($themes . "/web/career.html");
+            break;
+////////////////////////////////////////////////////////////////////////////////
+        case "career-detail":
+            $smarty->assign("career_detail", 1);
+            return $smarty->fetch($themes . "/web/career_detail.html");
+            break;
+
 ////////////////////////////////////////////////////////////////////////////////
         case $url_views;
             $_SESSION[URL_HOME]['tinseo'] = $function->sql_injection($_SERVER['REQUEST_URI']);
@@ -685,5 +741,6 @@ function process_client()
         //////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////search////////////////////////////////////////
     }
+
     return null;
 }

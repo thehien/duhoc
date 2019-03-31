@@ -1,4 +1,48 @@
 {include file="$themes/header.html"}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
+{literal}
+<style>
+.error {
+  color: #ff0000;
+}
+</style>
+<script type="text/javascript">
+  $(function() {
+    $("form[name='contact']").validate({
+    // Specify validation rules
+    rules: {
+      company_name: {
+        required: true
+      },
+      personal_name: {
+        required: true
+      },
+      email: {
+        required: true,
+        email: true
+      },
+      mobile: {
+        required: true,
+        minlength: 10
+      },
+    },
+    // Specify validation error messages
+    messages: {
+      company_name: "Vui lòng nhập tên công ty",
+      personal_name: "Vui lòng nhập tên người đại diện pháp lý",
+      email: "Vui lòng nhập Email",
+      mobile: {
+        required: "Vui lòng nhập số điện thoại",
+        minlength: "Điện thoại tối thiểu 10 ký tự"
+      }
+    },
+    submitHandler: function(form) {
+      form.submit();
+    }
+  });
+  });
+</script>
+{/literal}
 <!-- Header Section Start -->
 <div class="header">
   <!-- Start intro section -->
@@ -21,21 +65,20 @@
           <strong>Hợp tác chúng tôi</strong>
         </h4>
       </div>
-
       <div class="col-md-12 no-padding fw-mgt10">
         <div class="col-md-9 no-padding">
           <div class="col-md-12 fw-mgb20">
-            <form role="form" class="form-ad" name="registration" method="post" enctype="multipart/form-data" action="{$smarty.const.URL_HOMEPAGE}add-member.html"/>
+            <form role="form" class="form-ad" name="contact" method="post" action="{$smarty.const.URL_HOMEPAGE}contactexe.html"/>
 
             <div class="form-group">
               <div class="row">
 
                 <div class="col-md-6">
-                  <input type="text" class="form-control" name="first-name" id="first-name" placeholder="Tên công ty (*)"/>
+                  <input type="text" class="form-control" name="company_name" id="company_name" placeholder="Tên công ty (*)"/>
                 </div>
 
                 <div class="col-md-6">
-                  <input type="text" class="form-control" name="last-name" id="last-name" placeholder="Tên người đại diện pháp lý (*)"/>
+                  <input type="text" class="form-control" name="personal_name" id="personal_name" placeholder="Tên người đại diện pháp lý (*)"/>
                 </div>
               </div>
             </div>
@@ -44,7 +87,7 @@
               <div class="row">
 
                 <div class="col-md-6">
-                  <input type="text" class="form-control" name="mobileCode" placeholder="Email (*)">
+                  <input type="text" class="form-control" name="email" placeholder="Email (*)">
                 </div>
 
                 <div class="col-md-6">
@@ -55,14 +98,14 @@
 
             <div class="form-group">
               <div class="input-icon">
-                <textarea class="form-control" rows="6" name="news_content"
-                    id="news_content" placeholder="Qúy vị muốn tuyển sinh chương trình nào?"></textarea>
+                <textarea class="form-control" rows="6" name="content"
+                 placeholder="Qúy vị muốn tuyển sinh chương trình nào?"></textarea>
               </div>
             </div>
 
-            <center>
-              <button class="btn btn-submit log-btn" type="submit">Tạo tài khoản</button>
-            </center>
+            <div align="left">
+              <button class="btn btn-submit-1" type="submit">Gửi</button>
+            </div>
             </form>
           </div>
         </div>
@@ -82,12 +125,12 @@
               </li>
               {/foreach}
               <li class="fw-mgb10">
-                <a href="{$smarty.const.URL_HOMEPAGE}">
+                <a href="{$smarty.const.URL_HOMEPAGE}blog.html">
                   Blog
                 </a>
               </li>
               <li class="fw-mgb10">
-                <a href="{$smarty.const.URL_HOMEPAGE}">
+                <a href="{$smarty.const.URL_HOMEPAGE}career.html">
                   Cơ hội nghề nghiệp
                 </a>
               </li>

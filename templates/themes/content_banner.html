@@ -1,7 +1,7 @@
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
-        {foreach from=$list_news_sub item="val" key="key" name="val"}
+        {foreach from=$list_news_slide item="val" key="key" name="val"}
           <li data-target="#myCarousel" data-slide-to="{$key}" {if $smarty.foreach.val.first}class="active"{/if}></li>
         {/foreach}
     </ol>

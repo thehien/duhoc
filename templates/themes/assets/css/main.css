@@ -6099,12 +6099,11 @@ for font-size and font-family*/
 }
 
 .home_background {
-    background: url(../img/new_bg.png) no-repeat center center;
-    -webkit-background-size: cover;
+/*    -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    min-height: 500px;
+    min-height: 500px;*/
     color: #fff;
 }
 

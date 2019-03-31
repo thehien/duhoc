@@ -212,7 +212,7 @@ define("lang_hotro_day", "Mỗi ngày từ 8h00 đến 17h30");
 define("lang_hotro_hotline", "Thời gian khác vui lòng gọi số HOTLINE:");
 // thong tin dang ky ho tro
 define("lang_support", "Đang ký tìm mua bất động sản theo yêu cầu");
-define("lang_main_support", "Bạn đả gửi hỗ trợ thành công! chúng tôi sẽ trả lời trong thời gian sớm nhất.");
+define("lang_main_support", "Bạn đã gửi yêu cầu thành công! chúng tôi sẽ trả lời trong thời gian sớm nhất.");
 // thong bao lien he
 define("lang_lien_tt", "Hỗ trợ khách hàng");
 define("lang_thong_bao_ten", "Vui lòng nhập tên!");

@@ -38,7 +38,7 @@ class News
     {
         global $db;
         $sql = "SELECT category_name, category_content,category_info_news,category_info_student,category_info_schools, category_img 
-                FROM coupons_category where category_id  = '$category_id'";
+        FROM coupons_category where category_id  = '$category_id'";
         $res = $db->db_query($sql);
         $rows = $db->db_fetchrowset($res);
 
@@ -60,13 +60,13 @@ class News
     }
 
     // Get data all schools
-    function get_all_schools($news_id)
+    function get_all_schools($news_id, $page, $per_page)
     {
         global $db;
         $language = LANG_AUGE;
         $sql = "SELECT * FROM ";
         $sql .= "coupons_schools ";
-        $sql .= "where news_category = $news_id and language=$language order by news_id asc";
+        $sql .= "where news_category = $news_id and language=$language and status=1 order by news_id asc Limit $page, $per_page";
         $res = $db->db_query($sql);
         $rows = $db->db_fetchrowset($res);
 
@@ -243,7 +243,7 @@ class News
     {
         global $db;
         $sql =
-            "SELECT t1.*, (select t2.name from list_languages t2 where t1.from_language = t2.id ) as from_language_name,(select t2.name from list_languages t2 where t1.to_language = t2.id ) as to_language_name,(select t3.category_name from coupons_special_category t3 where t1.special_category = t3.id ) as special_category_name FROM coupons_language_order t1 where t1.session = '$aSessionOrder' order by t1.id desc";
+        "SELECT t1.*, (select t2.name from list_languages t2 where t1.from_language = t2.id ) as from_language_name,(select t2.name from list_languages t2 where t1.to_language = t2.id ) as to_language_name,(select t3.category_name from coupons_special_category t3 where t1.special_category = t3.id ) as special_category_name FROM coupons_language_order t1 where t1.session = '$aSessionOrder' order by t1.id desc";
 
         $res = $db->db_query($sql);
         $rows = $db->db_fetchrowset($res);
@@ -263,7 +263,7 @@ class News
         global $db;
         $language = LANG_AUGE;
         $sql = "SELECT category_name, category_url, category_id, category_content, category_img FROM coupons_category 
-                where parent_id = '$category_id' and language=$language and status = 1";
+        where parent_id = '$category_id' and language=$language and status = 1";
         //echo $sql;
         $res = $db->db_query($sql);
         $rows = $db->db_fetchrowset($res);
@@ -323,7 +323,7 @@ class News
         global $db, $function;
         $language = LANG_AUGE;
         $sql = "Select category_id,category_url,parent_id,category_name,category_content,color,link,layout,news_url,seo_title,seo_desc,seo_key
-		from coupons_category where status = '1' and category_id = '$category_id' and language ='$language'";
+        from coupons_category where status = '1' and category_id = '$category_id' and language ='$language'";
         $res = $db->db_query($sql);
         $rows = $db->db_fetchrow($res);
 
@@ -336,7 +336,7 @@ class News
         global $db, $function;
         $language = LANG_AUGE;
         $sql = "Select category_id,category_url,parent_id,category_name,category_content,color,link,layout,news_url,seo_title,seo_desc,seo_key,category_img	 
-		from coupons_category where status = '1' and category_url = '$category_url' and language ='$language'";
+        from coupons_category where status = '1' and category_url = '$category_url' and language ='$language'";
         //echo $sql;
         $res = $db->db_query($sql);
         $rows = $db->db_fetchrow($res);
@@ -350,7 +350,7 @@ class News
         global $db, $function;
         $language = LANG_AUGE;
         $sql = "Select category_id,category_url,parent_id,category_name,category_content,color,link,layout,news_url,seo_title,seo_desc,seo_key
-		from coupons_category where status = '1' and category_id = '$parent_id' and language ='$language'";
+        from coupons_category where status = '1' and category_id = '$parent_id' and language ='$language'";
         //echo $sql;
         $res = $db->db_query($sql);
         $rows = $db->db_fetchrow($res);
@@ -399,7 +399,7 @@ class News
         }
 
         $sql = "SELECT category_id,category_name,category_content,parent_id,status,category_url,color,link,layout,news_url,category_img
-		FROM coupons_category ca where status = '1' and language ='$language' $sr ORDER BY pos asc Limit $page, $per_page";
+        FROM coupons_category ca where status = '1' and language ='$language' $sr ORDER BY pos asc Limit $page, $per_page";
         //echo $sql;
         $res = $db->db_query($sql);
         $rows = $db->db_fetchrowset($res);
@@ -411,6 +411,73 @@ class News
 
         return $rows;
     }
+
+    function get_list_new_home($category_id, $page, $per_page, $status_slide = null, $status_home = null)
+    {
+        global $db, $function;
+        $language = LANG_AUGE;
+        $sr = '';
+        if (!$category_id) {
+            $sr .= "";
+        } else {
+            $sr .= "and news_category IN ($category_id) ";
+        }
+        if (!$status_slide) {
+            $sr .= " ";
+        } else {
+            $sr .= "and status_slide = 1 ";
+        }
+
+        if (!$status_home) {
+            $sr .= " ";
+        } else {
+            $sr .= "and status_home = 1 ";
+        }
+
+        $sql = "SELECT news_id, news_url, news_name, news_img, news_content, FROM_UNIXTIME(created_date,'%d/%m/%Y %h:%i') as time_news ";
+        $sql .= "FROM coupons_news where status = '1' and language ='$language' $sr 
+        ORDER BY pos asc Limit $page, $per_page";
+        //echo $sql;
+        $res = $db->db_query($sql);
+        $rows = $db->db_fetchrowset($res);
+
+        for ($i = 0; $i < count($rows); $i++) {
+            $rows[$i]["news_name_limit"] = $function->cutnchar($rows[$i]["news_name"], 100);
+            $rows[$i]["full_news_name"] = $function->cutnchar($rows[$i]["news_name"], 10000);
+        }
+        return $rows;
+    }
+
+    function get_slide_new_home($category_id, $page, $per_page, $status_slide = null)
+    {
+        global $db, $function;
+        $language = LANG_AUGE;
+        $sr = '';
+        if (!$category_id) {
+            $sr .= "";
+        } else {
+            $sr .= "and news_category IN ($category_id) ";
+        }
+        if (!$status_slide) {
+            $sr .= " ";
+        } else {
+            $sr .= "and status_slide = 1 ";
+        }
+
+        $sql = "SELECT news_id, news_url, news_name, news_img, news_content, FROM_UNIXTIME(created_date,'%d/%m/%Y %h:%i') as time_news ";
+        $sql .= "FROM coupons_news where status = '1' and language ='$language' $sr 
+        ORDER BY pos asc Limit $page, $per_page";
+        //echo $sql;
+        $res = $db->db_query($sql);
+        $rows = $db->db_fetchrowset($res);
+
+        for ($i = 0; $i < count($rows); $i++) {
+            $rows[$i]["news_name_limit"] = $function->cutnchar($rows[$i]["news_name"], 100);
+            $rows[$i]["full_news_name"] = $function->cutnchar($rows[$i]["news_name"], 10000);
+        }
+        return $rows;
+    }
+
 
     function get_list_news($category_id, $page, $per_page, $status_slide = null, $status_home = null)
     {
@@ -436,7 +503,7 @@ class News
 
         $sql = "SELECT news_id, news_url, news_name, news_img, news_content, FROM_UNIXTIME(created_date,'%d/%m/%Y %h:%i') as time_news ";
         $sql .= "FROM coupons_news where status = '1' and language ='$language' $sr 
-                 ORDER BY pos asc Limit $page, $per_page";
+        ORDER BY pos asc Limit $page, $per_page";
         //echo $sql;
         $res = $db->db_query($sql);
         $rows = $db->db_fetchrowset($res);
@@ -462,7 +529,7 @@ class News
 
         $sql = "SELECT news_id, news_url, news_name, news_img, news_content, FROM_UNIXTIME(created_date,'%d/%m/%Y %h:%i') as time_news ";
         $sql .= "FROM coupons_news where status = '1' and language ='$language' $sr 
-                 ORDER BY pos asc Limit $page, $per_page";
+        ORDER BY pos asc Limit $page, $per_page";
         //echo $sql;
         $res = $db->db_query($sql);
         $rows = $db->db_fetchrowset($res);
@@ -493,7 +560,7 @@ class News
         }
 
         $sql = "SELECT category_id,category_name,parent_id,status,category_url,color,link,layout,news_url,category_img,category_content
-		FROM coupons_category where status = '1' and language ='$language' $sr ORDER BY pos asc Limit $page, $per_page";
+        FROM coupons_category where status = '1' and language ='$language' $sr ORDER BY pos asc Limit $page, $per_page";
 
         $res = $db->db_query($sql);
         $rows = $db->db_fetchrowset($res);
@@ -513,7 +580,7 @@ class News
             $sr .= "";
         }
         $sql = "SELECT * FROM coupons_banner 
-		where banner_category ='$banner_category' and language ='$language' and status ='1' $sr ORDER BY pos desc Limit $page, $per_page";
+        where banner_category ='$banner_category' and language ='$language' and status ='1' $sr ORDER BY pos desc Limit $page, $per_page";
         $res = $db->db_query($sql);
         $rows = $db->db_fetchrowset($res);
         for ($i = 0; $i < count($rows); $i++) {
@@ -529,7 +596,7 @@ class News
     {
         global $db, $function;
         $sql = "SELECT cc.news_id FROM coupons_products cc 
-				where cc.status = '1' and cc.news_category = '$news_category' ";
+        where cc.status = '1' and cc.news_category = '$news_category' ";
         $res = $db->db_query($sql);
         $rows = $db->db_numrows($res);
 
@@ -541,8 +608,8 @@ class News
         global $db, $function;
         $language = LANG_AUGE;
         $sql = "SELECT cc.news_id,cc.news_url
-				FROM coupons_products cc
-				where cc.news_category = '$news_category' and  cc.language = '$language'";
+        FROM coupons_products cc
+        where cc.news_category = '$news_category' and  cc.language = '$language'";
         $res = $db->db_query($sql);
         $rows = $db->db_fetchrow($res);
 
@@ -553,7 +620,7 @@ class News
     {
         global $db, $function;
         $sql = "Select cd.*, cc.*,ca.category_name from coupons_products cc, coupons_description cd , coupons_category ca
-		where cd.news_id = cc.news_id and ca.category_id = cc.news_category and cc.news_id = '$news_id' and cd.pos='0' ";
+        where cd.news_id = cc.news_id and ca.category_id = cc.news_category and cc.news_id = '$news_id' and cd.pos='0' ";
         $res = $db->db_query($sql);
         $rows = $db->db_fetchrow($res);
         $rows["title_top"] = $function->cutnchar($rows["news_name"], 100);
@@ -644,8 +711,8 @@ class News
         }
 
         $sql = "SELECT cc.news_id,ca.category_id,cc.news_img,cc.news_name,cc.status,cc.language,cc.price,cc.pos
-				FROM coupons_products cc, coupons_category ca 
-				where ca.category_id = cc.news_category and  cc.language = '$language' $sr";
+        FROM coupons_products cc, coupons_category ca 
+        where ca.category_id = cc.news_category and  cc.language = '$language' $sr";
         $res = $db->db_query($sql);
         $rows = $db->db_numrows($res);
 
@@ -701,11 +768,11 @@ class News
         }
 
         $sql = "SELECT FROM_UNIXTIME(cc.created_date,'%d-%m-%Y') as time_news, cc.news_id,cc.news_category,cc.news_img,cc.news_name
-				,cc.status,cc.language,cc.price,cc.pos,cc.news_url,cc.img_file,cc.news_content,cc.news_link,
-				cc.news_position,cc.news_type,cc.news_time,cc.news_married
+        ,cc.status,cc.language,cc.price,cc.pos,cc.news_url,cc.img_file,cc.news_content,cc.news_link,
+        cc.news_position,cc.news_type,cc.news_time,cc.news_married
 
-				FROM coupons_products cc, coupons_category ca
-				where ca.category_id = cc.news_category and ca.status = 1 and cc.language = '$language' $sr $tem_orderby Limit $page, $per_page";
+        FROM coupons_products cc, coupons_category ca
+        where ca.category_id = cc.news_category and ca.status = 1 and cc.language = '$language' $sr $tem_orderby Limit $page, $per_page";
 
         $res = $db->db_query($sql);
         $rows = $db->db_fetchrowset($res);
@@ -798,8 +865,8 @@ class News
         }
 
         $sql = "SELECT FROM_UNIXTIME(cc.created_date,'%d-%m-%Y') as time_news, cc.*
-		FROM coupons_products cc, coupons_category ca
-		where ca.category_id = cc.news_category and ca.status = 1 and cc.language = '$language' $sr $tem_orderby Limit $page, $per_page";
+        FROM coupons_products cc, coupons_category ca
+        where ca.category_id = cc.news_category and ca.status = 1 and cc.language = '$language' $sr $tem_orderby Limit $page, $per_page";
 
         $res = $db->db_query($sql);
         $rows = $db->db_fetchrowset($res);
@@ -884,7 +951,7 @@ class News
         // emd bo loc
 
         $sql = "SELECT * FROM coupons_products cc, coupons_category ca $table
-				where ca.category_id = cc.news_category and  cc.language = '$language' and cc.status = 1 and ca.status =1 $sr $catego $fil_one $fil_two $fil_three $fil_four $fil_cty $fil_dis";
+        where ca.category_id = cc.news_category and  cc.language = '$language' and cc.status = 1 and ca.status =1 $sr $catego $fil_one $fil_two $fil_three $fil_four $fil_cty $fil_dis";
 
         $res = $db->db_query($sql);
         $rows = $db->db_numrows($res);
@@ -907,11 +974,11 @@ class News
         }
 
         $sql = "SELECT cu.name, cu.avatar, cp.*, cs.* ,cod.*,cp.shipping as shipping_cart, FROM_UNIXTIME(cp.coupon_date,'%d/%m/%Y') as ngay_mua , (select t1.category_name from coupons_special_category t1 where t1.id = cod.special_category) as subject_field, (select t2.name from list_languages t2 where t2.id = cod.translate_from) as from_language_name, (select t2.name from list_languages t2 where t2.id = cod.translate_to) as to_language_name
-    FROM  coupons_orders cp,coupons_orders_detail cod, coupons_status cs , coupons_users cu
-    where cod.coupon_code=cp.coupon_code and cp.language='$language' 
-    and cs.coupon_status=cp.coupon_status and cu.userid=cp.coupon_userid and cp.coupon_status = 2 and $param_cond
-    group by cp.coupon_purchaseid
-    ORDER BY cp.coupon_status asc, cp.coupon_purchaseid desc Limit 0, 200";
+        FROM  coupons_orders cp,coupons_orders_detail cod, coupons_status cs , coupons_users cu
+        where cod.coupon_code=cp.coupon_code and cp.language='$language' 
+        and cs.coupon_status=cp.coupon_status and cu.userid=cp.coupon_userid and cp.coupon_status = 2 and $param_cond
+        group by cp.coupon_purchaseid
+        ORDER BY cp.coupon_status asc, cp.coupon_purchaseid desc Limit 0, 200";
         //echo $sql;
         $res = $db->db_query($sql);
         $rows = $db->db_fetchrowset($res);
@@ -986,9 +1053,9 @@ class News
         }
 
         $sql = "SELECT count(cc.news_id) as num_product
-				FROM coupons_products cc, coupons_category ca $table
-				where ca.category_id = cc.news_category and ca.status = 1 and  cc.language = '$language' 
-				$catego $tem_category $tem_parent_id $tem_status $fil_one $fil_two $fil_three $fil_four";
+        FROM coupons_products cc, coupons_category ca $table
+        where ca.category_id = cc.news_category and ca.status = 1 and  cc.language = '$language' 
+        $catego $tem_category $tem_parent_id $tem_status $fil_one $fil_two $fil_three $fil_four";
 
         $rs = $db->db_query($sql);
         $rows = $db->db_fetchrowset($res);
@@ -1079,9 +1146,9 @@ class News
         }
 
         $sql = "SELECT cc.news_id
-				FROM coupons_products cc, coupons_category ca $table
-				where ca.category_id = cc.news_category and ca.status = 1 and  cc.language = '$language' 
-				$catego $tem_category $tem_parent_id $tem_status $fil_one $fil_two $fil_three $fil_four $fil_cty $fil_dis";
+        FROM coupons_products cc, coupons_category ca $table
+        where ca.category_id = cc.news_category and ca.status = 1 and  cc.language = '$language' 
+        $catego $tem_category $tem_parent_id $tem_status $fil_one $fil_two $fil_three $fil_four $fil_cty $fil_dis";
         $res = $db->db_query($sql);
         $rows = $db->db_numrows($res);
 
@@ -1174,11 +1241,11 @@ class News
         }
 
         $sql = "SELECT FROM_UNIXTIME(cc.created_date,'%d-%m-%Y') as time_news, cc.news_id,cc.vat,ca.category_id,cc.news_img,cc.views,cc.news_name,cc.price_new,
-				cc.status,cc.language,cc.price,cc.pos,cc.news_url,cc.amount,cc.img_file,cc.news_content, 
-				cc.rating_stars, (cc.price-cc.price_new)/cc.price*100 as giam_gia
-				FROM coupons_products cc, coupons_category ca  $table
-				where ca.category_id = cc.news_category and ca.status = 1 and  cc.language = '$language' 
-				$catego $tem_category $tem_parent_id $tem_status $fil_one $fil_two $fil_three $fil_four $fil_cty $fil_dis $order_by Limit $page, $per_page";
+        cc.status,cc.language,cc.price,cc.pos,cc.news_url,cc.amount,cc.img_file,cc.news_content, 
+        cc.rating_stars, (cc.price-cc.price_new)/cc.price*100 as giam_gia
+        FROM coupons_products cc, coupons_category ca  $table
+        where ca.category_id = cc.news_category and ca.status = 1 and  cc.language = '$language' 
+        $catego $tem_category $tem_parent_id $tem_status $fil_one $fil_two $fil_three $fil_four $fil_cty $fil_dis $order_by Limit $page, $per_page";
 
         $res = $db->db_query($sql);
         $rows = $db->db_fetchrowset($res);
@@ -1315,10 +1382,10 @@ class News
         }
 
         $sql = "SELECT FROM_UNIXTIME(cc.created_date,'%d-%m-%Y') as time_news,ca.category_id,cc.*,
-		cd.description
-		FROM coupons_products cc, coupons_category ca, coupons_description cd $table
-		where ca.category_id = cc.news_category and cc.news_id = cd.news_id and ca.status = 1 and  cc.language = '$language'
-		$catego $tem_category $aJobtype $tem_parent_id $tem_status $fil_one $fil_two $fil_three $fil_four $fil_cty $fil_dis $order_by Limit $page, $per_page";
+        cd.description
+        FROM coupons_products cc, coupons_category ca, coupons_description cd $table
+        where ca.category_id = cc.news_category and cc.news_id = cd.news_id and ca.status = 1 and  cc.language = '$language'
+        $catego $tem_category $aJobtype $tem_parent_id $tem_status $fil_one $fil_two $fil_three $fil_four $fil_cty $fil_dis $order_by Limit $page, $per_page";
 
         $res = $db->db_query($sql);
         $rows = $db->db_fetchrowset($res);
@@ -1424,10 +1491,10 @@ class News
         }
 
         $sql = "SELECT FROM_UNIXTIME(cc.created_date,'%d-%m-%Y') as time_news,ca.category_id,cc.*,
-		cd.description
-		FROM coupons_products cc, coupons_category ca, coupons_description cd $table
-		where ca.category_id = cc.news_category and cc.news_id = cd.news_id and cc.home = 1 and  cc.language = '$language'
-		$catego $tem_category $tem_parent_id $tem_status $fil_one $fil_two $fil_three $fil_four $fil_cty $fil_dis $order_by Limit $page, $per_page";
+        cd.description
+        FROM coupons_products cc, coupons_category ca, coupons_description cd $table
+        where ca.category_id = cc.news_category and cc.news_id = cd.news_id and cc.home = 1 and  cc.language = '$language'
+        $catego $tem_category $tem_parent_id $tem_status $fil_one $fil_two $fil_three $fil_four $fil_cty $fil_dis $order_by Limit $page, $per_page";
 
         $res = $db->db_query($sql);
         $rows = $db->db_fetchrowset($res);
@@ -1528,10 +1595,10 @@ class News
         }
 
         $sql = "SELECT FROM_UNIXTIME(cc.created_date,'%d-%m-%Y') as time_news,ca.category_id,cc.*,
-		cd.description,ca.category_name
-		FROM coupons_products cc, coupons_category ca, coupons_description cd $table
-		where ca.category_id = cc.news_category and cc.news_id = cd.news_id and ca.status = 1 and  cc.language = '$language' 
-		 $tem_category $tem_parent_id $tem_status $fil_one $fil_two $fil_three $fil_four $fil_cty $fil_dis $order_by Limit $page, $per_page";
+        cd.description,ca.category_name
+        FROM coupons_products cc, coupons_category ca, coupons_description cd $table
+        where ca.category_id = cc.news_category and cc.news_id = cd.news_id and ca.status = 1 and  cc.language = '$language' 
+        $tem_category $tem_parent_id $tem_status $fil_one $fil_two $fil_three $fil_four $fil_cty $fil_dis $order_by Limit $page, $per_page";
 
         $res = $db->db_query($sql);
         $rows = $db->db_fetchrowset($res);
@@ -1754,7 +1821,7 @@ class News
         $date = time();
         $user_id = $function->sql_injection($_SESSION[URL_HOME]["userid_u"]);
         $sql = "INSERT INTO coupons_comment(news_id,nickname,title,content,status,user_id,date,parent_id)
- 		VALUES('$news_id','$nickname','$title','$content','$status','$user_id','$date','$parent_id')";
+        VALUES('$news_id','$nickname','$title','$content','$status','$user_id','$date','$parent_id')";
         $res = $db->db_query($sql);
 
         return 1;
@@ -1765,7 +1832,7 @@ class News
         global $db;
         $language = LANG_AUGE;
         $sql = "SELECT id,nickname,title,content,date,parent_id,like_cm FROM coupons_comment 
-		WHERE news_id = '$news_id' and status = '1' and parent_id ='0' ORDER BY id desc Limit $page,$per_page";
+        WHERE news_id = '$news_id' and status = '1' and parent_id ='0' ORDER BY id desc Limit $page,$per_page";
         $res = $db->db_query($sql);
         $rows = $db->db_fetchrowset($res);
 
@@ -1777,7 +1844,7 @@ class News
         global $db;
         $language = LANG_AUGE;
         $sql = "SELECT id,nickname,title,content,date,parent_id,like_cm FROM coupons_comment 
-		WHERE parent_id = '$parent_id' and status = '1' ORDER BY id desc Limit $page,$per_page";
+        WHERE parent_id = '$parent_id' and status = '1' ORDER BY id desc Limit $page,$per_page";
         $res = $db->db_query($sql);
         $rows = $db->db_fetchrowset($res);
 
@@ -1811,7 +1878,7 @@ class News
         }
 
         $sql = "SELECT cn.news_id FROM coupons_news cn , coupons_category ca
-				where cn.status = '1' and ca.category_id = cn.news_category $sr";
+        where cn.status = '1' and ca.category_id = cn.news_category $sr";
         $res = $db->db_query($sql);
         $rows = $db->db_numrows($res);
 
@@ -1839,10 +1906,10 @@ class News
         }
 
         $sql = "SELECT FROM_UNIXTIME(cn.created_date,'%M %d, %Y') as time_news, 
-		cn.news_id,cn.news_link,cn.news_name,cn.news_name,cn.news_img,cn.news_category,
-		cn.news_content,cn.created_date, cn.price_new, cn.news_url, cn.views
-		FROM coupons_news cn, coupons_category ca where cn.status = '1' and cn.language = '1' and ca.category_id = cn.news_category $sr 
-		ORDER BY cn.pos desc, cn.news_id desc Limit $page, $per_page";
+        cn.news_id,cn.news_link,cn.news_name,cn.news_name,cn.news_img,cn.news_category,
+        cn.news_content,cn.created_date, cn.price_new, cn.news_url, cn.views
+        FROM coupons_news cn, coupons_category ca where cn.status = '1' and cn.language = '1' and ca.category_id = cn.news_category $sr 
+        ORDER BY cn.pos desc, cn.news_id desc Limit $page, $per_page";
         $res = $db->db_query($sql);
         $rows = $db->db_fetchrowset($res);
         for ($i = 0; $i < count($rows); $i++) {
@@ -1895,10 +1962,10 @@ class News
         }
 
         $sql = "SELECT FROM_UNIXTIME(cn.created_date,'%M %d, %Y') as time_news, 
-		cn.news_id,cn.news_link,cn.news_name,cn.news_name,cn.news_img,cn.news_category,
-		cn.news_content,cn.description,cn.created_date, cn.price_new, cn.news_url, cn.views
-		FROM coupons_news cn, coupons_category ca where cn.status = '1' and ca.category_id = cn.news_category $sr 
-		ORDER BY cn.pos desc, cn.news_id desc Limit $page, $per_page";
+        cn.news_id,cn.news_link,cn.news_name,cn.news_name,cn.news_img,cn.news_category,
+        cn.news_content,cn.description,cn.created_date, cn.price_new, cn.news_url, cn.views
+        FROM coupons_news cn, coupons_category ca where cn.status = '1' and ca.category_id = cn.news_category $sr 
+        ORDER BY cn.pos desc, cn.news_id desc Limit $page, $per_page";
 
         $res = $db->db_query($sql);
         $rows = $db->db_fetchrowset($res);
@@ -1926,8 +1993,8 @@ class News
         global $db, $function;
         $sql = "Select FROM_UNIXTIME(created_date,'%d/%m/%Y') as time_news, news_id, news_name, 
         status, news_img, news_category, news_content,
-		description,news_link,news_url,created_date,userid,seo_title,seo_key,seo_desc 
-		from coupons_hocbong where news_id = '$news_id'  ";
+        description,news_link,news_url,created_date,userid,seo_title,seo_key,seo_desc 
+        from coupons_hocbong where news_id = '$news_id'  ";
         $res = $db->db_query($sql);
         $rows = $db->db_fetchrow($res);
         $rows["title_top"] = $function->cutnchar($rows["news_name"], 100);
@@ -1942,8 +2009,8 @@ class News
         global $db, $function;
         $sql = "Select FROM_UNIXTIME(created_date,'%d/%m/%Y') as time_news, news_id, news_name, 
         status, news_img, news_category, news_content,
-		description,news_link,news_url,created_date,userid,seo_title,seo_key,seo_desc 
-		from coupons_news where news_id = '$news_id'  ";
+        description,news_link,news_url,created_date,userid,seo_title,seo_key,seo_desc 
+        from coupons_news where news_id = '$news_id'  ";
         $res = $db->db_query($sql);
         $rows = $db->db_fetchrow($res);
         $rows["title_top"] = $function->cutnchar($rows["news_name"], 100);
@@ -1957,7 +2024,7 @@ class News
     {
         global $db, $function;
         $sql = "Select FROM_UNIXTIME(created_date,'%d/%m/%Y') as time_news, news_id,news_name,status,news_img,news_category,
-		news_content,description,news_link,news_url,created_date,userid from coupons_news where news_category = '$news_category' and status = 1 order by time_news desc limit $limit";
+        news_content,description,news_link,news_url,created_date,userid from coupons_news where news_category = '$news_category' and status = 1 order by time_news desc limit $limit";
 
         $res = $db->db_query($sql);
         $rows = $db->db_fetchrowset($res);
@@ -2025,7 +2092,7 @@ class News
         $date = time();
         $language = LANG_AUGE;
         $sql = "INSERT INTO coupons_support(txt_email,txt_name,txt_tel,txt_address,txt_content,date,status,language)
- 		VALUES('$txt_email','$txt_name','$txt_tel','$txt_address','$txt_content','$date','$status', $language)";
+        VALUES('$txt_email','$txt_name','$txt_tel','$txt_address','$txt_content','$date','$status', $language)";
         $res = $db->db_query($sql);
 
         return 1;
