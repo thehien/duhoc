@@ -404,10 +404,15 @@ class News
         $res = $db->db_query($sql);
         $rows = $db->db_fetchrowset($res);
 
+        for ($i = 0; $i < count($rows); $i++) {
+            $rows[$i]["limit_category_content"] = $function->cutnchar($rows[$i]["category_content"], 300);
+            $rows[$i]["full_category_content"] = $function->cutnchar($rows[$i]["category_content"], 10000);
+        }
+
         return $rows;
     }
 
-    function get_list_news($category_id, $page, $per_page)
+    function get_list_news($category_id, $page, $per_page, $status_slide = null, $status_home = null)
     {
         global $db, $function;
         $language = LANG_AUGE;
@@ -417,6 +422,44 @@ class News
         } else {
             $sr .= "and news_category IN ($category_id) ";
         }
+        if (!$status_slide) {
+            $sr .= " ";
+        } else {
+            $sr .= "and status_slide = 1 ";
+        }
+
+        if (!$status_home) {
+            $sr .= " ";
+        } else {
+            $sr .= "and status_home = 1 ";
+        }
+
+        $sql = "SELECT news_id, news_url, news_name, news_img, news_content, FROM_UNIXTIME(created_date,'%d/%m/%Y %h:%i') as time_news ";
+        $sql .= "FROM coupons_news where status = '1' and language ='$language' $sr 
+                 ORDER BY pos asc Limit $page, $per_page";
+        //echo $sql;
+        $res = $db->db_query($sql);
+        $rows = $db->db_fetchrowset($res);
+
+        for ($i = 0; $i < count($rows); $i++) {
+            $rows[$i]["news_name_limit"] = $function->cutnchar($rows[$i]["news_name"], 100);
+            $rows[$i]["full_news_name"] = $function->cutnchar($rows[$i]["news_name"], 10000);
+        }
+
+        return $rows;
+    }
+
+    function get_cate_list_news($category_id, $page, $per_page)
+    {
+        global $db, $function;
+        $language = LANG_AUGE;
+        $sr = '';
+        if (!$category_id) {
+            $sr .= "";
+        } else {
+            $sr .= "and other_category IN ($category_id) ";
+        }
+
         $sql = "SELECT news_id, news_url, news_name, news_img, news_content, FROM_UNIXTIME(created_date,'%d/%m/%Y %h:%i') as time_news ";
         $sql .= "FROM coupons_news where status = '1' and language ='$language' $sr 
                  ORDER BY pos asc Limit $page, $per_page";

@@ -40,7 +40,7 @@ $(window).load(function() {
       dottedOverlay: "none",
       delay: 9000,
       startwidth: 1170,
-      startheight: 400,
+      startheight: 530,
       hideThumbs: 200,
       thumbWidth: 100,
       thumbHeight: 50,
@@ -92,7 +92,7 @@ $(window).load(function() {
       fullScreenOffsetContainer: ""
       });
 
-      jQuery('.tp-banner-works').show().revolution({
+      jQuery('.tp-sub-banner').show().revolution({
           dottedOverlay: "none",
           delay: 1000,
           startwidth: 1170,

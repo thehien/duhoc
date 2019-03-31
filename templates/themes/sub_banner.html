@@ -2,12 +2,10 @@
     <div class="tp-banner">
         <ul>
             {foreach from=$list_banner item="val" name="val"}
-            <li data-transition="fade" data-slotamount="7" data-masterspeed="2000">
+            <li>
+                <img src="{$smarty.const.URL_HOMEPAGE}upload/banners/{$val.banner_img}" alt="">
 
-                <img src="{$smarty.const.URL_HOMEPAGE}upload/banners/{$val.banner_img}" alt="laptopmockup_sliderdy"
-                     data-lazyload="{$smarty.const.URL_HOMEPAGE}upload/banners/{$val.banner_img}">
-
-                <div class="tp-caption mediumHeading h2 lft tp-resizeme rs-parallaxlevel-0 start" data-x="center"
+                {*<div class="tp-caption mediumHeading h2 lft tp-resizeme rs-parallaxlevel-0 start" data-x="center"
                      data-y="center" data-voffset="-50" data-speed="1200" data-start="1000" data-easing="Back.easeInOut"
                      data-splitin="none" data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1"
                      data-endspeed="400" style="z-index: 11;">
@@ -15,12 +13,7 @@
                         padding: 0; letter-spacing: 2px; font-weight: 900; font-size: 45px; color: #fff;">
                         {$val.banner_name}
                     </h2>
-                </div>
-
-                {*<div class="caption sfb tp-caption start" data-x="center" data-y="center" data-voffset="90"
-                       data-speed="400" data-start="1600" data-easing="easeOutExpo">
-                <a href="#" class="btn btn-border btn-lg">Create an Order</a>
-            </div>*}
+                </div>*}
             </li>
             {/foreach}
         </ul>

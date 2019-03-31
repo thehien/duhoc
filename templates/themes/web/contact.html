@@ -1,117 +1,106 @@
 {include file="$themes/header.html"}
-<!--[if lt IE 9]>
-  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
-<div id="wrapper">
- {include file="$themes/top.html"} 
-
-
-<!-- Titlebar
-================================================== -->
-<div id="titlebar" class="single">
-  <div class="container">
-
-    <div class="sixteen columns">
-      <h2>Contact</h2>
-      <nav id="breadcrumbs">
-        <ul>
-          <li>You are here:</li>
-          <li><a href="#">Home</a></li>
-          <li>Contact</li>
-        </ul>
-      </nav>
+<!-- Header Section Start -->
+<div class="header">
+  <!-- Start intro section -->
+  <section id="intro" class="section-intro">
+    <div class="logo-menu" style="background: #fff;">
+      {include file="$themes/top.html"}
     </div>
-
-  </div>
-</div>
-
-<!-- Content
-================================================== -->
-
-<!-- Container -->
-<div class="container">
-
-<div class="eleven columns">
-
-  <h3 class="margin-bottom-15">Contact Form</h3>
-  
-    <!-- Contact Form -->
-    <section id="contact" class="padding-right">
-
-      <!-- Success Message -->
-      <mark id="message"></mark>
-
-      <!-- Form -->
-      <form method="post" name="contactform" id="contactform">
-
-        <fieldset>
-
-          <div>
-            <label>Name:</label>
-            <input name="name" type="text" id="name" />
-          </div>
-
-          <div>
-            <label >Email: <span>*</span></label>
-            <input name="email" type="email" id="email" pattern="" />
-          </div>
-
-          <div>
-            <label>Message: <span>*</span></label>
-            <textarea name="comment" cols="40" rows="3" id="comment" spellcheck="true"></textarea>
-          </div>
-
-        </fieldset>
-        <div id="result"></div>
-        <input type="submit" class="submit" id="submit" value="Send Message" />
-        <div class="clearfix"></div>
-        <div class="margin-bottom-40"></div>
-      </form>
-
+    <!-- Header Section End -->
+    <section class="featured-jobs">
+      {include file="$themes/top-support.html"}
     </section>
-    <!-- Contact Form / End -->
-
+  </section>
 </div>
-<!-- Container / End -->
 
+<section class="job-detail section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 fw-border-content-bottom" style="margin: 5px; text-align: center">
+        <h4 class="fw-fs-26 fw-mgt10 fw-mgb10">
+          <strong>Hợp tác chúng tôi</strong>
+        </h4>
+      </div>
 
-<!-- Sidebar
-================================================== -->
-<div class="five columns">
+      <div class="col-md-12 no-padding fw-mgt10">
+        <div class="col-md-9 no-padding">
+          <div class="col-md-12 fw-mgb20">
+            <form role="form" class="form-ad" name="registration" method="post" enctype="multipart/form-data" action="{$smarty.const.URL_HOMEPAGE}add-member.html"/>
 
-  <!-- Information -->
-  <h3 class="margin-bottom-10">Information</h3>
-  <div class="widget-box">
+            <div class="form-group">
+              <div class="row">
 
-    <ul class="contact-informations">
-      <li>{$smarty.const.lang_dia_chi}</li>
-    </ul>
+                <div class="col-md-6">
+                  <input type="text" class="form-control" name="first-name" id="first-name" placeholder="Tên công ty (*)"/>
+                </div>
 
-    <ul class="contact-informations second">
-      <li><i class="fa fa-phone"></i> <p>{$smarty.const.lang_phone}</p></li>
-      <li><i class="fa fa-phone"></i> <p>{$smarty.const.lang_hotine}</p></li>
-      <li><i class="fa fa-envelope"></i> <p>{$smarty.const.lang_email}</p></li>
-      <li><i class="fa fa-globe"></i> <p>{$smarty.const.lang_website}</p></li>
-    </ul>
+                <div class="col-md-6">
+                  <input type="text" class="form-control" name="last-name" id="last-name" placeholder="Tên người đại diện pháp lý (*)"/>
+                </div>
+              </div>
+            </div>
 
-  </div>
-  
-  <!-- Social -->
-  <div class="widget margin-top-30">
-    <h3 class="margin-bottom-5">Social Media</h3>
-    <ul class="social-icons">
-      <li><a class="facebook" href="#"><i class="icon-facebook"></i></a></li>
-      <li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
-      <li><a class="gplus" href="#"><i class="icon-gplus"></i></a></li>
-      <li><a class="linkedin" href="#"><i class="icon-linkedin"></i></a></li>
-    </ul>
-    <div class="clearfix"></div>
-    <div class="margin-bottom-50"></div>
-  </div>
+            <div class="form-group">
+              <div class="row">
 
-</div>
-</div>
+                <div class="col-md-6">
+                  <input type="text" class="form-control" name="mobileCode" placeholder="Email (*)">
+                </div>
+
+                <div class="col-md-6">
+                  <input type="text" class="form-control" name="mobile" placeholder="Điện thoại (*)">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="input-icon">
+                <textarea class="form-control" rows="6" name="news_content"
+                    id="news_content" placeholder="Qúy vị muốn tuyển sinh chương trình nào?"></textarea>
+              </div>
+            </div>
+
+            <center>
+              <button class="btn btn-submit log-btn" type="submit">Tạo tài khoản</button>
+            </center>
+            </form>
+          </div>
+        </div>
+
+        <div class="col-md-3 no-padding">
+          <div class="fw-mgb20 fw-mgt10">
+            <div class="fw-fs-18">GIỚI THIỆU</div>
+            <div align="left" class="btn-bg-under-center fw-mgt10"></div>
+          </div>
+          <div>
+            <ul>
+              {foreach from=$list_about_us item="val" name="val"}
+              <li class="fw-mgb10">
+                <a href="{$smarty.const.URL_HOMEPAGE}about/{$val.news_id}-{$val.news_url}.html">
+                  {$val.news_name}
+                </a>
+              </li>
+              {/foreach}
+              <li class="fw-mgb10">
+                <a href="{$smarty.const.URL_HOMEPAGE}">
+                  Blog
+                </a>
+              </li>
+              <li class="fw-mgb10">
+                <a href="{$smarty.const.URL_HOMEPAGE}">
+                  Cơ hội nghề nghiệp
+                </a>
+              </li>
+              <li class="fw-mgb10">
+                <a href="{$smarty.const.URL_HOMEPAGE}contact.html">
+                  Hợp tác chúng tôi
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+<!-- footer -->
 {include file="$themes/footer.html"}
-
-
-

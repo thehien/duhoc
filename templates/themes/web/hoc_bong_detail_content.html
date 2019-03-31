@@ -26,13 +26,16 @@
                             {$hocbong_detail.description}
                         </p>
                     </div>
-                    <div class="col-md-12 meta fw-mgt20">
-                        <span class="label label-success">Du hoc my</span>
-                        <span class="label label-info">Du hoc canada</span>
+                    <div class="col-md-12 fw-mgb10">
+                        <div class="meta">
+                            <span><a class="btn btn-border btn-sm" href="#"><i class="fa fa-tag"></i> Email</a></span>
+                            <span><a class="btn btn-border btn-sm" href="#"><i class="fa fa-tag"></i> Save This job</a></span>
+                            <span><a class="btn btn-border btn-sm" href="#"><i class="fa fa-tag"></i> Report Abuse</a></span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="col-md-3 no-padding">
+                <div class="col-md-3">
                     <div class="fw-mgb10">
                         <a class="btn btn-submit fw-fs-18" href="#">
                             ĐĂNG  KÝ TRỰC TUYẾN
@@ -62,11 +65,17 @@
                     <div class="fw-mgb20">
                         <div class="fw-mgb10">
                             <div class="fw-fs-16"><strong>
-                                TIN TỨC DU HỌC MỸ
+                                TIN TỨC DU HỌC
                             </strong></div>
                         </div>
                         <div>
-
+                            {foreach from=$list_news_sub item="val" name="val"}
+                            <div class="fw-mgb10">
+                                <a href="{$smarty.const.URL_HOMEPAGE}detail/{$main_cate}-{$val.news_id}-{$val.news_url}.html" class="link_hover">
+                                    <h3 style="font-size: 16px;">{$val.news_name}</h3>
+                                </a>
+                            </div>
+                            {/foreach}
                         </div>
                     </div>
 

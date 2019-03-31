@@ -468,7 +468,6 @@ a:focus {
 }
 
 .btn-download {
-    width: 100%;
     border: none;
     border-radius: 5px;
     padding: 10px;
@@ -494,6 +493,32 @@ a:focus {
     position: relative;
 }
 
+.border-daihoc {
+    border: 3px solid #46C7F2 !important;
+    width: 100%;
+    border-radius: 5px;
+    text-transform: uppercase;
+    overflow: hidden;
+    position: relative;
+}
+
+.border-thpt {
+    border: 3px solid #56a036 !important;
+    width: 100%;
+    border-radius: 5px;
+    text-transform: uppercase;
+    overflow: hidden;
+    position: relative;
+}
+
+.border-thacsi {
+    border: 3px solid #ed5b17 !important;
+    width: 100%;
+    border-radius: 5px;
+    text-transform: uppercase;
+    overflow: hidden;
+    position: relative;
+}
 
 .btn-daihoc:hover,
 .btn-daihoc:focus {
@@ -605,7 +630,7 @@ a:focus {
 
 .btn-border {
     background: #fff;
-    color: #ff4f57;
+    color: #000;
     text-transform: uppercase;
     border-radius: 50px;
     overflow: hidden;
@@ -1157,7 +1182,7 @@ a:focus {
     -o-transition: opacity 0.3s ease-in-out;
     visibility: hidden;
     opacity: 0;
-    width: 800px;
+    width: 750px;
     z-index: 999;
     font-size: 15px;
 }
@@ -4931,6 +4956,23 @@ blockquote p a:hover {
     box-shadow: 3px 3px 9px rgba(0, 0, 0, 0.075);
 }
 
+.box_hoc_bong {
+    background: #fff;
+    border-top: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+.box_hoc_bong:hover {
+    background: #f7f7f7;
+    border-top: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+
 .box_translator {
     padding: 5px;
     border-top: 1px solid #ddd;
@@ -5564,6 +5606,10 @@ div.show-image input.delete {
     padding-top: 72px;
 }
 
+.fw-fs-16 {
+    font-size: 16px;
+}
+
 .fw-fs-18 {
     font-size: 18px;
 }
@@ -5755,6 +5801,11 @@ div.show-image input.delete {
     color: #bab6b6;
     margin-left: 5px;
 }
+
+.fw-cl-blue {
+    color: #2063bc;
+}
+
 
 .fw-mg5 {
     margin: 5px;
@@ -6526,6 +6577,12 @@ for font-size and font-family*/
     text-decoration: underline;
 }
 
+.duhoc_active {
+    color: #0033ff !important;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
 .fw-text-right {
     text-align: right;
 }
@@ -6536,6 +6593,16 @@ for font-size and font-family*/
 
 .link_blue:hover {
     color: #39bae5;
+}
+
+
+.link_top_blue {
+    color: #2063bc;
+}
+
+.link_top_blue:hover {
+    color: #2063bc;
+    text-decoration: underline;
 }
 
 .link_hover {
@@ -6549,10 +6616,12 @@ for font-size and font-family*/
 
 .link_duhoc_hover {
     color: #3B4148;
+    cursor: pointer;
 }
 
 .link_duhoc_hover:hover {
     color: #46C7F2;
+    cursor: pointer;
     text-decoration: underline;
 }
 
@@ -6578,4 +6647,9 @@ for font-size and font-family*/
 
 .main_title {
     text-transform: uppercase;
+}
+
+.counter {
+    color: #f9cb4a;
+    font-size: 40px;
 }

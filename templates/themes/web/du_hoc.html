@@ -60,7 +60,11 @@
         <div class="logo-menu" style="background: #fff;">
             {include file="$themes/top.html"}
         </div>
-        <section class="find-jobs section-about">
+        <!-- Header Section End -->
+        <section class="featured-jobs">
+            {include file="$themes/top-support.html"}
+        </section>
+        {*<section class="find-jobs section-about">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 no-padding fw-mgt20 fw-mgb20">
@@ -83,15 +87,10 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section>*}
+
         <section id="slider">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        {include file="$themes/sub_banner.html"}
-                    </div>
-                </div>
-            </div>
+            {include file="$themes/sub_banner.html"}
         </section>
     </section>
 </div>
@@ -109,7 +108,7 @@
                     {$cate_detail[0].category_content}
                 </div>
                 <div class="col-md-4">
-                    <img width="100%" height="250" src="{$smarty.const.URL_HOMEPAGE}upload/categorys/{$cate_detail[0].category_img}" alt="">
+                    <img width="100%" src="{$smarty.const.URL_HOMEPAGE}upload/categorys/{$cate_detail[0].category_img}" alt="">
                 </div>
             </div>
         </div>
@@ -161,21 +160,21 @@
                         {foreach from=$all_student item="val" name="val"}
                         <div style="border: 1px solid #ccc; padding-top:10px; padding-bottom: 10px;">
                             <div align="center">
+                                <center>
                                 <a href="#fadeandscale_student_{$val.news_id}"
                                    class="fadeandscale_student_{$val.news_id}_open">
                                     {if $val.news_img}
-                                    <img height="100" src="{$smarty.const.URL_HOME}/upload/student/{$val.news_img}"
+                                    <img src="{$smarty.const.URL_HOME}/timthumb.php?src={$smarty.const.URL_HOME}/upload/student/{$val.news_img}&h=150&w=150&zc=1"
                                          class="img-circle"/>
                                     {else}
-                                    <img height="100"
-                                         src="{$smarty.const.URL_WEB}{$themes}/assets/img/info/man-user.png"
-                                         class="img-circle"/>
+                                    <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/info/man-user.png" class="img-circle"/>
                                     {/if}
                                 </a>
+                                </center>
                             </div>
                             <div style="clear: both;"></div>
-                            <div align="center" style="font-size: 14px;">
-                                <strong title="{$val.full_name}">{$val.full_name}</strong>
+                            <div align="center">
+                                <strong title="{$val.news_name}">{$val.news_name}</strong>
                             </div>
                         </div>
                         {/foreach}
@@ -207,14 +206,13 @@
                     </style>
                     {/literal}
 
-                    <div id="fadeandscale_student_{$val.news_id}" class="well" style="width: 600px; display: none;">
+                    <div id="fadeandscale_student_{$val.news_id}" class="well" style="display: none;">
                         <div align="center" class="col-md-12 no-padding fw-mgb10">
                             {if $val.news_img}
-                            <img width="160" height="160" src="{$smarty.const.URL_HOME}/upload/student/{$val.news_img}"
+                            <img src="{$smarty.const.URL_HOME}/timthumb.php?src={$smarty.const.URL_HOME}/upload/student/{$val.news_img}&h=150&w=150&zc=1"
                                  class="img-circle"/>
                             {else}
-                            <img width="160" height="160"
-                                 src="{$smarty.const.URL_WEB}{$themes}/assets/img/info/man-user.png"
+                            <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/info/man-user.png"
                                  class="img-circle"/>
                             {/if}
                         </div>
@@ -248,14 +246,29 @@
                 <div class="col-md-2"></div>
             </div>
 
+            <div class="col-md-12 no-padding fw-mgb20">
+                {foreach from=$list_category_content item="val" name="val"}
+                <div style="float:left; margin: 10px 15px 10px 15px;line-height: 25px;">
+                    <span id="link_{$val.category_id}" class="link_duhoc_hover" onclick="loadMoreData({$val.category_id});">
+                        <h4><strong>{$val.category_name}</strong></h4>
+                    </span>
+                </div>
+                {if !$smarty.foreach.val.last}
+                <div style="float:left; border: 1px solid #CCC; height: 25px; margin-top: 7px;"></div>
+                {/if}
+                {/foreach}
+            </div>
+
             <div class="col-md-12 no-padding">
                 {foreach from=$all_schools item="val" name="val"}
                     <div class="col-md-6 fw-mgb10">
                         <div class="box_how_it_works" style="padding:10px;">
-                            <div class="col-md-3">
+                            <div class="col-md-3 fw-mgb10">
+                                <center>
                                 <a href="#fadeandscale_schools_{$val.news_id}" class="fadeandscale_schools_{$val.news_id}_open">
-                                    <img width="160" height="100" src="{$smarty.const.URL_HOME}/upload/schools/{$val.news_img}"/>
+                                    <img src="{$smarty.const.URL_HOME}/upload/schools/{$val.news_img}"/>
                                 </a>
+                                </center>
                             </div>
 
                             <div class="col-md-9">
@@ -266,7 +279,7 @@
                                     </h4>
                                     </a>
                                 </div>
-                                <div class="fw-mgb10">
+                                <div class="fw-mgb10 text-justify">
                                     {$val.news_content}
                                 </div>
                             </div>
@@ -318,13 +331,11 @@
 
                 <div id="fadeandscale_schools_{$val.news_id}" class="well" style="width: 950px; display: none;">
                     <div class="col-md-12 no-padding">
-                        <div class="col-md-2">
+                        <div class="col-md-2 fw-mgb10">
                             {if $val.news_img}
-                            <img width="100" height="100" src="{$smarty.const.URL_HOME}/upload/schools/{$val.news_img}"
-                                 class="img-circle"/>
+                            <img src="{$smarty.const.URL_HOME}/upload/schools/{$val.news_img}"/>
                             {else}
-                            <img width="100" height="100"
-                                 src="{$smarty.const.URL_WEB}{$themes}/assets/img/info/man-user.png" class="img-circle"/>
+                            <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/info/man-user.png"/>
                             {/if}
                         </div>
 
@@ -338,7 +349,7 @@
                     </div>
 
                     <div class="col-md-12 no-padding">
-                        <p style="font-size:14px;">
+                        <p>
                             {$val.description}
                         </p>
                     </div>

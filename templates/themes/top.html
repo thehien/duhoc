@@ -29,12 +29,27 @@
                             </a>
                         </li>
                         {/foreach}
+                        <li>
+                            <a href="{$smarty.const.URL_HOMEPAGE}">
+                                Blog
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{$smarty.const.URL_HOMEPAGE}">
+                                Cơ hội nghề nghiệp
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{$smarty.const.URL_HOMEPAGE}contact.html">
+                                Hợp tác chúng tôi
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li>
                     <a href="{$smarty.const.URL_HOMEPAGE}"
                        {if $url_views=='how-it-works'}class="active"{else}class="btn btn-common-link"{/if}>
-                    DU HỌC CÁC NƯỚC
+                    DU HỌC
                     <i class="fa fa-angle-down"></i>
                     </a>
                     <div class="col-md-12 dropdownmenu">
@@ -63,17 +78,7 @@
                 <li>
                     <a href="{$smarty.const.URL_HOMEPAGE}" class="btn btn-common-link">
                         ĐẠI HỌC TOP
-                        <!--<i class="fa fa-angle-down"></i>-->
                     </a>
-                    <!--<ul class="dropdown">-->
-                        <!--{foreach from=$list_about_us item="val" name="val"}-->
-                        <!--<li>-->
-                            <!--<a href="{$smarty.const.URL_HOMEPAGE}">-->
-                                <!--{$val.news_name}-->
-                            <!--</a>-->
-                        <!--</li>-->
-                        <!--{/foreach}-->
-                    <!--</ul>-->
                 </li>
                 <li>
                     <a href="{$smarty.const.URL_HOMEPAGE}" class="btn btn-common-link">

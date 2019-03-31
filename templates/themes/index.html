@@ -7,7 +7,9 @@
             {include file="$themes/top.html"}
         </div>
         <!-- Header Section End -->
-
+        <section class="featured-jobs">
+            {include file="$themes/top-support.html"}
+        </section>
         <section id="slider">
             {include file="$themes/banner.html"}
         </section>
@@ -37,6 +39,67 @@
     </div>
 </section>
 <!-- Find Job Section End -->
+{literal}
+<script>
+    $(document).ready(function () {
+        $('.counter-count').each(function () {
+            $(this).prop('Counter',0).animate({
+                Counter: $(this).text()
+            }, {
+                duration: 5000,
+                easing: 'swing',
+                step: function (now) {
+                    $(this).text(Math.ceil(now));
+                }
+            });
+        });
+    });
+</script>
+{/literal}
+<!-- Find Job Section Start -->
+<section class="home_background section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12" style="text-align: left; padding-top: 50px;">
+                <h2 style="font-size: 40px;" class="main_title"><strong>{$content_dhmu[0].category_name}</strong></h2>
+                <br> <br>
+                <h4 class="text-justify">
+                    {$content_dhmu[0].category_content}
+                </h4>
+            </div>
+
+            <div class="col-md-12 no-padding" style="margin-top: 40px;">
+                <div class="col-md-3">
+                    <center>
+                        <h2 class="counter"><span class="counter-count">2000</span> +</h2><br/>
+                        <h4>Trường trung học phổ thông các nước</h4>
+                    </center>
+
+                </div>
+                <div class="col-md-3">
+                    <center>
+                        <h2 class="counter"><span class="counter-count">500</span> +</h2><br/>
+                        <h4>Trường đại học các nước</h4>
+
+                    </center>
+                </div>
+                <div class="col-md-3">
+                    <center>
+                        <h2 class="counter"><span class="counter-count">1000</span> tỷ</h2><br/>
+                        <h4>Tổng giá trị học bổng</h4>
+                    </center>
+                </div>
+
+                <div class="col-md-3">
+                    <center>
+                        <h2 class="counter"><span class="counter-count">100</span> %</h2><br/>
+                        <h4>Học sinh đậu vào trường mơ ước</h4>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- Find Job Section Start -->
 <section id="blog" class="find-job section">
@@ -65,7 +128,7 @@
                                         <h3 class="direction-reveal__title fw-mgt20"><strong>{$cate_sub[cate_du_hoc][cate_sub].category_name}</strong>
                                         </h3>
                                         <p class="direction-reveal__text fw-mgt20">
-                                            {$cate_sub[cate_du_hoc][cate_sub].category_content}
+                                            {$cate_sub[cate_du_hoc][cate_sub].limit_category_content}
                                         </p>
 
                                         <div class="fw-mgt20 fw-text-right">
@@ -83,7 +146,7 @@
 </section>
 
 <!-- Find Job Section Start -->
-<section id="blog" class="find-job section">
+<section id="blog" class="featured-jobs section">
     <div class="container">
         <div class="row">
             <div class="col-md-12 fw-mgb20">
@@ -173,7 +236,7 @@
                                 <div class="hoc-bong-item-text">
                                     <a href="single-post.html" class="link_blue">
                                         <h3 class="fw-fs-26">
-                                            <strong>DU HỌC ĐỊNH CƯ</strong>
+                                            <strong>DU HỌC TIẾT KIỆM</strong>
                                         </h3>
                                     </a>
                                     <p class="fw-mgt10 fw-mgb10">
@@ -189,7 +252,7 @@
                                 <div class="hoc-bong-item-text">
                                     <a href="single-post.html" class="link_blue">
                                         <h3 class="fw-fs-26">
-                                            <strong>DU HỌC ĐỊNH CƯ</strong>
+                                            <strong> ĐẠI HỌC TOP</strong>
                                         </h3>
                                     </a>
                                     <p class="fw-mgt10 fw-mgb10">
@@ -201,58 +264,10 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
     </div>
-</section>
-
-<!-- Find Job Section Start -->
-<section class="home_background section">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12" style="text-align: left; padding-top: 50px;">
-                <h2 style="font-size: 40px;" class="main_title"><strong>{$content_dhmu[0].category_name}</strong></h2>
-                <br> <br>
-                <h4 class="text-justify">
-                    {$content_dhmu[0].category_content}
-                </h4>
-            </div>
-
-            <div class="col-md-12 no-padding" style="margin-top: 40px;">
-                <div class="col-md-3">
-                    <center>
-                        <h3 style="font-size: 40px;"> 2.000 +<br/></h3>
-                        <h4>Trường trung học phổ thông các nước</h4>
-                    </center>
-
-                </div>
-                <div class="col-md-3">
-                    <center>
-                        <h3 style="font-size: 40px;">500 +<br/></h3>
-                        <h4>Trường đại học các nước</h4>
-
-                    </center>
-                </div>
-                <div class="col-md-3">
-                    <center>
-                        <h3 style="font-size: 40px;"> 1.000 tỷ<br></h3>
-                        <h4>Tổng giá trị học bổng</h4>
-                    </center>
-                </div>
-
-                <div class="col-md-3">
-                    <center>
-                        <h3 style="font-size: 40px;"> 100%<br></h3>
-                        <h4>Học sinh đậu vào trường mơ ước</h4>
-                    </center>
-                </div>
-            </div>
-        </div>
-    </div>
-
 </section>
 
 <!-- Find Job Section Start -->

@@ -194,7 +194,6 @@ function process_client()
             // Get all list news du hoc
             //////////////////////////////////////////////////////
             $list_news_sub = $oNews->get_list_news(null, 0, 100);
-            //$function->debugPrint($list_news_sub);
             $smarty->assign("list_news_sub", $list_news_sub);
 
             return $smarty->fetch($themes . "/index.html");
@@ -245,10 +244,28 @@ function process_client()
             if ($new_list_category != '') {
                 $list_news_sub = $oNews->get_list_news($new_list_category, 0, 100);
                 $smarty->assign("list_news_sub", $list_news_sub);
+
+                $list_news_slide = $oNews->get_list_news($new_list_category, 0, 100, 1, null);
+                $smarty->assign("list_news_slide", $list_news_slide);
             } else {
                 $smarty->assign("list_news_sub", null);
+                $smarty->assign("list_news_slide", null);
             }
-            //$function->debugPrint($list_news_sub);
+
+            // News other
+            $page = $function->sql_injection($arr_str[3]);
+            if ($page == "") {
+                $page = 0;
+            }
+            $numf = $oNews->num_news_category(0, $b);
+
+            $per_page = 4;
+            $all_page = $numf ? $numf : 1;
+            $base_url = URL_HOMEPAGE . "detail/{$b}/0";
+            $url_last = "trang.html#shownews";
+            $paging = $function->generate_page_news($base_url, $url_last, $all_page, $per_page, $page);
+            $smarty->assign("paging", $paging);
+
             return $smarty->fetch($themes . "/web/du_hoc.html");
             break;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -406,6 +423,10 @@ function process_client()
             $all_hocbong = $oNews->get_all_hocbong($b);
             $smarty->assign("all_hocbong", $all_hocbong);
 
+            // Get all tin tuc
+            $list_news_sub = $oNews->get_cate_list_news($b, 0, 10);
+            $smarty->assign("list_news_sub", $list_news_sub);
+
             return $smarty->fetch($themes . "/web/hoc_bong_detail.html");
             break;
 
@@ -453,7 +474,7 @@ function process_client()
             return $smarty->fetch($themes . "/web/hoc_bong_detail_content.html");
             break;
 ////////////////////////////////////////////////////////////////////////////////
-        case "industry":
+        case "contact":
             $arr_detail = explode("-", $b);
             $b = $function->sql_injection($arr_detail[0]);
 
@@ -468,7 +489,7 @@ function process_client()
             $rs_news_industry = $oMember->show_all_industry(10);
             $smarty->assign("rs_news_industry", $rs_news_industry);
 
-            return $smarty->fetch($themes . "/user/order_cv_category.html");
+            return $smarty->fetch($themes . "/web/contact.html");
             break;
 ////////////////////////////////////////////////////////////////////////////////
         case $url_views;

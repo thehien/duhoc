@@ -111,6 +111,7 @@ function news_process()
                     $data['info']['news_url'] = $function->character_url(isset($_POST['news_name']) ? $_POST['news_name'] : "");
                 }
                 $data['info']['news_category'] = $function->sql_injection(isset($_POST['news_category']) ? intval($_POST['news_category']) : 0);
+                $data['info']['other_category'] = $function->sql_injection(isset($_POST['other_category']) ? intval($_POST['other_category']) : 0);
                 $data['info']['news_link'] = $function->sql_injection(isset($_POST['news_link']) ? $_POST['news_link'] : "");
                 $data['info']['news_content'] = $function->FixQuotes(isset($_POST['news_content']) ? $_POST['news_content'] : "");
                 $data['info']['description'] = $function->FixQuotes(isset($_POST['description']) ? $_POST['description'] : "");
@@ -131,6 +132,9 @@ function news_process()
                 } else {
                     $data['info']['seo_desc'] = $function->FixQuotes(isset($_POST['news_content']) ? $_POST['news_content'] : "");
                 }
+
+                $data['info']['status_slide'] = $function->sql_injection(isset($_POST['status_slide']) ? intval($_POST['status_slide']) : 0);
+                $data['info']['status_home'] = $function->sql_injection(isset($_POST['status_home']) ? intval($_POST['status_home']) : 0);
 
                 // upload image
                 $types = [

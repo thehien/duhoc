@@ -6,7 +6,10 @@
         <div class="logo-menu" style="background: #fff;">
             {include file="$themes/top.html"}
         </div>
-
+        <!-- Header Section End -->
+        <section class="featured-jobs">
+            {include file="$themes/top-support.html"}
+        </section>
     </section>
 </div>
 
@@ -39,7 +42,7 @@
 
                 <div class="col-md-3 no-padding">
                     <div class="fw-mgb20 fw-mgt10">
-                        <div class="fw-fs-18">THÔNG TIN KHÁC</div>
+                        <div class="fw-fs-18">GIỚI THIỆU</div>
                         <div align="left" class="btn-bg-under-center fw-mgt10"></div>
                     </div>
                     <div>
@@ -51,6 +54,21 @@
                                 </a>
                             </li>
                             {/foreach}
+                            <li class="fw-mgb10">
+                                <a href="{$smarty.const.URL_HOMEPAGE}">
+                                    Blog
+                                </a>
+                            </li>
+                            <li class="fw-mgb10">
+                                <a href="{$smarty.const.URL_HOMEPAGE}">
+                                    Cơ hội nghề nghiệp
+                                </a>
+                            </li>
+                            <li class="fw-mgb10">
+                                <a href="{$smarty.const.URL_HOMEPAGE}contact.html">
+                                    Hợp tác chúng tôi
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>

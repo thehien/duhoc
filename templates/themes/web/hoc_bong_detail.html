@@ -6,7 +6,10 @@
         <div class="logo-menu" style="background: #fff;">
             {include file="$themes/top.html"}
         </div>
-
+        <!-- Header Section End -->
+        <section class="featured-jobs">
+            {include file="$themes/top-support.html"}
+        </section>
     </section>
 </div>
 
@@ -19,31 +22,35 @@
                 </h4>
             </div>
 
-            <div class="col-md-12 no-padding fw-mgt10">
-                <div class="col-md-9 no-padding">
+            <div class="col-md-12 fw-mgt10">
+                <div class="col-md-12 fw-mgb10">
+                    <strong>DANH SÁCH CÁC TRƯỜNG</strong>
+                </div>
+                <div class="col-md-9">
                     {if count($all_hocbong) >0}
                     {foreach from=$all_hocbong item="val" name="val"}
-                    <div class="col-md-12 fw-mgb10">
-                        <div class="box_how_it_works" style="padding:10px;">
-                            <div class="col-md-3 no-padding">
-                                <a href="{$smarty.const.URL_HOMEPAGE}hb-detail/{$main_cate}-{$val.news_id}-{$val.news_url}.html">
-                                    <img width="180" height="110"
-                                         src="{$smarty.const.URL_HOME}/upload/hocbong/{$val.news_img}"/>
-                                </a>
-                            </div>
-
-                            <div class="col-md-9 no-padding">
-                                <div class="fw-mgb10"><h4>
-                                    <a href="{$smarty.const.URL_HOMEPAGE}hb-detail/{$main_cate}-{$val.news_id}-{$val.news_url}.html" class="link_blue">
-                                        <strong>{$val.news_name}</strong>
+                    <div class="col-md-12  no-padding fw-mgb10">
+                        <div class="box_hoc_bong" style="padding:10px;">
+                            <div class="col-md-12">
+                                <div class="col-md-3 no-padding">
+                                    <a href="{$smarty.const.URL_HOMEPAGE}hb-detail/{$main_cate}-{$val.news_id}-{$val.news_url}.html">
+                                        <img src="{$smarty.const.URL_HOME}/upload/hocbong/{$val.news_img}"/>
                                     </a>
-                                </h4>
                                 </div>
-                                <div class="fw-mgb30">
-                                    {$val.news_content}
-                                </div>
-                                <div class="fw-mgb10">
-                                    <span><i class="ti-calendar"></i> {$val.created_date}</span>
+                                <div class="col-md-9">
+                                    <div class="fw-mgb10 fw-mgt10">
+                                        <h4>
+                                            <a href="{$smarty.const.URL_HOMEPAGE}hb-detail/{$main_cate}-{$val.news_id}-{$val.news_url}.html" class="link_blue">
+                                                <strong>{$val.news_name}</strong>
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div class="fw-mgb30">
+                                        {$val.news_content}
+                                    </div>
+                                    <div class="fw-mgb10">
+                                        <span><i class="ti-calendar"></i> {$val.created_date}</span>
+                                    </div>
                                 </div>
                             </div>
                             <div style="clear: both;"></div>
@@ -51,14 +58,15 @@
                     </div>
                     {/foreach}
                     {else}
-                    <div class="col-md-12 fw-mgb10">
+                    <div class="col-md-12 no-padding fw-mgb10">
                         <div class="fw-mgt20 fw-mgb10" align="center">
                             <h4>Don't have any data.</h4>
                         </div>
                     </div>
                     {/if}
+
                     {if count($all_hocbong) > 0}
-                    <div class="col-md-12">
+                    <div class="col-md-12 no-padding fw-mgb10">
                         <div class="showing pull-left"></div>
                         <ul class="pagination pull-right">
                             <li class="active"><a href="#" class="btn btn-common"><i class="ti-angle-left"></i> prev</a></li>
@@ -70,9 +78,13 @@
                             <li class="active"><a href="#" class="btn btn-common">Next <i class="ti-angle-right"></i></a></li>
                         </ul>
                     </div>
-                    <div class="col-md-12 meta fw-mgt20 fw-fs-18">
-                        <span class="label label-success">Du hoc my</span>
-                        <span class="label label-info">Du hoc canada</span>
+                    <div class="clearfix"></div>
+                    <div class="col-md-12 no-padding fw-mgb10">
+                        <div class="meta">
+                            <span><a class="btn btn-border btn-sm" href="#"><i class="fa fa-tag"></i> Email</a></span>
+                            <span><a class="btn btn-border btn-sm" href="#"><i class="fa fa-tag"></i> Save This job</a></span>
+                            <span><a class="btn btn-border btn-sm" href="#"><i class="fa fa-tag"></i> Report Abuse</a></span>
+                        </div>
                     </div>
                     {/if}
                 </div>
@@ -96,11 +108,17 @@
                     <div class="fw-mgb20">
                         <div class="fw-mgb10">
                             <div class="fw-fs-16"><strong>
-                                TIN TỨC DU HỌC MỸ
+                                TIN TỨC DU HỌC
                             </strong></div>
                         </div>
                         <div>
-
+                            {foreach from=$list_news_sub item="val" name="val"}
+                            <div class="fw-mgb10">
+                                <a href="{$smarty.const.URL_HOMEPAGE}detail/{$main_cate}-{$val.news_id}-{$val.news_url}.html" class="link_hover">
+                                    <h3 style="font-size: 16px;">{$val.news_name}</h3>
+                                </a>
+                            </div>
+                            {/foreach}
                         </div>
                     </div>
 

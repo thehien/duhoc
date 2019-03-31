@@ -11,11 +11,11 @@ if ($_SERVER['SERVER_NAME'] == "localhost") {
     define("DOCUMENT_ROOT", $_SERVER['DOCUMENT_ROOT'] . "/duhoc");
 } else {
 
-    define("DB_NAME", 'linkrica_db');
-    define("DB_USER", 'linkrica_db');
+    define("DB_NAME", 'linkrica_duhoc1');
+    define("DB_USER", 'linkrica_duhoc1');
     define("DB_PWD", 'Qazwsx123');
-    define("URL_HOME", "http://linkrica.com");
-    define("DOCUMENT_ROOT", $_SERVER['DOCUMENT_ROOT']);
+    define("URL_HOME", "http://linkrica.com/duhoc");
+    define("DOCUMENT_ROOT", $_SERVER['DOCUMENT_ROOT'] . "/duhoc");
 }
 
 define("URL_HOMEPAGE", URL_HOME . "/");

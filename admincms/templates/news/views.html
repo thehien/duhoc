@@ -47,12 +47,30 @@
                                 <td><input type="text" name="news_link" id="news_link" value="{$rs_edit.news_link}"
                                            placeholder="Ex: www.web.com"/></td>
                             </tr>
+
                             <tr>
-                                {*
-                                <td align="right" valign="top"><span>{$smarty.const.langcms_mota}</span></td>
-                                <td><textarea class="form-control" rows="4" name="news_content" id="news_content">{$rs_edit.news_content}</textarea>
+                                <td align="right"><span>Danh mục khác <em>*</em></span></td>
+                                <td>
+                                    <select class="select_option check_input" name="other_category" id="other_category">
+                                        <option value="">{$smarty.const.langcms_chondanhmuc}</option>
+                                        {foreach from=$tree_select name=val item=val}
+                                        <option value="{$val.category_id}" {if $val.category_id eq
+                                                $rs_edit.other_category}selected="selected" {
+                                        /if}>{$val.category_name}</option>
+                                        {/foreach}
+                                    </select>
                                 </td>
-                                *}
+
+                                <td align="right"><span>Hiển thị nổi bật</span></td>
+                                <td>
+                                    <select class="select_option check_input" name="status_slide" id="status_slide">
+                                        <option value="">Chọn status</option>
+                                        <option value="1" {if $rs_edit.status_slide eq 1}selected{/if}>Enabled</option>
+                                        <option value="0" {if $rs_edit.status_slide eq 0}selected{/if}>Disabled</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
                                 <td align="right" valign="top"><span>{$smarty.const.langcms_hinhanh}</span></td>
                                 <td valign="top"><input type="file" name="filename" id="filename" class="border_solid"
                                                         value=""/>
@@ -68,6 +86,16 @@
                                         </label>
                                     </div>
                                     {/if}
+                                </td>
+
+
+                                <td align="right"><span>Hiển thị trang chủ</span></td>
+                                <td>
+                                    <select class="select_option check_input" name="status_home" id="status_home">
+                                        <option value="">Chọn status</option>
+                                        <option value="1" {if $rs_edit.status_home eq 1}selected{/if}>Enabled</option>
+                                        <option value="0" {if $rs_edit.status_home eq 0}selected{/if}>Disabled</option>
+                                    </select>
                                 </td>
                             </tr>
                             <tr>
@@ -281,10 +309,24 @@
                                                                     name="pos{$rs.id_tem}" value="{$rs.pos}"
                                                                     class="check_num"/></td>
                             <td align="center" class="mw_80">
-                                <a href="{$smarty.const.URL_ADMIN}?module={$url}&main=status&id={$rs.id_tem}&status={$rs.status}"
-                                   {if $rs.status eq 1}class="status_on" {else}class="status_off" {/if}><i
-                                    class="fa fa-check-square"></i>
-                                </a>
+                                <table>
+                                    <tr>
+                                        <a href="enable_{$rs.id_tem}" id="enable_{$rs.id_tem}"></a>
+                                        <td>Enable</td>
+                                        <td> <a href="{$smarty.const.URL_ADMIN}?module={$url}&main=status&id={$rs.id_tem}&status={$rs.status}#enable_{$rs.id_tem}"
+                                                {if $rs.status eq 1}class="status_on"{else}class="status_off"{/if}><i class="fa fa-check-square"></i>
+                                            </a></td></tr>
+                                    <tr>
+                                        <td>Nổi bật</td>
+                                        <td> <a href="{$smarty.const.URL_ADMIN}?module={$url}&main=status_slide&id={$rs.id_tem}&status_slide={$rs.status_slide}"
+                                                {if $rs.status_slide eq 1}class="status_on"{else}class="status_off"{/if}><i class="fa fa-check-square"></i>
+                                            </a></td></tr>
+                                    <td>Trang chủ</td>
+                                    <td> <a href="{$smarty.const.URL_ADMIN}?module={$url}&main=status_home&id={$rs.id_tem}&status_home={$rs.status_home}"
+                                            {if $rs.status_home eq 1}class="status_on"{else}class="status_off"{/if}><i class="fa fa-check-square"></i>
+                                        </a></td></tr>
+
+                                </table>
                             </td>
                             {if $action_edit}
                             <td align="center" class="mw_80">

@@ -57,7 +57,8 @@ class News_class
             $sr_search .= " and b.category_id IN ($arr_id) ";
         }
 
-        $sql = "SELECT a.news_id as id_tem,a.news_name,a.status,a.news_img,a.news_url,a.pos, b.category_name,b.category_url,b.news_url as news_urlcate
+        $sql = "SELECT a.news_id as id_tem,a.news_name,a.status_home,a.status_slide,a.status,a.news_img,a.news_url,
+        a.pos, b.category_name,b.category_url,b.news_url as news_urlcate
 		FROM coupons_news a, coupons_category b where a.news_id >= '1' and a.news_category = b.category_id 
 		and a.language ='$language' $sr_search $orderby Limit $page,$per_page";
 
@@ -90,12 +91,12 @@ class News_class
         global $db;
         $userid = $_SESSION[URL_ADMIN]["userid"];
         $created_date = time();
-        $sql = "INSERT INTO coupons_news(news_id,news_name,news_category,news_url,news_link,news_img,news_content,description,
-				seo_title,seo_desc,seo_key,status,pos,language,userid,created_date) 
-				VALUES(NULL,'" . $data['news_name'] . "','" . $data['news_category'] . "','" . $data['news_url'] . "','" . $data['news_link'] . "',
+        $sql = "INSERT INTO coupons_news(news_id,news_name,news_category,other_category,news_url,news_link,news_img,news_content,description,
+				seo_title,seo_desc,seo_key,status,status_slide,status_home,pos,language,userid,created_date) 
+				VALUES(NULL,'" . $data['news_name'] . "','" . $data['news_category'] . "','" . $data['other_category'] . "','" . $data['news_url'] . "','" . $data['news_link'] . "',
 				'" . $data['news_img'] . "','" . $data['news_content'] . "','" . $data['description'] . "',
 				'" . $data['seo_title'] . "','" . $data['seo_desc'] . "','" . $data['seo_key'] . "',
-				'0','0','" . $data['language'] . "','$userid','$created_date')";
+				'0','0','" . $data['status_slide'] . "','" . $data['status_home'] . "','" . $data['language'] . "','$userid','$created_date')";
         $res = $db->db_query($sql);
         $db->db_freeresult($res);
         return false;
@@ -117,6 +118,7 @@ class News_class
         global $db;
         $sr = '';
         $sql = "Update coupons_news set news_name ='" . $data['news_name'] . "', news_category ='" . $data['news_category'] . "',
+        other_category ='" . $data['other_category'] . "',status_slide ='" . $data['status_slide'] . "',status_home ='" . $data['status_home'] . "',
 		news_url ='" . $data['news_url'] . "',news_link ='" . $data['news_link'] . "',news_img ='" . $data['news_img'] . "',
 		news_content ='" . $data['news_content'] . "',description ='" . $data['description'] . "',
 		seo_title ='" . $data['seo_title'] . "',seo_desc ='" . $data['seo_desc'] . "',seo_key ='" . $data['seo_key'] . "'
