@@ -33,6 +33,8 @@ if ($_SESSION[URL_HOME]["lang"] == "vn") {
     define("LANG_DAI_HOC_TOP", '105');
     define("LANG_NDTV", '11');
     define("LANG_GIAO_DUC", '106');
+    define("LANG_BLOG", '131');
+    define("LANG_JOB", '132');
     // Include language
     require('general/include/contact.php');
     include('general/language/language_vn.php');

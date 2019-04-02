@@ -1,11 +1,12 @@
-<?php /* Smarty version 2.6.13, created on 2019-03-31 12:19:25
-         compiled from banners/views.html */ ?>
+<?php /* Smarty version 2.6.13, created on 2019-03-17 08:57:16
+         compiled from schools/views.html */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "left.html", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
 <div id="page-wrapper">
+
 <div class="row">
 <div class="col-lg-12">
     <h1 class="page-header"><a href="<?php echo $this->_tpl_vars['url_views']; ?>
@@ -26,21 +27,25 @@ unset($_smarty_tpl_vars);
 ?module=<?php echo $this->_tpl_vars['url']; ?>
 &main=insert<?php echo $this->_tpl_vars['url_edit']; ?>
 " >
-    <div class="col-lg-6">
+    <div class="col-lg-12">
     <table class="table_insert">
     <thead>
         <tr>
-            <td align="right"><span><?php echo @langcms_tieude; ?>
+        <td align="right"><span><?php echo @langcms_tieude; ?>
  <?php echo $this->_tpl_vars['main_name']; ?>
  <em>*</em></span></td>
-            <td><input type="text" class="check_input" name="banner_name"  id="banner_name" value="<?php echo $this->_tpl_vars['rs_edit']['banner_name']; ?>
+        <td style="width:40%"><input type="text" class="check_input" name="news_name"  id="news_name" value="<?php echo $this->_tpl_vars['rs_edit']['news_name']; ?>
 " /></td>
+        <td align="right"><span><?php echo @langcms_linkdm; ?>
+</span></td>
+        <td style="width:40%"><input class="check_url" type="text" name="news_url" id="news_url" value="<?php echo $this->_tpl_vars['rs_edit']['news_url']; ?>
+" placeholder="Ex: san-pham"/></td>
         </tr>
         <tr>
-        <td align="right"><span><?php echo @langcms_danhmuc; ?>
+        	<td align="right"><span><?php echo @langcms_danhmuc; ?>
  <em>*</em></span></td>
             <td>
-            <select class="select_option check_input" name="category_id" id="category_id" >
+            <select class="select_option check_input" name="news_category" id="news_category" >
                 <option value=""><?php echo @langcms_chondanhmuc; ?>
 </option>
                 <?php $_from = $this->_tpl_vars['tree_select']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }$this->_foreach['val'] = array('total' => count($_from), 'iteration' => 0);
@@ -49,22 +54,26 @@ if ($this->_foreach['val']['total'] > 0):
         $this->_foreach['val']['iteration']++;
 ?>
                 <option value="<?php echo $this->_tpl_vars['val']['category_id']; ?>
-" <?php if ($this->_tpl_vars['val']['category_id'] == $this->_tpl_vars['rs_edit']['category_id']): ?>selected="selected"<?php endif; ?>><?php echo $this->_tpl_vars['val']['category_name']; ?>
+" <?php if ($this->_tpl_vars['val']['category_id'] == $this->_tpl_vars['rs_edit']['news_category']): ?>selected="selected"<?php endif; ?>><?php echo $this->_tpl_vars['val']['category_name']; ?>
 </option>
                 <?php endforeach; endif; unset($_from); ?>
             </select>
             </td>
+            <td align="right"><span><?php echo @langcms_lienket; ?>
+</span></td>
+            <td><input type="text" name="news_link"  id="news_link" value="<?php echo $this->_tpl_vars['rs_edit']['news_link']; ?>
+" placeholder="Ex: www.web.com"/></td>
         </tr>
         <tr>
-            <td align="right" valign="top"><span><?php echo @langcms_hinhanh; ?>
+                        <td align="right" valign="top"><span><?php echo @langcms_hinhanh; ?>
 </span></td>
-            <td> <input type="file" name="filename" id="filename" class="border_solid" value=""/>
-            <?php if ($this->_tpl_vars['rs_edit']['banner_img']): ?>
+            <td valign="top"> <input type="file" name="filename" id="filename" class="border_solid" value=""/>
+            <?php if ($this->_tpl_vars['rs_edit']['news_img']): ?>
             <div style="float:left">
-            <input type="hidden" name="image_old" id="image_old" value="<?php echo $this->_tpl_vars['rs_edit']['banner_img']; ?>
+            <input type="hidden" name="image_old" id="image_old" value="<?php echo $this->_tpl_vars['rs_edit']['news_img']; ?>
 " />
             <img src="<?php echo @IMG_UPLOAD;  echo $this->_tpl_vars['url']; ?>
-/<?php echo $this->_tpl_vars['rs_edit']['banner_img']; ?>
+/<?php echo $this->_tpl_vars['rs_edit']['news_img']; ?>
 " height="50" style="padding:5px 0px; float:left" />
             <label style="padding:5px 10px; float:left; color:#F00; width:34px">
             <input type="checkbox" value="1" name="delete_img" >
@@ -74,53 +83,45 @@ if ($this->_foreach['val']['total'] > 0):
             <?php endif; ?>
             </td>
     	</tr>
-        <tr>
-            <td align="right"><span><?php echo @langcms_lienket; ?>
+       <tr>
+            <td align="right" valign="top"><span><?php echo @langcms_small; ?>
 </span></td>
-            <td><input type="text" name="banner_link"  id="banner_link" value="<?php echo $this->_tpl_vars['rs_edit']['banner_link']; ?>
-" placeholder="Ex: www.web.com"/></td>
+            <td class="center" colspan="3">
+            <textarea class="ckeditor" name="news_content" id="news_content"><?php echo $this->_tpl_vars['rs_edit']['news_content']; ?>
+</textarea>
+            <script type="text/javascript" src="<?php echo @URL_HOMEPAGE; ?>
+editor/ckeditor/ckeditor.js"></script>
+            <?php echo '<script type="text/javascript">CKEDITOR.replace( \'news_content\'); </script>'; ?>
+
+            </td>
         </tr>
         <tr>
-           <td align="right"><span>Color bg</span></td>
-           <td><input type="text"  name="banner_bg" id="banner_bg" value="<?php echo $this->_tpl_vars['rs_edit']['banner_bg']; ?>
-" placeholder="Ex: ffffff"/></td>
+            <td align="right" valign="top"><span><?php echo @langcms_chitiet; ?>
+</span></td>
+            <td class="center" colspan="3">
+            <textarea class="ckeditor" name="description" id="description"><?php echo $this->_tpl_vars['rs_edit']['description']; ?>
+</textarea>
+            <?php echo '<script type="text/javascript">CKEDITOR.replace( \'description\'); </script>'; ?>
+
+            </td>
         </tr>
         <tr>
-    	<td align="right"><b><?php echo @langcms_loaibn; ?>
-:</b></td>
-        <td ><select name="banner_category" id="banner_category" class="select_option">
-		 <option value="0" <?php if ($this->_tpl_vars['rs_edit']['banner_category'] == 0): ?> selected="selected"<?php endif; ?>>Banner</option>
-          <option value="1" <?php if ($this->_tpl_vars['rs_edit']['banner_category'] == 1): ?> selected="selected"<?php endif; ?>><?php echo @langcms_banner1; ?>
-</option>
-		  <option value="2" <?php if ($this->_tpl_vars['rs_edit']['banner_category'] == 2): ?> selected="selected"<?php endif; ?>><?php echo @langcms_banner2; ?>
-</option>
-		  <option value="3" <?php if ($this->_tpl_vars['rs_edit']['banner_category'] == 3): ?> selected="selected"<?php endif; ?>><?php echo @langcms_banner3; ?>
-</option>
-		  <option value="4" <?php if ($this->_tpl_vars['rs_edit']['banner_category'] == 4): ?> selected="selected"<?php endif; ?>><?php echo @langcms_banner4; ?>
-</option> 
-          <option value="5" <?php if ($this->_tpl_vars['rs_edit']['banner_category'] == 5): ?> selected="selected"<?php endif; ?>><?php echo @langcms_banner5; ?>
-</option>
-          <option value="6" <?php if ($this->_tpl_vars['rs_edit']['banner_category'] == 6): ?> selected="selected"<?php endif; ?>><?php echo @langcms_banner6; ?>
-</option>
-        </select>
-        </td>
+            <td align="right"></td>
+            <td colspan="3"><div class="note">META SEO</div></td>
     	</tr>	
-        <tr>
-           <td align="right"><span><?php echo @langcms_vitri; ?>
-</span></td>
-           <td><input type="text"  name="pos" id="pos"  class="check_num wnum" value="<?php echo $this->_tpl_vars['rs_edit']['pos']; ?>
-" maxlength="10"/></td>
+    	<tr>
+            <td align="right"><span>Seo Title</span></td>
+            <td><input type="text" name="seo_title"  id="seo_title" value="<?php echo $this->_tpl_vars['rs_edit']['seo_title']; ?>
+" placeholder="Seo H1"  /></td>
+            <td align="right"><span>Meta Keywords</span></td>
+            <td><input type="text" name="seo_key"  id="seo_key" value="<?php echo $this->_tpl_vars['rs_edit']['seo_key']; ?>
+" placeholder="Seo Keywords"  /></td>
         </tr>
-        <tr>
-        <td align="right"><span><?php echo @langcms_trangthai; ?>
-</span></td>
-        <td>
-            <select class="select_option wnum" name="status" id="status"  >
-                <option value="1" <?php if ($this->_tpl_vars['rs_edit']['status'] == 1): ?>selected<?php endif; ?>>On</option>
-                <option value="0" <?php if ($this->_tpl_vars['rs_edit']['status'] == 0): ?>selected<?php endif; ?>>Off</option>
-            </select>
-        </td>
-        </tr>
+    	<tr>
+          <td align="right" valign="top"><span>Meta Content</span></td>
+          <td colspan="3"><textarea class="form-control" rows="3" name="seo_desc"  id="seo_desc" placeholder="Seo H2" ><?php echo $this->_tpl_vars['rs_edit']['seo_desc']; ?>
+</textarea></td>
+        </tr>      
         <tr>
             <td class="left"></td>
             <td class="center">
@@ -133,22 +134,6 @@ if ($this->_foreach['val']['total'] > 0):
  </button><?php endif; ?>
             </td>
         </tr>
-      </thead>  
-    </table>
-    </div>
-    <div class="col-lg-6">
-    <table class="table_insert">
-    <thead>
-        <tr>
-          <td colspan="2">
-          	<script src="<?php echo @URL_HOMEPAGE; ?>
-editor/standard/ckeditor.js"></script>
-			<textarea class="ckeditor" id="banner_content" name="banner_content" >
-            <?php echo $this->_tpl_vars['rs_edit']['banner_content']; ?>
-
-            </textarea>
-          </td>
-        </tr> 
       </thead>  
     </table>
     </div>
@@ -268,20 +253,18 @@ if ($this->_foreach['val']['total'] > 0):
 
           <div class="order">
               <a href="<?php echo $this->_tpl_vars['url_views'];  echo $this->_tpl_vars['url_category'];  echo $this->_tpl_vars['url_limit']; ?>
-&order=banner_name&sc=asc"><i class="fa fa-caret-up"></i></a>  
+&order=news_name&sc=asc"><i class="fa fa-caret-up"></i></a>  
               <a href="<?php echo $this->_tpl_vars['url_views'];  echo $this->_tpl_vars['url_category'];  echo $this->_tpl_vars['url_limit']; ?>
-&order=banner_name&sc=desc"><i class="fa fa-caret-down"></i></a>
+&order=news_name&sc=desc"><i class="fa fa-caret-down"></i></a>
           </div>
           </td>
-          <td><?php echo @langcms_loaibn; ?>
-</td>
           <td ><?php echo @langcms_danhmuc; ?>
 
           <div class="order">
               <a href="<?php echo $this->_tpl_vars['url_views'];  echo $this->_tpl_vars['url_category'];  echo $this->_tpl_vars['url_limit']; ?>
-&order=a.category_id&sc=asc"><i class="fa fa-caret-up"></i></a>  
+&order=a.news_category&sc=asc"><i class="fa fa-caret-up"></i></a>  
               <a href="<?php echo $this->_tpl_vars['url_views'];  echo $this->_tpl_vars['url_category'];  echo $this->_tpl_vars['url_limit']; ?>
-&order=a.category_id&sc=desc"><i class="fa fa-caret-down"></i></a>
+&order=a.news_category&sc=desc"><i class="fa fa-caret-down"></i></a>
           </div>
           </td>
           <td align="center"><?php echo @langcms_vitri; ?>
@@ -300,30 +283,31 @@ if ($this->_foreach['rs']['total'] > 0):
         $this->_foreach['rs']['iteration']++;
 ?>
           <tr>
-          <td align="center" class="mw_80"><?php echo $this->_tpl_vars['rs']['id_tem']; ?>
-</td>
-          <td align="left" class="mw_80">
-          <?php if ($this->_tpl_vars['rs']['banner_img']): ?>
+          <td align="center" class="mw_80">
+          <?php echo $this->_tpl_vars['rs']['id_tem']; ?>
+ 
+          <a href="<?php echo @URL_HOMEPAGE; ?>
+detail/<?php echo $this->_tpl_vars['rs']['id_tem']; ?>
+-<?php echo $this->_tpl_vars['rs']['news_url']; ?>
+.html" target="_blank" class="status_views"> 
+          <i class="fa fa-hand-o-right"></i></a>
+          </td>
+          <td align="center" class="mw_50">
+          <?php if ($this->_tpl_vars['rs']['news_img']): ?>
           <img src="<?php echo @IMG_UPLOAD;  echo $this->_tpl_vars['url']; ?>
-/<?php echo $this->_tpl_vars['rs']['banner_img']; ?>
+/<?php echo $this->_tpl_vars['rs']['news_img']; ?>
 " height="35"/>
           <?php else: ?>
           <i class="fa fa-picture-o status_img"></i>
           <?php endif; ?>
           </td>
-          <td><input type="text" name="banner_name<?php echo $this->_tpl_vars['rs']['id_tem']; ?>
-" value="<?php echo $this->_tpl_vars['rs']['banner_name']; ?>
+          <td><input type="text" name="news_name<?php echo $this->_tpl_vars['rs']['id_tem']; ?>
+" value="<?php echo $this->_tpl_vars['rs']['news_name']; ?>
 " /></td>
-          <td>
-          <?php if ($this->_tpl_vars['rs']['banner_category'] == 1): ?> <?php echo @langcms_banner1;  endif; ?>
-    		  <?php if ($this->_tpl_vars['rs']['banner_category'] == 2): ?> <?php echo @langcms_banner2;  endif; ?>
-    		  <?php if ($this->_tpl_vars['rs']['banner_category'] == 3): ?> <?php echo @langcms_banner3;  endif; ?>
-    		  <?php if ($this->_tpl_vars['rs']['banner_category'] == 4): ?> <?php echo @langcms_banner4;  endif; ?>
-          <?php if ($this->_tpl_vars['rs']['banner_category'] == 5): ?> <?php echo @langcms_banner5;  endif; ?>
-          <?php if ($this->_tpl_vars['rs']['banner_category'] == 6): ?> <?php echo @langcms_banner6;  endif; ?>
-          </td>
-          <td><?php echo $this->_tpl_vars['rs']['category_name']; ?>
-</td>
+          <td><a href="<?php echo @URL_HOMEPAGE;  echo $this->_tpl_vars['rs']['news_urlcate'];  echo $this->_tpl_vars['rs']['category_url']; ?>
+.html" target="_blank"> 
+          <i class="fa fa-hand-o-right"></i> <?php echo $this->_tpl_vars['rs']['category_name']; ?>
+</a></td>
           <td align="center" class="mw_80"><input type="text" maxlength="3" size="1"  name="pos<?php echo $this->_tpl_vars['rs']['id_tem']; ?>
 " value="<?php echo $this->_tpl_vars['rs']['pos']; ?>
 " class="check_num" /></td>
@@ -338,17 +322,17 @@ if ($this->_foreach['rs']['total'] > 0):
           </td>
           <?php if ($this->_tpl_vars['action_edit']): ?>
           <td align="center" class="mw_80">
-              <a href="<?php echo $this->_tpl_vars['url_views'];  echo $this->_tpl_vars['url_category'];  echo $this->_tpl_vars['url_page'];  echo $this->_tpl_vars['url_limit'];  echo $this->_tpl_vars['url_order']; ?>
+          <a href="<?php echo $this->_tpl_vars['url_views'];  echo $this->_tpl_vars['url_category'];  echo $this->_tpl_vars['url_page'];  echo $this->_tpl_vars['url_limit'];  echo $this->_tpl_vars['url_order']; ?>
 &id_edit=<?php echo $this->_tpl_vars['rs']['id_tem']; ?>
-" class="status_edit">
-              <i class="fa fa-pencil-square-o"></i></a>
-              &nbsp;
-              <a href="<?php echo @URL_ADMIN; ?>
+" class="status_edit" title="Edit">
+          <i class="fa fa-pencil-square-o"></i></a>
+          &nbsp;
+          <a href="<?php echo @URL_ADMIN; ?>
 ?module=<?php echo $this->_tpl_vars['url']; ?>
 &main=copys<?php echo $this->_tpl_vars['url_category']; ?>
 &id_edit=<?php echo $this->_tpl_vars['rs']['id_tem']; ?>
 " class="status_copy" title="Copy"> 
-              <i class="fa fa-copy"></i></a>
+          <i class="fa fa-copy"></i></a>
           </td>
           <?php endif; ?>
           <td align="center"><label><input type="checkbox" id="checks" name="checkbox_id[]" value="<?php echo $this->_tpl_vars['rs']['id_tem']; ?>

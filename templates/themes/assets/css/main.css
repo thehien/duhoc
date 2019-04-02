@@ -6682,6 +6682,23 @@ for font-size and font-family*/
   color: white;
 }
 
+.active:hover {
+    background: #388bf7 !important;
+    margin: 5px;
+    color: #fff !important;
+}
+
+.un_active {
+    margin: 5px;
+    color: #000;
+}
+
+.un_active:hover {
+    background: #fff !important;
+    margin: 5px;
+    color: #000;
+}
+
 .topnav .icon {
   display: none;
 }

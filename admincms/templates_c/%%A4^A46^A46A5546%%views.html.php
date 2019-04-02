@@ -1,10 +1,12 @@
-<?php /* Smarty version 2.6.13, created on 2019-03-17 06:01:55
+<?php /* Smarty version 2.6.13, created on 2019-03-17 08:37:32
          compiled from categorys/views.html */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "left.html", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
+ <script src="<?php echo @URL_HOMEPAGE; ?>
+editor/standard/ckeditor.js"></script>
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
@@ -102,25 +104,22 @@ if ($this->_foreach['val']['total'] > 0):
                             </tr>
 
                             <tr>
-                                <td align="right" valign="top"><span><?php echo @langcms_mota; ?>
-</span></td>
+                                <td align="right" valign="top"><span>Mô tả chung</span></td>
                                 <td>
                                     <textarea rows="5"
                                               class="form-control ckeditor" name="category_content"
                                               id="category_content"><?php echo $this->_tpl_vars['rs_edit']['category_content']; ?>
 </textarea>
-                                    <script src="<?php echo @URL_HOMEPAGE; ?>
-editor/standard/ckeditor.js"></script>
+                                   
                                 </td>
                             </tr>
 
                             <tr>
-                                <td align="right" valign="top"><span><?php echo @langcms_mota; ?>
-</span></td>
+                                <td align="right" valign="top"><span>Thông tin du học</span></td>
                                 <td>
                                     <textarea rows="5"
-                                              class="form-control ckeditor" name="category_content"
-                                              id="category_content"><?php echo $this->_tpl_vars['rs_edit']['category_content']; ?>
+                                              class="form-control ckeditor" name="category_info_news"
+                                              id="category_info_news"><?php echo $this->_tpl_vars['rs_edit']['category_info_news']; ?>
 </textarea>
                                 </td>
                             </tr>
@@ -229,23 +228,21 @@ editor/standard/ckeditor.js"></script>
                             </tr>
 
                             <tr>
-                                <td align="right" valign="top"><span><?php echo @langcms_mota; ?>
-</span></td>
+                                <td align="right" valign="top"><span>Du học viên</span></td>
                                 <td colspan="3">
                                     <textarea rows="5"
-                                              class="form-control ckeditor" name="category_content"
-                                              id="category_content"><?php echo $this->_tpl_vars['rs_edit']['category_content']; ?>
+                                              class="form-control ckeditor" name="category_info_student"
+                                              id="category_info_student"><?php echo $this->_tpl_vars['rs_edit']['category_info_student']; ?>
 </textarea>
                                 </td>
                             </tr>
 
                             <tr>
-                                <td align="right" valign="top"><span><?php echo @langcms_mota; ?>
-</span></td>
+                                <td align="right" valign="top"><span>Mô tả trường</span></td>
                                 <td colspan="3">
                                     <textarea rows="5"
-                                              class="form-control ckeditor" name="category_content"
-                                              id="category_content"><?php echo $this->_tpl_vars['rs_edit']['category_content']; ?>
+                                              class="form-control ckeditor" name="category_info_schools"
+                                              id="category_info_schools"><?php echo $this->_tpl_vars['rs_edit']['category_info_schools']; ?>
 </textarea>
                                 </td>
                             </tr>
@@ -396,4 +393,4 @@ if ($this->_foreach['rs']['total'] > 0):
         </form>
     </div>
 </div>
-</div>
+</div>

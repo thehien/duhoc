@@ -1,5 +1,4 @@
 {include file="$themes/header.html"}
-<script src="{$smarty.const.URL_WEB}{$themes}/assets/js/jquery.popupoverlay.js"></script>
 <!-- Header Section Start -->
 <div class="header">
     <!-- Start intro section -->
@@ -11,68 +10,111 @@
         <section class="featured-jobs">
             {include file="$themes/top-support.html"}
         </section>
-        <section class="find-jobs section-about">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 fw-mgt30 fw-mgb10">
-                        <span class="fw-fs-26"><strong>{$cate_detail[0].category_name}</strong></span>
-                        <div align="center" class="btn-bg-under-center fw-mgt10"></div>
-                    </div>
-                    <div class="col-md-12 no-padding">
-                        <div align="left" class="col-md-8 text-justify">
-                            {$cate_detail[0].category_content}
-                        </div>
-                        <div class="col-md-2"></div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
     </section>
 </div>
 
-<!-- end intro section -->
-<section id="blog" class="find-jobs section-about fw-mgt10">
+<section class="featured-jobs section" style="background: #fff !important;">
     <div class="container">
         <div class="row">
-            <div class="col-md-12 no-padding fw-mgb20">
-                {if $main_cate == 108}
-                    {assign var="border" value="border-daihoc"}
-                {elseif $main_cate == 107}
-                    {assign var="border" value="border-thpt"}
-                {else}
-                    {assign var="border" value="border-thacsi"}
-                {/if}
-                {foreach from=$list_hoc_bong_child item="val" name="val"}
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 blog-item">
+            <div class="col-md-12 fw-border-content-bottom" style="margin: 5px; text-align: center">
+                <h3 class="fw-fs-26 fw-mgt10 fw-mgb10">
+                    <strong>Cơ hội nghề nghiệp</strong>
+                </h3>
+            </div>
 
-                    <div class="{$border} blog-item-wrapper">
-                        <div class="blog-item-img">
-                            <a href="{$smarty.const.URL_HOMEPAGE}hb/{$main_cate}-{$val.category_id}-{$val.category_url}.html">
-                                {if $val.category_img}
-                                <img src="{$smarty.const.URL_HOME}/upload/categorys/{$val.category_img}"/>
-                                {else}
-                                <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/info/man-user.png"/>
-                                {/if}
-                            </a>
+            <div class="col-md-12 no-padding fw-mgt10">
+                <div class="col-md-9 no-padding">
+                    <div class="col-md-12 fw-mgb20">
+                        {foreach from=$list_content_job item="val" key="key" name="val"}
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="featured-item">
+                                <div class="featured-wrap">
+                                    <div class="featured-inner">
+                                        <figure class="item-thumb">
+                                            <center>
+                                                {if $val.news_img}
+                                                <a class="hover-effect"
+                                                   href="{$smarty.const.URL_HOMEPAGE}job-detail/{$main_cate}-{$val.news_id}-{$val.news_url}.html">
+                                                    <img src="{$smarty.const.URL_HOME}/upload/contents/{$val.news_img}"
+                                                         alt="{$val.news_name}">
+                                                </a>
+                                                {else}
+                                                <a class="hover-effect"
+                                                   href="{$smarty.const.URL_HOMEPAGE}job-detail/{$main_cate}-{$val.news_id}-{$val.news_url}.html">
+                                                    <img src="{$smarty.const.URL_WEB}{$themes}/assets/img/about/img_1.jpg"
+                                                         alt="{$val.news_name}">
+                                                </a>
+                                                {/if}
+                                            </center>
+                                        </figure>
+                                        <div class="item-body" style="height: 94px;">
+                                            <span class="job-title">
+                                                <a title="{$val.full_news_name}"
+                                                   href="{$smarty.const.URL_HOMEPAGE}job-detail/{$main_cate}-{$val.news_id}-{$val.news_url}.html">
+                                                    {$val.limit_news_name}
+                                                </a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item-foot">
+                                    <span><i class="ti-calendar"></i> {$val.created_date}</span>
+                                    <div class="view-iocn">
+                                        <a href="{$smarty.const.URL_HOMEPAGE}bl-detail/{$main_cate}-{$val.news_id}-{$val.news_url}.html"><i
+                                                class="ti-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="blog-item-text">
-                            <a href="{$smarty.const.URL_HOMEPAGE}hb/{$main_cate}-{$val.category_id}-{$val.category_url}.html" class="link_blue">
-                                <h3>
-                                    {$val.category_name}
-                                    <div align="center" class="btn-bg-under-center fw-mgt10 fw-mgb10"></div>
-                                </h3>
-                            </a>
-                            <p class="h-25 d-inline-block">
-                                {$val.category_content}
-                            </p>
-                        </div>
+                        {/foreach}
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="showing pull-left"></div>
+                        <ul class="pagination pull-right">
+                            <li class="active"><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                        </ul>
                     </div>
                 </div>
-                {/foreach}
+
+                <div class="col-md-3 no-padding">
+                    <div class="fw-mgb20 fw-mgt10">
+                        <div class="fw-fs-18">GIỚI THIỆU</div>
+                        <div align="left" class="btn-bg-under-center fw-mgt10"></div>
+                    </div>
+                    <div>
+                        <ul>
+                            {foreach from=$list_about_us item="val" name="val"}
+                            <li class="fw-mgb10">
+                                <a href="{$smarty.const.URL_HOMEPAGE}about/{$val.news_id}-{$val.news_url}.html">
+                                    {$val.news_name}
+                                </a>
+                            </li>
+                            {/foreach}
+                            <li class="fw-mgb10">
+                                <a href="{$smarty.const.URL_HOMEPAGE}blog.html">
+                                    Blog
+                                </a>
+                            </li>
+                            <li class="fw-mgb10">
+                                <a href="{$smarty.const.URL_HOMEPAGE}career.html">
+                                    Cơ hội nghề nghiệp
+                                </a>
+                            </li>
+                            <li class="fw-mgb10">
+                                <a href="{$smarty.const.URL_HOMEPAGE}contact.html">
+                                    Hợp tác chúng tôi
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 </section>
 <!-- footer -->
 {include file="$themes/footer.html"}

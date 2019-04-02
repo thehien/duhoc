@@ -131,15 +131,30 @@
                     </a>
                 </li>
                 {/foreach}
+                <li>
+                    <a href="{$smarty.const.URL_HOMEPAGE}blog.html">
+                        Blog
+                    </a>
+                </li>
+                <li>
+                    <a href="{$smarty.const.URL_HOMEPAGE}career.html">
+                        Cơ hội nghề nghiệp
+                    </a>
+                </li>
+                <li>
+                    <a href="{$smarty.const.URL_HOMEPAGE}contact.html">
+                        Hợp tác chúng tôi
+                    </a>
+                </li>
             </ul>
         </li>
         <li>
-            <a href="{$smarty.const.URL_HOMEPAGE}">DU HỌC CÁC NƯỚC</a>
+            <a href="{$smarty.const.URL_HOMEPAGE}">DU HỌC</a>
             <ul>
                 {section name=cate_du_hoc loop=$cate_du_hoc}
                 {section name=cate_sub loop=$cate_sub[cate_du_hoc]}
                 <li class="white_space">
-                    <a href="{$smarty.const.URL_HOMEPAGE}">
+                    <a href="{$smarty.const.URL_HOMEPAGE}duhoc/{$cate_sub[cate_du_hoc][cate_sub].category_id}-{$cate_sub[cate_du_hoc][cate_sub].category_url}.html">
                         {$cate_sub[cate_du_hoc][cate_sub].category_name}
                     </a>
                 </li>
@@ -149,23 +164,14 @@
         </li>
         <li>
             <a href="#">ĐẠI HỌC TOP</a>
-            <ul>
-                {foreach from=$list_about_us item="val" name="val"}
-                <li>
-                    <a href="{$smarty.const.URL_HOMEPAGE}study-detail.html">
-                        {$val.news_name}
-                    </a>
-                </li>
-                {/foreach}
-            </ul>
         </li>
         <li>
             <a href="#">HỌC BỔNG</a>
             <ul>
-                {foreach from=$list_about_us item="val" name="val"}
+                {foreach from=$list_hoc_bong item="val" name="val"}
                 <li>
-                    <a href="{$smarty.const.URL_HOMEPAGE}study-detail.html">
-                        {$val.news_name}
+                    <a href="{$smarty.const.URL_HOMEPAGE}hocbong/{$val.category_id}-{$val.category_url}.html">
+                        {$val.category_name}
                     </a>
                 </li>
                 {/foreach}

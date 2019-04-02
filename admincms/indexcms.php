@@ -125,6 +125,15 @@ switch ($module) {
             $function->goto_url(URL_ADMIN);
         }
         break;
+    case 'contents':
+        if (isset($_SESSION[URL_ADMIN]['logined']) AND $_SESSION[URL_ADMIN]['logined'] === true AND $_SESSION[URL_ADMIN]['logined_user'] == LOGINED_TRUE) {
+            require("module/contents/main.php");
+            $smarty->assign("panel_module", contents_process());
+            $smarty->display("homepage.html");
+        } else {
+            $function->goto_url(URL_ADMIN);
+        }
+        break;
     case 'trans_order':
         if (isset($_SESSION[URL_ADMIN]['logined']) AND $_SESSION[URL_ADMIN]['logined'] === true AND $_SESSION[URL_ADMIN]['logined_user'] == LOGINED_TRUE) {
             require("module/trans_order/main.php");

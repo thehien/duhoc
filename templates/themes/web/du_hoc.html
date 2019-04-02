@@ -46,8 +46,8 @@
         $(".regular").slick({
             dots: true,
             infinite: true,
-            slidesToShow: 6,
-            slidesToScroll: 6,
+            slidesToShow: 4,
+            slidesToScroll: 4,
             autoplay: true
         });
     });
@@ -173,9 +173,11 @@
                         </center>
                     </div>
                     <div style="clear: both;"></div>
-                    <div align="center">
-                        <strong title="{$val.news_name}">{$val.news_name}</strong>
-                    </div>
+                        {if !$isMobile}
+                            <div align="center">
+                                <strong title="{$val.news_name}">{$val.news_name}</strong>
+                            </div>
+                        {/if}
                 </div>
                 {/foreach}
             </section>
@@ -233,16 +235,35 @@
 {literal}
 <script>
     jQuery(document).ready(function() {
-        //jQuery("#target-content").load("{/literal}{$smarty.const.URL_HOME}{literal}/load/load_pagination.php?page=1");
         jQuery("#paging li").on('click',function(e){
             e.preventDefault();
             jQuery("#target-content").html('loading...');
             jQuery("#paging li").removeClass('active');
             jQuery(this).addClass('active');
             var pageNum = this.id;
-            jQuery("#target-content").load("{/literal}{$smarty.const.URL_HOME}{literal}/load/load_pagination.php?category_id={/literal}{$main_cate}{literal}&page=" + pageNum);
+            loadSchoolsData(pageNum);
         });
     });
+</script>
+<script type="text/javascript">
+    function loadSchoolsData(pageNum){
+        $.ajax( {
+            url: '{/literal}{$smarty.const.URL_HOME}{literal}/load/load_pagination.php?category_id={/literal}{$main_cate}{literal}&page=' + pageNum,
+            type: "get",
+            dataType: 'json',
+            async: false,
+            beforeSend: function() {
+                $("#loadingInfo").css("display", "block");
+            }
+        })
+            .done(function(data) {
+                $("#loadingInfo").css("display", "none");
+                $("#target-content").html(data);
+            })
+            .fail(function(jqXHR, ajaxOptions, thrownError) {
+                alert('server not responding...');
+            });
+    }
 </script>
 {/literal}
 <!-- Find Job Section Start -->
@@ -260,23 +281,23 @@
                 <div class="col-md-2"></div>
             </div>
 
-            <div class="col-md-12 no-padding fw-mgb20">
-                {foreach from=$list_category_content item="val" name="val"}
-                <div style="float:left; margin: 10px 15px 10px 15px;line-height: 25px;">
+            <div class="col-md-12 fw-mgb20">
+                <div class="topnav" id="myTopnav">
+                    {foreach from=$list_category_content item="val" name="val"}
+                    <a href="#home" {if $smarty.foreach.val.first}class="active"{else}class="un_active"{/if}>
                     <span id="link_{$val.category_id}" class="link_duhoc_hover" onclick="loadMoreData({$val.category_id});">
-                        <h4><strong>{$val.category_name}</strong></h4>
-                    </span>
+                    <h4><strong>{$val.category_name}</strong></h4>
+                </span>
+                    </a>
+                    {/foreach}
+                    <a href="javascript:void(0);" class="icon" onclick="myFunction();">
+                        <i class="fa fa-bars"></i>
+                    </a>
                 </div>
-                {if !$smarty.foreach.val.last}
-                <div style="float:left; border: 1px solid #CCC; height: 25px; margin-top: 7px;"></div>
-                {/if}
-                {/foreach}
             </div>
 
             <div class="col-md-12 no-padding">
-
-               <div id="target-content"></div>
-
+               <div id="target-content">
                {foreach from=$all_schools item="val" name="val"}
                <div class="col-md-6 fw-mgb10">
                 <div class="box_how_it_works" style="padding:10px;">
@@ -303,6 +324,7 @@
                 </div>
             </div>
             {/foreach}
+               </div>
         </div>
 
     {if $total_pages > 0}
@@ -311,7 +333,7 @@
         <ul class="pagination pull-right" id="paging">
             {section name=foo start=1 loop=$total_pages step=1}
                 {if $smarty.section.foo.index == 1}
-                    <li class='active' id="{$smarty.section.foo.index}"><a href='{$smarty.const.URL_HOME}/load/pagination.php?category_id={$main_cate}&page={$smarty.section.foo.index}'>{$smarty.section.foo.index}</a></li> 
+                    <li class='active' id="{$smarty.section.foo.index}"><a href='{$smarty.const.URL_HOME}/load/pagination.php?category_id={$main_cate}&page={$smarty.section.foo.index}'>{$smarty.section.foo.index}</a></li>
                 {else}
                    <li id="{$smarty.section.foo.index}"><a href='{$smarty.const.URL_HOME}/load/pagination.php?category_id={$main_cate}&page={$smarty.section.foo.index}'>{$smarty.section.foo.index}</a></li>
                 {/if}
@@ -319,7 +341,7 @@
 
 
             {foreach from=$count_schools key="key" item="val" name="val"}
-              
+
             {/foreach}
         </ul>
     </div>

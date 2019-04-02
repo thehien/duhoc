@@ -533,22 +533,45 @@ function process_client()
 ////////////////////////////////////////////////////////////////////////////////
         case "blog":
             $smarty->assign("blog", 1);
+            // Get data blog
+            $list_content_blog = $oNews->get_all_data_contents(LANG_BLOG, 0, 6);
+            $smarty->assign("list_content_blog", $list_content_blog);
+
             return $smarty->fetch($themes . "/web/blog.html");
             break;
 ////////////////////////////////////////////////////////////////////////////////
-        case "blog-detail":
+        case "bl-detail":
             $smarty->assign("blog_detail", 1);
+            $arr_detail = explode("-", $b);
+            $b = $function->sql_injection($arr_detail[1]);
+            // SEO link
+            $_SESSION[URL_HOME]['tinseo'] = $function->sql_injection($_SERVER['REQUEST_URI']);
+
+            $blog_detail = $oNews->show_content_detail($b);
+            $smarty->assign("blog_detail", $blog_detail);
+
             return $smarty->fetch($themes . "/web/blog_detail.html");
             break;
 
 ////////////////////////////////////////////////////////////////////////////////
         case "career":
             $smarty->assign("career", 1);
+            // Get data blog
+            $list_content_job = $oNews->get_all_data_contents(LANG_JOB, 0, 6);
+            $smarty->assign("list_content_job", $list_content_job);
             return $smarty->fetch($themes . "/web/career.html");
             break;
 ////////////////////////////////////////////////////////////////////////////////
-        case "career-detail":
-            $smarty->assign("career_detail", 1);
+        case "job-detail":
+            $smarty->assign("job_detail", 1);
+            $arr_detail = explode("-", $b);
+            $b = $function->sql_injection($arr_detail[1]);
+            // SEO link
+            $_SESSION[URL_HOME]['tinseo'] = $function->sql_injection($_SERVER['REQUEST_URI']);
+
+            $job_detail = $oNews->show_content_detail($b);
+            $smarty->assign("job_detail", $job_detail);
+
             return $smarty->fetch($themes . "/web/career_detail.html");
             break;
 

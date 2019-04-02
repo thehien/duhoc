@@ -1,11 +1,13 @@
-<div class="col-md-12 no-padding fw-mgb20">
+<div class="col-md-12 fw-mgb20">
     <div class="topnav" id="myTopnav">
          {foreach from=$list_category_content item="val" name="val"}
-         <a href="#home" class="active"><span id="link_{$val.category_id}" class="link_duhoc_hover" onclick="loadMoreData({$val.category_id});">
-                <h4><strong>{$val.category_name}</strong></h4>
-            </span></a>
+             <a href="#home" {if $smarty.foreach.val.first}class="active"{else}class="un_active"{/if}>
+                 <span id="link_{$val.category_id}" class="link_duhoc_hover" onclick="loadMoreData({$val.category_id});">
+                    <h4><strong>{$val.category_name}</strong></h4>
+                </span>
+             </a>
          {/foreach}
-          <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+          <a href="javascript:void(0);" class="icon" onclick="myFunction();">
             <i class="fa fa-bars"></i>
           </a>
     </div>
@@ -99,7 +101,6 @@ function myFunction() {
         <li><a href="#">3</a></li>
         <li><a href="#">4</a></li>
         <li><a href="#">5</a></li>
-       
     </ul>
 </div>
 {/if}

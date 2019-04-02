@@ -86,6 +86,25 @@ class News
         return $rows;
     }
 
+    // Get data all schools
+    function get_all_data_contents($news_id, $page, $per_page)
+    {
+        global $db, $function;
+        $language = LANG_AUGE;
+        $sql = "SELECT *, FROM_UNIXTIME(t1.created_date,'%d/%m/%Y') as created_date FROM ";
+        $sql .= "coupons_contents t1 ";
+        $sql .= "where news_category = $news_id and language=$language and status=1 order by news_id asc Limit $page, $per_page";
+        //echo $sql;
+        $res = $db->db_query($sql);
+        $rows = $db->db_fetchrowset($res);
+        for ($i = 0; $i < count($rows); $i++) {
+            $rows[$i]["limit_news_name"] = $function->cutnchar($rows[$i]["news_name"], 300);
+            $rows[$i]["full_news_name"] = $function->cutnchar($rows[$i]["news_name"], 10000);
+        }
+        return $rows;
+    }
+
+
     // Get data all question
     function get_all_question($news_id)
     {
@@ -2029,6 +2048,19 @@ class News
         $rows["title_top"] = $function->cutnchar($rows["news_name"], 100);
         $rows["description_top"] = $function->cutnchar($rows["news_content"], 200);
         $rows["img_meta"] = "news";
+
+        return $rows;
+    }
+
+    function show_content_detail($news_id)
+    {
+        global $db, $function;
+        $sql = "Select FROM_UNIXTIME(created_date,'%d/%m/%Y') as time_news, news_id, news_name, 
+        status, news_img, news_category, news_content,
+        description,news_link,news_url,created_date,userid,seo_title,seo_key,seo_desc 
+        from coupons_contents where news_id = '$news_id'  ";
+        $res = $db->db_query($sql);
+        $rows = $db->db_fetchrow($res);
 
         return $rows;
     }
